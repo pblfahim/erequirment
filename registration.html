@@ -30,6 +30,18 @@
         .password-container .form-control {
             padding-right: 40px;
         }
+
+        /* Styling for smooth validation transitions */
+        .form-control.is-valid,
+        .form-control.is-invalid {
+            background-image: none !important;
+            /* Remove default bootstrap check icons to avoid icon overlapping */
+        }
+
+        .btn-signin:not(:disabled) {
+            cursor: pointer;
+            opacity: 1;
+        }
     </style>
 </head>
 
@@ -58,26 +70,25 @@
             </div>
 
             <div class="auth-body">
-                <h2>Create Account</h2>
-                <div class="account-switch-text mb-4">
-                    Already have an account? <a href="login.html">Sign In</a>
-                </div>
+                <h2>Complete Registration</h2>
 
                 <!-- Custom Alert Bar for Application State Notices -->
                 <div id="statusAlert" class="alert d-none animate__animated animate__fadeIn" role="alert"></div>
+
                 <form id="registrationForm" autocomplete="on" novalidate>
 
                     <!-- Verified Mobile Number -->
                     <div class="mb-3">
                         <label class="form-label">Verified Mobile Number</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="mobileNumber" value="017XXXXXXXX" readonly>
+                            <input type="text" class="form-control is-valid disabled" id="mobileNumber"
+                                value="01712345678" readonly>
                             <span class="input-group-text text-success">
                                 <i class="fa-solid fa-circle-check"></i>
                             </span>
                         </div>
                         <small class="text-success">
-                            Mobile number verified successfully.
+                            Mobile number verified successfully via OTP.
                         </small>
                     </div>
 
@@ -88,9 +99,10 @@
                         </label>
                         <input type="text" class="form-control" id="applicantName" placeholder="Enter Applicant Name"
                             required>
-                        <div class="invalid-feedback">
-                            Please enter your full name.
+                        <div class="invalid-feedback" id="nameFeedback">
+                            Please enter your full name (English letters, dots, and hyphens only, min 3 chars).
                         </div>
+                        <small class="text-muted">Must exactly match your NID or SSC certificate.</small>
                     </div>
 
                     <!-- Date of Birth -->
@@ -99,9 +111,10 @@
                             Date of Birth
                         </label>
                         <input type="date" class="form-control" id="dob" required>
-                        <div class="invalid-feedback">
-                            Please select your date of birth.
+                        <div class="invalid-feedback" id="dobFeedback">
+                            Please select a valid date of birth.
                         </div>
+                        <small class="text-muted">Age must be within 18 to 35 years as on today.</small>
                     </div>
 
                     <!-- Password -->
@@ -118,7 +131,9 @@
                                 <i class="fa-regular fa-eye" id="passwordIcon"></i>
                             </span>
                         </div>
-
+                        <div class="invalid-feedback">
+                            Password does not meet the complexity requirements.
+                        </div>
                         <small class="text-muted">
                             Minimum 8 characters with uppercase, lowercase, number and special character.
                         </small>
@@ -146,8 +161,8 @@
                     </div>
 
                     <button type="submit" class="btn btn-signin" id="submitBtn" disabled>
-                        Create Account
-                        <i class="fa-solid fa-arrow-right-long"></i>
+                        <span id="btnText">Complete Registration</span>
+                        <i class="fa-solid fa-arrow-right-long ms-1" id="btnIcon"></i>
                     </button>
 
                 </form>
@@ -156,19 +171,14 @@
     </div>
 
     <footer>
-        <div class="footer-container text-center py-3">
-            <div>
-                © 2026 Pubali HR Management System. All rights reserved.
-            </div>
-            <div class="small text-muted mt-1">
-                Last updated: June 15, 2026 &nbsp; &nbsp; | &nbsp; &nbsp; System Version: v1.0.0
-            </div>
+        <div class="footer-container">
+            <div>&copy; 2026 Pubali HR Management System. All rights reserved.</div>
+            <div>Last updated: June 15, 2026 &nbsp; &nbsp; | &nbsp; &nbsp; System Version: v1.0.0</div>
         </div>
     </footer>
 
     <script>
         function togglePassword(fieldId, iconId) {
-
             const field = document.getElementById(fieldId);
             const icon = document.getElementById(iconId);
 
@@ -182,61 +192,170 @@
         }
 
         document.addEventListener("DOMContentLoaded", () => {
-
+            const form = document.getElementById("registrationForm");
             const applicantName = document.getElementById("applicantName");
             const dob = document.getElementById("dob");
             const password = document.getElementById("passwordField");
             const confirmPassword = document.getElementById("confirmPassword");
             const submitBtn = document.getElementById("submitBtn");
+            const btnText = document.getElementById("btnText");
+            const btnIcon = document.getElementById("btnIcon");
+            const statusAlert = document.getElementById("statusAlert");
 
-            function validatePassword(pass) {
-
+            // Regular expression matching standard Bangladeshi banking compliance patterns
+            function validatePasswordStyle(pass) {
                 return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_\-+=]).{8,}$/.test(pass);
+            }
 
+            function validateNameStyle(name) {
+                // Allows letters, dots, spaces, and hyphens to match NID conventions perfectly
+                return /^[a-zA-Z\s\.\-]+$/.test(name.trim()) && name.trim().length >= 3;
+            }
+
+            function calculateAge(birthDateString) {
+                const birthDate = new Date(birthDateString);
+                const today = new Date(); // Dynamic context evaluation
+
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDifference = today.getMonth() - birthDate.getMonth();
+
+                if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
+            }
+
+            function runFieldValidation(field, condition, feedbackElement = null, customMessage = "") {
+                if (field.value.trim() === "") {
+                    field.classList.remove("is-valid", "is-invalid");
+                    return false;
+                }
+
+                if (condition) {
+                    field.classList.remove("is-invalid");
+                    field.classList.add("is-valid");
+                    return true;
+                } else {
+                    field.classList.remove("is-valid");
+                    field.classList.add("is-invalid");
+                    if (feedbackElement && customMessage) {
+                        feedbackElement.textContent = customMessage;
+                    }
+                    return false;
+                }
             }
 
             function validateForm() {
+                // 1. Name validation
+                const isNameValid = runFieldValidation(
+                    applicantName,
+                    validateNameStyle(applicantName.value),
+                    document.getElementById("nameFeedback"),
+                    "Please enter a valid full name using only English letters, dots, or hyphens (Min 3 characters)."
+                );
 
-                const validName = applicantName.value.trim().length >= 3;
+                // 2. Age / Date of Birth Validation (18-35 years boundary parameters)
+                let isDobValid = false;
+                if (dob.value !== "") {
+                    const age = calculateAge(dob.value);
+                    const dobFeedback = document.getElementById("dobFeedback");
 
-                const validDob = dob.value !== "";
-
-                const validPassword = validatePassword(password.value);
-
-                const matched = password.value === confirmPassword.value &&
-                    confirmPassword.value !== "";
-
-                if (matched) {
-                    confirmPassword.classList.remove("is-invalid");
-                } else if (confirmPassword.value !== "") {
-                    confirmPassword.classList.add("is-invalid");
+                    if (age < 18 || age > 35) {
+                        dob.classList.remove("is-valid");
+                        dob.classList.add("is-invalid");
+                        dobFeedback.textContent = `Age restriction policy error: Your age is ${age}. Candidates must be between 18 and 35 years old.`;
+                    } else {
+                        dob.classList.remove("is-invalid");
+                        dob.classList.add("is-valid");
+                        isDobValid = true;
+                    }
+                } else {
+                    dob.classList.remove("is-valid", "is-invalid");
                 }
 
-                submitBtn.disabled = !(validName && validDob && validPassword && matched);
+                // 3. Password Complex Metrics Validation
+                const isPasswordValid = runFieldValidation(password, validatePasswordStyle(password.value));
 
-                submitBtn.classList.toggle(
-                    "active",
-                    validName && validDob && validPassword && matched
-                );
+                // 4. Confirm Password Match Validation
+                let isConfirmMatch = false;
+                if (confirmPassword.value !== "") {
+                    if (password.value === confirmPassword.value) {
+                        confirmPassword.classList.remove("is-invalid");
+                        confirmPassword.classList.add("is-valid");
+                        isConfirmMatch = true;
+                    } else {
+                        confirmPassword.classList.remove("is-valid");
+                        confirmPassword.classList.add("is-invalid");
+                    }
+                } else {
+                    confirmPassword.classList.remove("is-valid", "is-invalid");
+                }
+
+                // Global Button State Assessment
+                const formIsValid = isNameValid && isDobValid && isPasswordValid && isConfirmMatch;
+                submitBtn.disabled = !formIsValid;
+
+                if (formIsValid) {
+                    submitBtn.classList.add("active");
+                } else {
+                    submitBtn.classList.remove("active");
+                }
             }
 
+            // Attaching validation logic to tracking input handlers
             applicantName.addEventListener("input", validateForm);
             dob.addEventListener("change", validateForm);
             password.addEventListener("input", validateForm);
             confirmPassword.addEventListener("input", validateForm);
 
-            document
-                .getElementById("registrationForm")
-                .addEventListener("submit", function (e) {
+            // Form Submit Interceptor & Production Simulation Workflow
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
 
-                    e.preventDefault();
+                // Prevent double submissions
+                submitBtn.disabled = true;
+                btnText.textContent = "Processing Profile...";
+                btnIcon.className = "fa-solid fa-spinner fa-spin ms-1";
+                statusAlert.classList.add("d-none");
 
-                    alert("Registration completed successfully.");
+                // Mimicking secure transmission delay to financial backend microservice
+                setTimeout(() => {
+                    // Generate Unique Applicant ID / CV Tracking Number sequence
+                    const trackingYear = new Date().getFullYear();
+                    const randomizedSerial = Math.floor(100000 + Math.random() * 900000);
+                    const applicantId = `PBL-${trackingYear}-${randomizedSerial}`;
 
-                    // Send data to server here
-                    // fetch(...)
-                });
+                    // Update structural system alert state display banner
+                    statusAlert.className = "alert alert-success animate__animated animate__fadeIn";
+                    statusAlert.innerHTML = `
+                        <div class="d-flex">
+                            <i class="fa-solid fa-circle-check fs-4 me-2 mt-1"></i>
+                            <div>
+                                <strong>Account Registration Successful!</strong><br>
+                                Your permanent Profile Reference ID is: <strong class="text-decoration-underline">${applicantId}</strong>.<br>
+                                <span class="small text-dark mt-1 d-block">Please record this Identification Number carefully. It serves as your primary credential along with your password to log in and track active applications.</span>
+                            </div>
+                        </div>
+                    `;
 
+                    // Reset all data input areas safely leaving verified mobile baseline
+                    form.reset();
+
+                    // Re-instantiate pristine states across classes
+                    applicantName.classList.remove("is-valid", "is-invalid");
+                    dob.classList.remove("is-valid", "is-invalid");
+                    password.classList.remove("is-valid", "is-invalid");
+                    confirmPassword.classList.remove("is-valid", "is-invalid");
+
+                    // Restore normal functional parameters to execution buttons
+                    btnText.textContent = "Create Account";
+                    btnIcon.className = "fa-solid fa-arrow-right-long ms-1";
+
+                    // Scroll to top smoothly so the applicant sees their systemic verification message instantly
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+                }, 1800);
+            });
         });
     </script>
 
