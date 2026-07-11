@@ -42,15 +42,31 @@ body {
 
 /* --- GPU Accelerated Background Animations --- */
 @keyframes floatLeftBlob {
-    0% { transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg) scale(1); }
-    50% { transform: translate3d(40px, -35px, 0) rotate3d(0, 0, 1, -47deg) scale(1.06); }
-    100% { transform: translate3d(0, -40px, 0) rotate3d(0, 0, 1, -45deg) scale(1); }
+    0% {
+        transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg) scale(1);
+    }
+
+    50% {
+        transform: translate3d(40px, -35px, 0) rotate3d(0, 0, 1, -47deg) scale(1.06);
+    }
+
+    100% {
+        transform: translate3d(0, -40px, 0) rotate3d(0, 0, 1, -45deg) scale(1);
+    }
 }
 
 @keyframes floatRightBlob {
-    0% { transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg) scale(1); }
-    50% { transform: translate3d(-40px, 40px, 0) rotate3d(0, 0, 1, 42deg) scale(1.06); }
-    100% { transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg) scale(1); }
+    0% {
+        transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg) scale(1);
+    }
+
+    50% {
+        transform: translate3d(-40px, 40px, 0) rotate3d(0, 0, 1, 42deg) scale(1.06);
+    }
+
+    100% {
+        transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg) scale(1);
+    }
 }
 
 .bg-left {
@@ -332,12 +348,46 @@ body {
 .btn-signin:active {
     transform: scale(0.99);
 }
+
 .btn-change {
     color: var(--bs-secondary-color);
 }
+
 .btn-change:hover {
     color: #0d8c8d;
 }
+
+/* Ensuring perfect password container sizing with relative layout */
+.password-container {
+    position: relative;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    z-index: 10;
+    color: #6c757d;
+}
+
+.password-container .form-control {
+    padding-right: 40px;
+}
+
+/* Styling for smooth validation transitions */
+.form-control.is-valid,
+.form-control.is-invalid {
+    background-image: none !important;
+    /* Remove default bootstrap check icons to avoid icon overlapping */
+}
+
+.btn-signin:not(:disabled) {
+    cursor: pointer;
+    opacity: 1;
+}
+
 /* --- Footer --- */
 footer {
     background-color: #ffffff;
@@ -359,6 +409,7 @@ footer {
 
 /* --- Responsive Viewports --- */
 @media (max-width: 768px) {
+
     .bg-left,
     .bg-right {
         display: none;
