@@ -407,25 +407,49 @@ footer {
     margin: 0 auto;
 }
 
-/* --- Responsive Viewports --- */
-@media (max-width: 768px) {
+/* ==========================================================================
+   --- Fully Responsive Viewports (Tablets & Mobile) ---
+   ========================================================================== */
 
-    .bg-left,
+/* --- Tablet Devices (Large screens to Portrait Tablets) --- */
+@media (max-width: 1024px) {
+    .bg-left {
+        width: 480px;
+        height: 480px;
+        left: -180px;
+        top: -150px;
+    }
+
     .bg-right {
+        width: 520px;
+        height: 520px;
+        right: -180px;
+        bottom: -180px;
+    }
+
+    .auth-body {
+        padding: 30px 32px 35px 32px;
+    }
+}
+
+/* --- Small Tablets & Large Phones --- */
+@media (max-width: 768px) {
+    .bg-blobs-container {
         display: none;
+        /* Disables CPU/GPU load from heavy rotating animations on medium screens */
     }
 
+    .main-content {
+        padding: 30px 80px;
+    }
+
+    .auth-card {
+        border-radius: 28px;
+    }
+
+    /* --- Header Component --- */
     .auth-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 20px;
-    }
-
-    .system-tag {
-        border-left: none;
-        padding-left: 0;
-        margin-left: 0;
+        padding: 16px 22px;
     }
 
     .auth-body {
@@ -434,7 +458,86 @@ footer {
 
     .footer-container {
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
         text-align: center;
+    }
+}
+
+/* --- Standard & Small Mobile Devices (e.g., iPhones, Pixels, Galaxy) --- */
+@media (max-width: 480px) {
+    .main-content {
+        padding: 20px 30px;
+        align-items: flex-start;
+        /* Prevents awkward clipping on short mobile screens in landscape */
+    }
+
+    .auth-card {
+        border-radius: 20px;
+        /* Softer, native-app feel on small devices */
+    }
+
+    .auth-header {
+        padding: 20px;
+    }
+
+    .brand-logo-fallback {
+        width: 42px;
+        height: 42px;
+        font-size: 1.1rem;
+    }
+
+    .title-bangla {
+        font-size: 1.15rem;
+    }
+
+    .title-english {
+        font-size: 0.85rem;
+    }
+
+    .system-tag {
+        font-size: 0.8rem;
+        text-align: justify;
+        border-left: none;
+    }
+
+    .auth-body {
+        padding: 24px 20px 28px 20px;
+        /* Maximizes lateral space for form inputs */
+    }
+
+    .auth-body h2 {
+        font-size: 1.65rem;
+        /* Scales down from 2rem to prevent text wrapping issues */
+        margin-bottom: 4px;
+    }
+
+    .account-switch-text {
+        font-size: 0.88rem;
+        margin-bottom: 18px;
+    }
+
+    /* Streamlining form fields for thumb-tap interactions */
+    .form-control,
+    .country-select-dropdown,
+    .phone-prefix {
+        height: 46px;
+        font-size: 0.92rem;
+    }
+
+    .otp-input-field {
+        font-size: 1.15rem;
+        letter-spacing: 4px;
+        /* Slightly tighter spacing to fit small displays perfectly */
+    }
+
+    .btn-signin {
+        height: 48px;
+        margin-top: 24px;
+        font-size: 0.95rem;
+    }
+
+    footer {
+        padding: 16px 20px;
+        font-size: 0.75rem;
     }
 }
