@@ -50,9 +50,12 @@
                     <div class="mb-3">
                         <label class="form-label">Verified Mobile Number</label>
                         <div class="input-group">
-                            <input type="text" class="form-control is-valid disabled" id="mobileNumber"
-                                value="01712345678" readonly>
-                            <span class="input-group-text text-success">
+                            <!-- Removed 'disabled' from class, added 'bg-body-secondary text-muted' -->
+                            <input type="text" class="form-control is-valid bg-body-secondary text-muted"
+                                id="mobileNumber" value="01712345678" readonly style="pointer-events: none;">
+
+                            <!-- Added 'bg-body-secondary' here so the icon matches the gray field -->
+                            <span class="input-group-text text-success bg-body-secondary">
                                 <i class="fa-solid fa-circle-check"></i>
                             </span>
                         </div>
