@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Complete - Pubali Bank PLC.</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts (Poppins & Inter) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <style>
+        :root {
+            --bg-mint: #bfe7d5;
+            --bg-mint-light: #d6f2e6;
+            --pubali-green: #006837;
+            --btn-teal: #0aa299;
+            --btn-light-blue: #e8f0fe;
+            --text-dark: #212529;
+            --text-muted: #6c757d;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-mint);
+            /* Creating the abstract soft blob background effect */
+            background-image: 
+                radial-gradient(circle at 20% 30%, var(--bg-mint-light) 0%, transparent 40%),
+                radial-gradient(circle at 85% 70%, var(--bg-mint-light) 0%, transparent 45%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-x: hidden;
+        }
+
+        .main-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        /* Card Customization */
+        .success-card {
+            background-color: #ffffff;
+            border-radius: 32px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 480px;
+            overflow: hidden;
+            border: none;
+        }
+
+        /* Card Header with Green Background */
+        .card-header-custom {
+            background-color: var(--pubali-green);
+            color: #ffffff;
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .brand-logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Placeholder for logo icon */
+        .logo-icon-placeholder {
+            width: 32px;
+            height: 32px;
+            border: 2px solid #fff;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .brand-text h1 {
+            font-size: 14px;
+            font-weight: 700;
+            margin: 0;
+            line-height: 1.2;
+            letter-spacing: 0.5px;
+        }
+        .brand-text p {
+            font-size: 13px;
+            margin: 0;
+            opacity: 0.9;
+        }
+
+        .system-title {
+            font-size: 14px;
+            font-weight: 500;
+            margin: 0;
+        }
+
+        /* Card Body Customization */
+        .card-body-custom {
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        /* 3D-styled Congratulations Banner */
+        .congrats-banner {
+            background-color: #fff4f2;
+            border-radius: 50px;
+            padding: 12px 30px;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .congrats-text-3d {
+            font-family: 'Poppins', sans-serif;
+            font-size: 26px;
+            font-weight: 800;
+            color: var(--pubali-green);
+            text-transform: capitalize;
+            margin: 0;
+            letter-spacing: 1px;
+            /* Creating the retro layered shadow effect from the image */
+            text-shadow: 
+                1px 1px 0px #0aa299,
+                2px 2px 0px #0aa299,
+                3px 3px 0px #0aa299;
+        }
+
+        .status-heading {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .status-description {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 30px;
+            max-width: 320px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Buttons Styling */
+        .btn-view-dashboard {
+            background-color: var(--btn-light-blue);
+            color: #2b70e4;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.2s ease;
+        }
+        .btn-view-dashboard:hover {
+            background-color: #d2e3fc;
+            color: #1a57c1;
+        }
+
+        .btn-create-profile {
+            background-color: var(--btn-teal);
+            color: #ffffff;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 12px 24px;
+            border-radius: 8px;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        .btn-create-profile:hover {
+            background-color: #088a82;
+            color: #ffffff;
+        }
+
+        /* Footer Customization */
+        .footer-custom {
+            background-color: #ffffff;
+            padding: 12px 24px;
+            font-size: 11px;
+            color: var(--text-muted);
+            border-top: 1px solid #e9ecef;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Main Dynamic Content Wrapper -->
+    <div class="main-container">
+        
+        <!-- Registration Success Card -->
+        <div class="card success-card">
+            
+            <!-- Card Header matching bank branding -->
+            <div class="card-header-custom">
+                <div class="brand-logo-area">
+                    <!-- Placeholder Star/Logo Graphic -->
+                    <div class="logo-icon-placeholder">
+                        <i class="bi bi-star-fill"></i>
+                    </div>
+                    <div class="brand-text">
+                        <h1>পূবালী ব্যাংক পিএলসি</h1>
+                        <p>PUBALI BANK PLC.</p>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="system-title">E-recruitment System</h2>
+                </div>
+            </div>
+
+            <!-- Card Content -->
+            <div class="card-body-custom">
+                <!-- Outer Pill Banner -->
+                <div class="congrats-banner">
+                    <h3 class="congrats-text-3d">Congratulations</h3>
+                </div>
+
+                <!-- Text Info -->
+                <div class="status-heading">
+                    🎉 Congratulations,<br>Your Registration is Complete
+                </div>
+                <p class="status-description">
+                    It was popularised thanks to these sheets and more recently with desktop
+                </p>
+
+                <!-- CTA Action Buttons -->
+                <div class="d-flex justify-content-center gap-3 mt-4">
+                    <a href="#" class="btn btn-view-dashboard px-4">View Dashboard</a>
+                    <a href="#" class="btn btn-create-profile px-4">
+                        Create Profile <i class="bi bi-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Page Footer -->
+    <footer class="footer-custom d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+        <div>
+            &copy; 2026 Pubali HR Management System. All rights reserved.
+        </div>
+        <div>
+            Last updated: June 15, 2026 &nbsp;|&nbsp; System Version: v1.0.0
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 Bundle JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

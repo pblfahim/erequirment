@@ -5,6 +5,8 @@
     --brand-green: #006837;
     --brand-teal: #0fa3a4;
     --text-dark: #1a1a1a;
+    --btn-teal: #0aa299;
+    --btn-light-blue: #e8f0fe;
     --link-blue: #0d6efd;
 }
 
@@ -361,6 +363,76 @@ body {
 .password-container {
     position: relative;
 }
+
+/* Card Body Customization */
+.card-body-custom {
+    padding: 40px 30px;
+    text-align: center;
+}
+
+/* 3D-styled Congratulations Banner */
+.congrats-banner {
+    background-color: #fff4f2;
+    border-radius: 50px;
+    padding: 12px 30px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+.congrats-text-3d {
+    margin-top: -35px;
+}
+
+.status-description {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 320px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Buttons Styling */
+.btn-view-dashboard {
+    background-color: var(--btn-light-blue);
+    color: #2b70e4;
+    font-size: 1rem;
+    font-weight: 600;
+    /* width: 100%; */
+    border-radius: 8px;
+    height: 52px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-view-dashboard:hover {
+    background-color: #d2e3fc;
+    color: #1a57c1;
+}
+
+.btn-create-profile {
+    background-color: var(--btn-teal);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 600;
+    /* width: 100%; */
+    border-radius: 8px;
+    height: 52px;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+}
+
+.btn-create-profile:hover {
+    background-color: #088a82;
+    color: #ffffff;
+}
+
 
 .password-toggle-icon {
     position: absolute;
