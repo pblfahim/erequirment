@@ -538,12 +538,13 @@ footer {
 /* --- Standard & Small Mobile Devices (e.g., iPhones, Pixels, Galaxy) --- */
 @media (max-width: 480px) {
     .main-content {
-        padding: 20px 30px;
+        padding: 20px 15px;
         align-items: flex-start;
         /* Prevents awkward clipping on short mobile screens in landscape */
     }
 
     .auth-card {
+        align-self: center;
         border-radius: 20px;
         /* Softer, native-app feel on small devices */
     }
