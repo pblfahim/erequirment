@@ -507,7 +507,7 @@ footer {
 /* --- Small Tablets & Large Phones --- */
 @media (max-width: 768px) {
     .bg-blobs-container {
-        /* display: none; */
+        display: none;
         /* Disables CPU/GPU load from heavy rotating animations on medium screens */
     }
 
