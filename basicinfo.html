@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Basic Information | Pubali Bank PLC</title>
+    <!-- Standard PNG Icon -->
+    <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/appdash.css" />
+    <style>
+        :root {
+            --brand-primary: #0f4c3a;
+            /* Pubali Bank Green Accent color matching design button */
+            --brand-primary-hover: #059669;
+            --tab-border-active: #df6948;
+            /* Exact reddish-orange indicator color from design */
+            --text-dark: #2a3547;
+            --light-gray-bg: #f8f9fa;
+            --border-light-gray: #e4e6ef;
+            --muted-text: #8898a9;
+        }
+
+
+        /* Base Form Panel Layout */
+        .bg-light-gray-canvas {
+            background-color: #f6f8fb !important;
+            min-height: calc(100vh - 120px);
+        }
+
+        .form-card-container {
+            background-color: #ffffff;
+            border: 1px solid #eef1f6;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
+            overflow: hidden;
+        }
+
+        /* Custom Step Tabs Bar */
+        .step-navigation-container {
+            background-color: #fbfbfc;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-tabs-custom {
+            display: flex;
+            flex-wrap: nowrap;
+            border-bottom: 1px solid var(--border-light-gray);
+            padding: 0 10px;
+        }
+
+        .nav-link-custom-tab {
+            background: none;
+            border: none;
+            color: var(--muted-text);
+            font-weight: 500;
+            font-size: 0.85rem;
+            padding: 18px 24px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-link-custom-tab i {
+            color: var(--muted-text);
+        }
+
+        .nav-link-custom-tab:hover {
+            color: var(--text-dark);
+        }
+
+        .nav-link-custom-tab.active {
+            color: var(--text-dark) !important;
+            font-weight: 600;
+        }
+
+        .nav-link-custom-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background-color: var(--tab-border-active);
+        }
+
+        .nav-link-custom-tab.completed {
+            color: var(--text-dark);
+        }
+
+        .nav-link-custom-tab.completed i {
+            color: var(--brand-primary);
+        }
+
+        .nav-link-custom-tab.disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* Headings and Form Controls styling */
+        .section-title {
+            color: var(--text-dark);
+            font-weight: 700;
+            font-size: 1.15rem;
+            letter-spacing: -0.2px;
+        }
+
+        .form-label-custom {
+            display: block;
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #3f4254;
+            margin-bottom: 8px;
+        }
+
+        .form-control-custom {
+            height: 46px;
+            border: 1px solid #dbdfe9;
+            border-radius: 6px;
+            padding: 10px 16px;
+            font-size: 0.88rem;
+            color: #252f4a;
+            background-color: #ffffff;
+            transition: border-color 0.15s ease-in-out;
+        }
+
+        .form-control-custom:focus {
+            border-color: #a8b0c1;
+            box-shadow: none;
+        }
+
+        /* Grayed out background for read-only fields */
+        .read-only-input {
+            background-color: #ebedf2 !important;
+            border-color: #cfd4df !important;
+        }
+
+        /* Triple-segmented Date input box */
+        .dob-input-container {
+            display: flex;
+            align-items: center;
+            height: 46px;
+            border: 1px solid #dbdfe9;
+            border-radius: 6px;
+            padding: 0 12px;
+        }
+
+        .dob-segment {
+            border: none;
+            background: transparent;
+            width: 25px;
+            text-align: center;
+            font-size: 0.88rem;
+            font-weight: 500;
+            color: #252f4a;
+        }
+
+        .dob-segment:focus {
+            outline: none;
+        }
+
+        .dob-segment.dob-year {
+            width: 45px;
+        }
+
+        .dob-divider {
+            color: #a1a5b7;
+            font-weight: 400;
+            margin: 0 4px;
+            user-select: none;
+        }
+
+        /* Flag & Prefix Input Group */
+        .input-group-custom {
+            display: flex;
+            align-items: center;
+            height: 46px;
+            border: 1px solid #dbdfe9;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: #ffffff;
+        }
+
+        .input-group-custom.read-only-input {
+            background-color: #ebedf2;
+        }
+
+        .tel-country-prefix {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 0 14px;
+            border-right: 1px solid #dbdfe9;
+            background-color: transparent;
+            height: 100%;
+            user-select: none;
+        }
+
+        .flag-icon-bd {
+            font-size: 1.1rem;
+        }
+
+        .country-code {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #5e6278;
+        }
+
+        /* Styling custom dropdown arrow */
+        .select-wrapper {
+            position: relative;
+        }
+
+        .form-select.form-control-custom {
+            appearance: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: none;
+            padding-right: 40px;
+        }
+
+        .select-wrapper::after {
+            content: '\f282';
+            /* Bootstrap Icons Chevron Down icon code */
+            font-family: 'bootstrap-icons';
+            position: absolute;
+            right: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #5e6278;
+            font-size: 0.85rem;
+        }
+
+        /* Footer Action Bar */
+        .form-footer-action-panel {
+            border-top: 1px solid var(--border-light-gray);
+            background-color: #ffffff;
+        }
+
+        .btn-cancel-custom {
+            height: 46px;
+            padding: 0 32px;
+            border: 1px solid #dbdfe9;
+            color: #5e6278;
+            background-color: #ffffff;
+            font-weight: 600;
+            font-size: 0.88rem;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cancel-custom:hover {
+            background-color: #f8f9fa;
+            color: #3f4254;
+        }
+
+        .btn-submit-custom {
+            height: 46px;
+            padding: 0 32px;
+            border: none;
+            background-color: var(--brand-primary);
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 0.88rem;
+            border-radius: 4px;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn-submit-custom:hover {
+            background-color: var(--brand-primary-hover);
+            color: #ffffff;
+        }
+
+        /* Mobile responsive adjustments */
+        @media (max-width: 768px) {
+            .nav-tabs-custom {
+                padding-bottom: 2px;
+            }
+
+            .nav-link-custom-tab {
+                padding: 14px 16px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Flex wrapper ensures clean column rendering instead of standard bootstrap row behavior -->
+    <div class="dash-wrapper">
+        <!-- Left Sidebar Viewport Container -->
+        <div class="sidebar d-none d-lg-flex flex-column justify-content-between">
+            <div>
+                <div class="logo-wrapper">
+                    <img src="assets/images/pbplc.svg" alt="Pubali Logo"
+                        style="max-width: 180px; width: 100%; height: auto" />
+                </div>
+                <div class="profile-card text-center">
+                    <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
+                    <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">
+                        Md. Fahim
+                    </h6>
+                    <span class="badge bg-white text-success border px-2 py-1"
+                        style="font-size: 0.75rem; font-weight: 600">ID :
+                        1284647</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i>
+                        Dashboard</a>
+                    <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i>
+                        Applied Jobs</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job
+                        Alerts</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+                </div>
+            </div>
+
+            <!-- Desktop Logout Row Link Anchor Block -->
+            <div>
+                <a class="nav-link-custom nav-link-logout" href="#">
+                    <i class="bi bi-box-arrow-left"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Sidebar Menu Component -->
+        <div class="offcanvas offcanvas-start w-75" id="mobileSidebar" tabindex="-1">
+            <div class="d-flex flex-column justify-content-between h-100">
+                <div>
+                    <div class="offcanvas-header border-bottom">
+                        <img src="assets/images/pbplc.svg" alt="Pubali Logo"
+                            style="max-width: 180px; width: 100%; height: auto" />
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body p-0">
+                        <div class="profile-card text-center my-3 mx-3">
+                            <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2"
+                                alt="User profile" />
+                            <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">
+                                Md. Fahim
+                            </h6>
+                            <span class="badge bg-white text-success border px-2 py-1"
+                                style="font-size: 0.75rem; font-weight: 600">ID
+                                :
+                                1284647</span>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                            <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i>
+                                Job Alerts</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Drawer Panel Logout Button Container -->
+                <div class="px-0">
+                    <a class="nav-link-custom nav-link-logout" href="#">
+                        <i class="bi bi-box-arrow-left"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Main Content Viewport -->
+        <div class="main-content d-flex flex-column">
+            <!-- Nav Bar Header Component -->
+            <nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
+                <div class="d-flex align-items-center w-100 justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                            <i class="bi bi-list fs-4"></i>
+                        </button>
+                        <div class="search-container d-none d-sm-block position-relative">
+                            <i
+                                class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+                            <input class="form-control search-input ps-5" type="search"
+                                placeholder="Search parameters..." id="dashboardSearch"
+                                style="border-radius: 20px; min-width: 260px" />
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
+                            <i class="bi bi-bell fs-5"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+                        </div>
+                        <div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="assets/images/fahimsm.png" width="36" height="36"
+                                class="rounded-circle border profile-pic-sync" alt="Profile Layout" />
+                            <span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md.
+                                Fahim</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Middle Inner Form/Content Canvas Placeholder Area -->
+            <div class="flex-grow-1 p-4">
+                <div class="flex-grow-1 p-4 bg-light-gray-canvas">
+                    <div class="form-card-container">
+
+                        <!-- Step Navigation Tabs Header -->
+                        <div class="step-navigation-container">
+                            <ul class="nav nav-tabs-custom border-bottom" id="profileStepsTab" role="tablist">
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link-custom-tab completed" id="cv-tab" data-bs-toggle="tab"
+                                        type="button" role="tab">
+                                        <i class="bi bi-file-earmark-person fs-5 me-2"></i> CV & Documents <i
+                                            class="bi bi-check2-circle text-success ms-1"></i>
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link-custom-tab active" id="basic-info-tab" data-bs-toggle="tab"
+                                        type="button" role="tab">
+                                        <i class="bi bi-layers fs-5 me-2"></i> Basic Information
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link-custom-tab disabled" id="education-tab" data-bs-toggle="tab"
+                                        type="button" role="tab">
+                                        <i class="bi bi-journal-bookmark fs-5 me-2"></i> Education
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link-custom-tab disabled" id="work-experience-tab"
+                                        data-bs-toggle="tab" type="button" role="tab">
+                                        <i class="bi bi-play-btn fs-5 me-2"></i> Work Experience
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link-custom-tab disabled" id="certification-tab"
+                                        data-bs-toggle="tab" type="button" role="tab">
+                                        <i class="bi bi-play-circle fs-5 me-2"></i> Certification
+                                    </button>
+                                </li>
+                                <li class="nav-item" role="presentation">
+                                    <button class="nav-link-custom-tab disabled" id="references-tab"
+                                        data-bs-toggle="tab" type="button" role="tab">
+                                        <i class="bi bi-play-circle fs-5 me-2"></i> References
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <!-- Form Content Section -->
+                        <div class="form-content-body p-4 p-md-5">
+                            <h5 class="section-title mb-4">Personal Information</h5>
+
+                            <form id="basicInfoForm">
+                                <div class="row g-4">
+
+                                    <!-- Left Column Group -->
+                                    <div class="col-12 col-lg-6">
+                                        <!-- Applicant Name -->
+                                        <div class="mb-4">
+                                            <label class="form-label-custom">Applicant Name: <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control form-control-custom read-only-input"
+                                                value="Md. Fahim" readonly />
+                                        </div>
+
+                                        <!-- Date of Birth & NID Row -->
+                                        <div class="row g-3 mb-1">
+                                            <div class="col-7">
+                                                <label class="form-label-custom">Date of Birth: <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="dob-input-container read-only-input">
+                                                    <input type="text" class="dob-segment" value="10" readonly />
+                                                    <span class="dob-divider">/</span>
+                                                    <input type="text" class="dob-segment" value="12" readonly />
+                                                    <span class="dob-divider">/</span>
+                                                    <input type="text" class="dob-segment dob-year" value="1971"
+                                                        readonly />
+                                                </div>
+                                            </div>
+                                            <div class="col-5">
+                                                <label class="form-label-custom">NID Number: <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="text" class="form-control form-control-custom"
+                                                    value="28934855" />
+                                            </div>
+                                        </div>
+                                        <!-- Age Display Helper Text -->
+                                        <div class="mb-4">
+                                            <small class="text-muted" style="font-size: 0.75rem;">Age as on: 54 years 7
+                                                months 4 days</small>
+                                        </div>
+
+                                        <!-- Email Address -->
+                                        <div class="mb-4">
+                                            <label class="form-label-custom">Email Address: <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="email" class="form-control form-control-custom"
+                                                value="pbl.fahim@gmail.com" />
+                                        </div>
+
+                                        <!-- Father's Name -->
+                                        <div class="mb-3">
+                                            <label class="form-label-custom">Father Name: <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control form-control-custom"
+                                                value="Md. Amir Hossain" />
+                                        </div>
+                                    </div>
+
+                                    <!-- Right Column Group -->
+                                    <div class="col-12 col-lg-6">
+                                        <!-- Mobile Number -->
+                                        <div class="mb-4">
+                                            <label class="form-label-custom">Mobile Number: <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group-custom read-only-input">
+                                                <div class="tel-country-prefix">
+                                                    <span class="flag-icon-bd">🇧🇩</span>
+                                                    <span class="country-code">+880</span>
+                                                </div>
+                                                <input type="text" class="form-control form-control-custom border-0"
+                                                    value="17145817845" readonly />
+                                            </div>
+                                        </div>
+
+                                        <!-- Nationality & Gender Row -->
+                                        <div class="row g-3 mb-4">
+                                            <div class="col-6">
+                                                <label class="form-label-custom">Nationality: <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="select-wrapper">
+                                                    <select class="form-select form-control-custom">
+                                                        <option selected>Bangladeshi</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label-custom">Gender: <span
+                                                        class="text-danger">*</span></label>
+                                                <div class="select-wrapper">
+                                                    <select class="form-select form-control-custom">
+                                                        <option selected>Male</option>
+                                                        <option>Female</option>
+                                                        <option>Other</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Emergency Contact Number -->
+                                        <div class="mb-4">
+                                            <label class="form-label-custom">Emergency Contact Number: <span
+                                                    class="text-danger">*</span></label>
+                                            <div class="input-group-custom">
+                                                <div class="tel-country-prefix">
+                                                    <span class="flag-icon-bd">🇧🇩</span>
+                                                    <span class="country-code">+880</span>
+                                                </div>
+                                                <input type="text" class="form-control form-control-custom border-0"
+                                                    value="18425632" />
+                                            </div>
+                                        </div>
+
+                                        <!-- Mother's Name -->
+                                        <div class="mb-3">
+                                            <label class="form-label-custom">Mother Name: <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="text" class="form-control form-control-custom"
+                                                value="Saleha Begum" />
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- Sticky Bottom Form Control Footer Actions -->
+                        <div class="form-footer-action-panel p-4 d-flex justify-content-between align-items-center">
+                            <button type="button" class="btn btn-cancel-custom">Cancel</button>
+                            <button type="button" class="btn btn-submit-custom">Save & Next</button>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- 
+              Your primary profile setup/basic information layout content forms 
+              live directly inside this flex-grow container box block. 
+          -->
+
+            </div>
+
+            <!-- Application Dashboard Baseline Responsive Footer Layout -->
+            <footer class="dash-footer bg-white border-top p-3 mt-auto">
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+                    <div>
+                        <span class="small text-secondary">© 2026 <strong>Pubali Bank PLC.</strong> All rights
+                            reserved.</span>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-decoration-none text-secondary small">Privacy Policy</a>
+                        <a href="#" class="text-decoration-none text-secondary small">Terms of Service</a>
+                        <a href="#" class="text-decoration-none text-secondary small">Support</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>document.addEventListener("DOMContentLoaded", () => {
+            // Select components and links
+            const contentCanvas = document.querySelector(".flex-grow-1");
+            const mobileSidebarEl = document.getElementById("mobileSidebar");
+            const mobileSidebar = bootstrap.Offcanvas.getInstance(mobileSidebarEl) || new bootstrap.Offcanvas(mobileSidebarEl);
+
+            // Select all links from both desktop and mobile sidebars
+            const allNavLinks = document.querySelectorAll(".nav-link-custom");
+
+            // Mock Data Views for demonstration mapping
+            const views = {
+                "Dashboard": `<h4 class="fw-bold mb-3">Welcome Back, Fahim</h4><p class="text-secondary">Here is a quick snapshot of your recruitment funnel parameters today.</p>`,
+                "Profile": ``,
+                "Applied Jobs": `<h4 class="fw-bold mb-3">Applied Jobs</h4><p class="text-secondary">Track the real-time status of your active application workflows.</p>`,
+                "Favourite Jobs": `<h4 class="fw-bold mb-3">Favourite Jobs</h4><p class="text-secondary">Your bookmarked career postings across the network.</p>`,
+                "Job Alerts": `<h4 class="fw-bold mb-3">Job Alerts</h4><p class="text-secondary">Manage automated vacancy notifications matching your skill tags.</p>`,
+                "Settings": `<h4 class="fw-bold mb-3">Account Settings</h4><p class="text-secondary">Manage system security configurations and multi-factor flags.</p>`,
+                "Logout": `<h4 class="fw-bold text-danger mb-3">Logging out...</h4><p class="text-secondary">Clearing session tokens and redirecting to the gateway.</p>`
+            };
+
+            // Set initial default view context on load
+            const initialActive = document.querySelector(".nav-link-custom.active");
+            if (initialActive) {
+                const viewKey = initialActive.textContent.trim();
+                if (views[viewKey]) contentCanvas.innerHTML = views[viewKey];
+            }
+
+            // Unified click handler architecture
+            allNavLinks.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+
+                    const targetText = link.textContent.trim();
+
+                    // 1. Synchronize the active DOM state matching the clicked label across both sidebars
+                    allNavLinks.forEach(item => {
+                        if (item.textContent.trim() === targetText) {
+                            item.classList.add("active");
+                        } else {
+                            item.classList.remove("active");
+                        }
+                    });
+
+                    // 2. Load the corresponding mock payload template into the content viewport
+                    if (views[targetText]) {
+                        contentCanvas.innerHTML = views[targetText];
+                    }
+
+                    // 3. If clicking from within the mobile drawer layer, collapse it gracefully
+                    if (mobileSidebarEl.contains(link)) {
+                        mobileSidebar.hide();
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

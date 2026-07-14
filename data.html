@@ -1,0 +1,156 @@
+<div class="flex-grow-1 p-4 bg-light-gray-canvas">
+  <div class="form-card-container">
+    
+    <!-- Step Navigation Tabs Header -->
+    <div class="step-navigation-container">
+      <ul class="nav nav-tabs-custom border-bottom" id="profileStepsTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link-custom-tab completed" id="cv-tab" data-bs-toggle="tab" type="button" role="tab">
+            <i class="bi bi-file-earmark-person fs-5 me-2"></i> CV & Documents <i class="bi bi-check2-circle text-success ms-1"></i>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link-custom-tab active" id="basic-info-tab" data-bs-toggle="tab" type="button" role="tab">
+            <i class="bi bi-layers fs-5 me-2"></i> Basic Information
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link-custom-tab disabled" id="education-tab" data-bs-toggle="tab" type="button" role="tab">
+            <i class="bi bi-journal-bookmark fs-5 me-2"></i> Education
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link-custom-tab disabled" id="work-experience-tab" data-bs-toggle="tab" type="button" role="tab">
+            <i class="bi bi-play-btn fs-5 me-2"></i> Work Experience
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link-custom-tab disabled" id="certification-tab" data-bs-toggle="tab" type="button" role="tab">
+            <i class="bi bi-play-circle fs-5 me-2"></i> Certification
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link-custom-tab disabled" id="references-tab" data-bs-toggle="tab" type="button" role="tab">
+            <i class="bi bi-play-circle fs-5 me-2"></i> References
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <!-- Form Content Section -->
+    <div class="form-content-body p-4 p-md-5">
+      <h5 class="section-title mb-4">Personal Information</h5>
+      
+      <form id="basicInfoForm">
+        <div class="row g-4">
+          
+          <!-- Left Column Group -->
+          <div class="col-12 col-lg-6">
+            <!-- Applicant Name -->
+            <div class="mb-4">
+              <label class="form-label-custom">Applicant Name: <span class="text-danger">*</span></label>
+              <input type="text" class="form-control form-control-custom read-only-input" value="Md. Fahim" readonly />
+            </div>
+
+            <!-- Date of Birth & NID Row -->
+            <div class="row g-3 mb-1">
+              <div class="col-7">
+                <label class="form-label-custom">Date of Birth: <span class="text-danger">*</span></label>
+                <div class="dob-input-container read-only-input">
+                  <input type="text" class="dob-segment" value="10" readonly />
+                  <span class="dob-divider">/</span>
+                  <input type="text" class="dob-segment" value="12" readonly />
+                  <span class="dob-divider">/</span>
+                  <input type="text" class="dob-segment dob-year" value="1971" readonly />
+                </div>
+              </div>
+              <div class="col-5">
+                <label class="form-label-custom">NID Number: <span class="text-danger">*</span></label>
+                <input type="text" class="form-control form-control-custom" value="28934855" />
+              </div>
+            </div>
+            <!-- Age Display Helper Text -->
+            <div class="mb-4">
+              <small class="text-muted" style="font-size: 0.75rem;">Age as on: 54 years 7 months 4 days</small>
+            </div>
+
+            <!-- Email Address -->
+            <div class="mb-4">
+              <label class="form-label-custom">Email Address: <span class="text-danger">*</span></label>
+              <input type="email" class="form-control form-control-custom" value="pbl.fahim@gmail.com" />
+            </div>
+
+            <!-- Father's Name -->
+            <div class="mb-3">
+              <label class="form-label-custom">Father Name: <span class="text-danger">*</span></label>
+              <input type="text" class="form-control form-control-custom" value="Md. Amir Hossain" />
+            </div>
+          </div>
+
+          <!-- Right Column Group -->
+          <div class="col-12 col-lg-6">
+            <!-- Mobile Number -->
+            <div class="mb-4">
+              <label class="form-label-custom">Mobile Number: <span class="text-danger">*</span></label>
+              <div class="input-group-custom read-only-input">
+                <div class="tel-country-prefix">
+                  <span class="flag-icon-bd">🇧🇩</span>
+                  <span class="country-code">+880</span>
+                </div>
+                <input type="text" class="form-control form-control-custom border-0" value="17145817845" readonly />
+              </div>
+            </div>
+
+            <!-- Nationality & Gender Row -->
+            <div class="row g-3 mb-4">
+              <div class="col-6">
+                <label class="form-label-custom">Nationality: <span class="text-danger">*</span></label>
+                <div class="select-wrapper">
+                  <select class="form-select form-control-custom">
+                    <option selected>Bangladeshi</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-6">
+                <label class="form-label-custom">Gender: <span class="text-danger">*</span></label>
+                <div class="select-wrapper">
+                  <select class="form-select form-control-custom">
+                    <option selected>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <!-- Emergency Contact Number -->
+            <div class="mb-4">
+              <label class="form-label-custom">Emergency Contact Number: <span class="text-danger">*</span></label>
+              <div class="input-group-custom">
+                <div class="tel-country-prefix">
+                  <span class="flag-icon-bd">🇧🇩</span>
+                  <span class="country-code">+880</span>
+                </div>
+                <input type="text" class="form-control form-control-custom border-0" value="18425632" />
+              </div>
+            </div>
+
+            <!-- Mother's Name -->
+            <div class="mb-3">
+              <label class="form-label-custom">Mother Name: <span class="text-danger">*</span></label>
+              <input type="text" class="form-control form-control-custom" value="Saleha Begum" />
+            </div>
+          </div>
+
+        </div>
+      </form>
+    </div>
+
+    <!-- Sticky Bottom Form Control Footer Actions -->
+    <div class="form-footer-action-panel p-4 d-flex justify-content-between align-items-center">
+      <button type="button" class="btn btn-cancel-custom">Cancel</button>
+      <button type="button" class="btn btn-submit-custom">Save & Next</button>
+    </div>
+
+  </div>
+</div>
