@@ -168,181 +168,181 @@
     </footer>
 
     <script>
-      document.addEventListener("DOMContentLoaded", () => {
-    const form = document.getElementById("registrationForm");
-    const applicantName = document.getElementById("applicantName");
-    const dob = document.getElementById("dob");
-    const password = document.getElementById("passwordField");
-    const confirmPassword = document.getElementById("confirmPassword");
-    const submitBtn = document.getElementById("submitBtn");
-    const btnText = document.getElementById("btnText");
-    const btnIcon = document.getElementById("btnIcon");
-    const statusAlert = document.getElementById("statusAlert");
+        document.addEventListener("DOMContentLoaded", () => {
+            const form = document.getElementById("registrationForm");
+            const applicantName = document.getElementById("applicantName");
+            const dob = document.getElementById("dob");
+            const password = document.getElementById("passwordField");
+            const confirmPassword = document.getElementById("confirmPassword");
+            const submitBtn = document.getElementById("submitBtn");
+            const btnText = document.getElementById("btnText");
+            const btnIcon = document.getElementById("btnIcon");
+            const statusAlert = document.getElementById("statusAlert");
 
-    // Dynamic constraint injector to restrict calendar picker boundaries
-    function applyDobCalendarLimits() {
-        const today = new Date();
-        
-        // Max date (youngest allowed candidate: must be more than 18)
-        // Subtracting 18 years and 1 day to enforce strictly *older* than 18
-        const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate() - 1);
-        
-        // Min date (oldest allowed candidate: up to 60 years old)
-        const minDate = new Date(today.getFullYear() - 60, today.getMonth(), today.getDate());
+            // Dynamic constraint injector to restrict calendar picker boundaries
+            function applyDobCalendarLimits() {
+                const today = new Date();
 
-        // Format dates to YYYY-MM-DD for input attributes
-        const formatDateStr = (date) => date.toISOString().split('T')[0];
+                // Max date (youngest allowed candidate: must be more than 18)
+                // Subtracting 18 years and 1 day to enforce strictly *older* than 18
+                const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate() - 1);
 
-        dob.setAttribute("min", formatDateStr(minDate));
-        dob.setAttribute("max", formatDateStr(maxDate));
-    }
-    applyDobCalendarLimits();
+                // Min date (oldest allowed candidate: up to 60 years old)
+                const minDate = new Date(today.getFullYear() - 60, today.getMonth(), today.getDate());
 
-    // Prevent manual keyboard entry of incomplete/broken years (e.g. 5-digit or 2-digit years)
-    dob.addEventListener("keydown", (e) => {
-        // Allow navigation/editing keys
-        if (["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"].includes(e.key)) return;
-        
-        // If the user attempts manual typing, monitor string formats
-        setTimeout(() => {
-            const parts = dob.value.split("-");
-            if (parts[0] && parts[0].length > 4) {
-                // Truncate year to 4 digits if exceeded
-                parts[0] = parts[0].substring(0, 4);
-                dob.value = parts.join("-");
-                validateForm();
+                // Format dates to YYYY-MM-DD for input attributes
+                const formatDateStr = (date) => date.toISOString().split('T')[0];
+
+                dob.setAttribute("min", formatDateStr(minDate));
+                dob.setAttribute("max", formatDateStr(maxDate));
             }
-        }, 0);
-    });
+            applyDobCalendarLimits();
 
-    function validatePasswordStyle(pass) {
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_\-+=]).{8,}$/.test(pass);
-    }
+            // Prevent manual keyboard entry of incomplete/broken years (e.g. 5-digit or 2-digit years)
+            dob.addEventListener("keydown", (e) => {
+                // Allow navigation/editing keys
+                if (["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"].includes(e.key)) return;
 
-    function validateNameStyle(name) {
-        return /^[a-zA-Z\s\.\-]+$/.test(name.trim()) && name.trim().length >= 3;
-    }
+                // If the user attempts manual typing, monitor string formats
+                setTimeout(() => {
+                    const parts = dob.value.split("-");
+                    if (parts[0] && parts[0].length > 4) {
+                        // Truncate year to 4 digits if exceeded
+                        parts[0] = parts[0].substring(0, 4);
+                        dob.value = parts.join("-");
+                        validateForm();
+                    }
+                }, 0);
+            });
 
-    function calculateAge(birthDateString) {
-        const birthDate = new Date(birthDateString);
-        const today = new Date(); 
-
-        let age = today.getFullYear() - birthDate.getFullYear();
-        const monthDifference = today.getMonth() - birthDate.getMonth();
-
-        if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
-            age--;
-        }
-        return age;
-    }
-
-    function runFieldValidation(field, condition, feedbackElement = null, customMessage = "") {
-        if (field.value.trim() === "") {
-            field.classList.remove("is-valid", "is-invalid");
-            return false;
-        }
-
-        if (condition) {
-            field.classList.remove("is-invalid");
-            field.classList.add("is-valid");
-            return true;
-        } else {
-            field.classList.remove("is-valid");
-            field.classList.add("is-invalid");
-            if (feedbackElement && customMessage) {
-                feedbackElement.textContent = customMessage;
+            function validatePasswordStyle(pass) {
+                return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_\-+=]).{8,}$/.test(pass);
             }
-            return false;
-        }
-    }
 
-    function validateForm() {
-        // 1. Name validation
-        const isNameValid = runFieldValidation(
-            applicantName,
-            validateNameStyle(applicantName.value),
-            document.getElementById("nameFeedback"),
-            "Please enter a valid full name using only English letters, dots, or hyphens (Min 3 characters)."
-        );
-
-        // 2. Age / Date of Birth Validation (Strictly more than 18 to 60 years)
-        let isDobValid = false;
-        if (dob.value !== "") {
-            const age = calculateAge(dob.value);
-            const dobFeedback = document.getElementById("dobFeedback");
-            
-            // Extracts year portion to verify it is exactly 4 digits
-            const yearPart = dob.value.split("-")[0];
-
-            if (yearPart.length !== 4) {
-                dob.classList.remove("is-valid");
-                dob.classList.add("is-invalid");
-                dobFeedback.textContent = "Please enter a valid 4-digit year format.";
-            } else if (age <= 18 || age > 60) {
-                dob.classList.remove("is-valid");
-                dob.classList.add("is-invalid");
-                dobFeedback.textContent = `Age restriction policy error: Your calculated age is ${age}. Candidates must be strictly older than 18 and up to 60 years old.`;
-            } else {
-                dob.classList.remove("is-invalid");
-                dob.classList.add("is-valid");
-                isDobValid = true;
+            function validateNameStyle(name) {
+                return /^[a-zA-Z\s\.\-]+$/.test(name.trim()) && name.trim().length >= 3;
             }
-        } else {
-            dob.classList.remove("is-valid", "is-invalid");
-        }
 
-        // 3. Password Complex Metrics Validation
-        const isPasswordValid = runFieldValidation(password, validatePasswordStyle(password.value));
+            function calculateAge(birthDateString) {
+                const birthDate = new Date(birthDateString);
+                const today = new Date();
 
-        // 4. Confirm Password Match Validation
-        let isConfirmMatch = false;
-        if (confirmPassword.value !== "") {
-            if (password.value === confirmPassword.value) {
-                confirmPassword.classList.remove("is-invalid");
-                confirmPassword.classList.add("is-valid");
-                isConfirmMatch = true;
-            } else {
-                confirmPassword.classList.remove("is-valid");
-                confirmPassword.classList.add("is-invalid");
+                let age = today.getFullYear() - birthDate.getFullYear();
+                const monthDifference = today.getMonth() - birthDate.getMonth();
+
+                if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
+                    age--;
+                }
+                return age;
             }
-        } else {
-            confirmPassword.classList.remove("is-valid", "is-invalid");
-        }
 
-        // Global Button State Assessment
-        const formIsValid = isNameValid && isDobValid && isPasswordValid && isConfirmMatch;
-        submitBtn.disabled = !formIsValid;
+            function runFieldValidation(field, condition, feedbackElement = null, customMessage = "") {
+                if (field.value.trim() === "") {
+                    field.classList.remove("is-valid", "is-invalid");
+                    return false;
+                }
 
-        if (formIsValid) {
-            submitBtn.classList.add("active");
-        } else {
-            submitBtn.classList.remove("active");
-        }
-    }
+                if (condition) {
+                    field.classList.remove("is-invalid");
+                    field.classList.add("is-valid");
+                    return true;
+                } else {
+                    field.classList.remove("is-valid");
+                    field.classList.add("is-invalid");
+                    if (feedbackElement && customMessage) {
+                        feedbackElement.textContent = customMessage;
+                    }
+                    return false;
+                }
+            }
 
-    // Attaching validation logic to tracking input handlers
-    applicantName.addEventListener("input", validateForm);
-    dob.addEventListener("change", validateForm);
-    dob.addEventListener("input", validateForm);
-    password.addEventListener("input", validateForm);
-    confirmPassword.addEventListener("input", validateForm);
+            function validateForm() {
+                // 1. Name validation
+                const isNameValid = runFieldValidation(
+                    applicantName,
+                    validateNameStyle(applicantName.value),
+                    document.getElementById("nameFeedback"),
+                    "Please enter a valid full name using only English letters, dots, or hyphens (Min 3 characters)."
+                );
 
-    // Form Submit Interceptor & Production Simulation Workflow
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
+                // 2. Age / Date of Birth Validation (Strictly more than 18 to 60 years)
+                let isDobValid = false;
+                if (dob.value !== "") {
+                    const age = calculateAge(dob.value);
+                    const dobFeedback = document.getElementById("dobFeedback");
 
-        submitBtn.disabled = true;
-        btnText.textContent = "Processing Profile...";
-        btnIcon.className = "fa-solid fa-spinner fa-spin ms-1";
-        statusAlert.classList.add("d-none");
+                    // Extracts year portion to verify it is exactly 4 digits
+                    const yearPart = dob.value.split("-")[0];
 
-        setTimeout(() => {
-            const trackingYear = new Date().getFullYear();
-            const randomizedSerial = Math.floor(100000 + Math.random() * 900000);
-            const applicantId = `PBL-${trackingYear}-${randomizedSerial}`;
+                    if (yearPart.length !== 4) {
+                        dob.classList.remove("is-valid");
+                        dob.classList.add("is-invalid");
+                        dobFeedback.textContent = "Please enter a valid 4-digit year format.";
+                    } else if (age <= 18 || age > 60) {
+                        dob.classList.remove("is-valid");
+                        dob.classList.add("is-invalid");
+                        dobFeedback.textContent = `Age restriction policy error: Your calculated age is ${age}. Candidates must be strictly older than 18 and up to 60 years old.`;
+                    } else {
+                        dob.classList.remove("is-invalid");
+                        dob.classList.add("is-valid");
+                        isDobValid = true;
+                    }
+                } else {
+                    dob.classList.remove("is-valid", "is-invalid");
+                }
 
-            statusAlert.className = "alert alert-success animate__animated animate__fadeIn";
-            statusAlert.innerHTML = `
+                // 3. Password Complex Metrics Validation
+                const isPasswordValid = runFieldValidation(password, validatePasswordStyle(password.value));
+
+                // 4. Confirm Password Match Validation
+                let isConfirmMatch = false;
+                if (confirmPassword.value !== "") {
+                    if (password.value === confirmPassword.value) {
+                        confirmPassword.classList.remove("is-invalid");
+                        confirmPassword.classList.add("is-valid");
+                        isConfirmMatch = true;
+                    } else {
+                        confirmPassword.classList.remove("is-valid");
+                        confirmPassword.classList.add("is-invalid");
+                    }
+                } else {
+                    confirmPassword.classList.remove("is-valid", "is-invalid");
+                }
+
+                // Global Button State Assessment
+                const formIsValid = isNameValid && isDobValid && isPasswordValid && isConfirmMatch;
+                submitBtn.disabled = !formIsValid;
+
+                if (formIsValid) {
+                    submitBtn.classList.add("active");
+                } else {
+                    submitBtn.classList.remove("active");
+                }
+            }
+
+            // Attaching validation logic to tracking input handlers
+            applicantName.addEventListener("input", validateForm);
+            dob.addEventListener("change", validateForm);
+            dob.addEventListener("input", validateForm);
+            password.addEventListener("input", validateForm);
+            confirmPassword.addEventListener("input", validateForm);
+
+            // Form Submit Interceptor & Production Simulation Workflow
+            form.addEventListener("submit", function (e) {
+                e.preventDefault();
+
+                submitBtn.disabled = true;
+                btnText.textContent = "Processing Profile...";
+                btnIcon.className = "fa-solid fa-spinner fa-spin ms-1";
+                statusAlert.classList.add("d-none");
+
+                setTimeout(() => {
+                    const trackingYear = new Date().getFullYear();
+                    const randomizedSerial = Math.floor(100000 + Math.random() * 900000);
+                    const applicantId = `PBL-${trackingYear}-${randomizedSerial}`;
+
+                    statusAlert.className = "alert alert-success animate__animated animate__fadeIn";
+                    statusAlert.innerHTML = `
                 <div class="d-flex">
                     <i class="fa-solid fa-circle-check fs-4 me-2 mt-1"></i>
                     <div>
@@ -353,21 +353,21 @@
                 </div>
             `;
 
-            form.reset();
+                    form.reset();
 
-            applicantName.classList.remove("is-valid", "is-invalid");
-            dob.classList.remove("is-valid", "is-invalid");
-            password.classList.remove("is-valid", "is-invalid");
-            confirmPassword.classList.remove("is-valid", "is-invalid");
+                    applicantName.classList.remove("is-valid", "is-invalid");
+                    dob.classList.remove("is-valid", "is-invalid");
+                    password.classList.remove("is-valid", "is-invalid");
+                    confirmPassword.classList.remove("is-valid", "is-invalid");
 
-            btnText.textContent = "Create Account";
-            btnIcon.className = "fa-solid fa-arrow-right-long ms-1";
+                    btnText.textContent = "Create Account";
+                    btnIcon.className = "fa-solid fa-arrow-right-long ms-1";
 
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
 
-        }, 1800);
-    });
-});
+                }, 1800);
+            });
+        });
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
