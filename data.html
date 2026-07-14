@@ -1,156 +1,615 @@
-<div class="flex-grow-1 p-4 bg-light-gray-canvas">
-  <div class="form-card-container">
-    
-    <!-- Step Navigation Tabs Header -->
-    <div class="step-navigation-container">
-      <ul class="nav nav-tabs-custom border-bottom" id="profileStepsTab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link-custom-tab completed" id="cv-tab" data-bs-toggle="tab" type="button" role="tab">
-            <i class="bi bi-file-earmark-person fs-5 me-2"></i> CV & Documents <i class="bi bi-check2-circle text-success ms-1"></i>
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link-custom-tab active" id="basic-info-tab" data-bs-toggle="tab" type="button" role="tab">
-            <i class="bi bi-layers fs-5 me-2"></i> Basic Information
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link-custom-tab disabled" id="education-tab" data-bs-toggle="tab" type="button" role="tab">
-            <i class="bi bi-journal-bookmark fs-5 me-2"></i> Education
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link-custom-tab disabled" id="work-experience-tab" data-bs-toggle="tab" type="button" role="tab">
-            <i class="bi bi-play-btn fs-5 me-2"></i> Work Experience
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link-custom-tab disabled" id="certification-tab" data-bs-toggle="tab" type="button" role="tab">
-            <i class="bi bi-play-circle fs-5 me-2"></i> Certification
-          </button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link-custom-tab disabled" id="references-tab" data-bs-toggle="tab" type="button" role="tab">
-            <i class="bi bi-play-circle fs-5 me-2"></i> References
-          </button>
-        </li>
-      </ul>
-    </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Form - Tabs Architecture</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome 6 for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <!-- Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <!-- Form Content Section -->
-    <div class="form-content-body p-4 p-md-5">
-      <h5 class="section-title mb-4">Personal Information</h5>
-      
-      <form id="basicInfoForm">
-        <div class="row g-4">
-          
-          <!-- Left Column Group -->
-          <div class="col-12 col-lg-6">
-            <!-- Applicant Name -->
-            <div class="mb-4">
-              <label class="form-label-custom">Applicant Name: <span class="text-danger">*</span></label>
-              <input type="text" class="form-control form-control-custom read-only-input" value="Md. Fahim" readonly />
-            </div>
+    <style>
+        :root {
+            --primary-color: #059669; 
+            --primary-light: #f0fdf4;
+            --text-main: #0f172a; 
+            --text-muted: #64748b;
+            --bg-body: #fafafa; 
+            --border-light: #e2e8f0;
+        }
 
-            <!-- Date of Birth & NID Row -->
-            <div class="row g-3 mb-1">
-              <div class="col-7">
-                <label class="form-label-custom">Date of Birth: <span class="text-danger">*</span></label>
-                <div class="dob-input-container read-only-input">
-                  <input type="text" class="dob-segment" value="10" readonly />
-                  <span class="dob-divider">/</span>
-                  <input type="text" class="dob-segment" value="12" readonly />
-                  <span class="dob-divider">/</span>
-                  <input type="text" class="dob-segment dob-year" value="1971" readonly />
-                </div>
-              </div>
-              <div class="col-5">
-                <label class="form-label-custom">NID Number: <span class="text-danger">*</span></label>
-                <input type="text" class="form-control form-control-custom" value="28934855" />
-              </div>
-            </div>
-            <!-- Age Display Helper Text -->
-            <div class="mb-4">
-              <small class="text-muted" style="font-size: 0.75rem;">Age as on: 54 years 7 months 4 days</small>
-            </div>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            font-size: 14px;
+            letter-spacing: -0.01em;
+            -webkit-font-smoothing: antialiased;
+        }
 
-            <!-- Email Address -->
-            <div class="mb-4">
-              <label class="form-label-custom">Email Address: <span class="text-danger">*</span></label>
-              <input type="email" class="form-control form-control-custom" value="pbl.fahim@gmail.com" />
-            </div>
+        .form-container {
+            max-width: 960px;
+            margin: 40px auto;
+        }
 
-            <!-- Father's Name -->
-            <div class="mb-3">
-              <label class="form-label-custom">Father Name: <span class="text-danger">*</span></label>
-              <input type="text" class="form-control form-control-custom" value="Md. Amir Hossain" />
-            </div>
-          </div>
+        .form-card {
+            background: #ffffff;
+            border-radius: 16px;
+            border: 1px solid var(--border-light);
+        }
 
-          <!-- Right Column Group -->
-          <div class="col-12 col-lg-6">
-            <!-- Mobile Number -->
-            <div class="mb-4">
-              <label class="form-label-custom">Mobile Number: <span class="text-danger">*</span></label>
-              <div class="input-group-custom read-only-input">
-                <div class="tel-country-prefix">
-                  <span class="flag-icon-bd">🇧🇩</span>
-                  <span class="country-code">+880</span>
-                </div>
-                <input type="text" class="form-control form-control-custom border-0" value="17145817845" readonly />
-              </div>
-            </div>
+        /* Step Tabs Navigation */
+        .step-tabs-container {
+            border-bottom: 1px solid var(--border-light);
+            overflow-x: auto;
+            scrollbar-width: none;
+        }
+        .step-tabs-container::-webkit-scrollbar {
+            display: none;
+        }
+        .step-tabs {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            min-width: max-content;
+        }
+        .step-item {
+            padding: 20px 24px;
+            color: var(--text-muted);
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            transition: all 0.15s ease;
+            text-decoration: none;
+            font-size: 13px;
+        }
+        .step-item:hover:not(.disabled) {
+            color: var(--text-main);
+        }
+        .step-item.active {
+            color: var(--primary-color) !important;
+            border-bottom: 2px solid var(--primary-color);
+            font-weight: 600;
+        }
+        .step-item.completed {
+            color: var(--text-main);
+        }
+        .step-item.completed i {
+            color: var(--primary-color);
+        }
+        .step-item.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
 
-            <!-- Nationality & Gender Row -->
-            <div class="row g-3 mb-4">
-              <div class="col-6">
-                <label class="form-label-custom">Nationality: <span class="text-danger">*</span></label>
-                <div class="select-wrapper">
-                  <select class="form-select form-control-custom">
-                    <option selected>Bangladeshi</option>
-                  </select>
-                </div>
-              </div>
-              <div class="col-6">
-                <label class="form-label-custom">Gender: <span class="text-danger">*</span></label>
-                <div class="select-wrapper">
-                  <select class="form-select form-control-custom">
-                    <option selected>Male</option>
-                    <option>Female</option>
-                    <option>Other</option>
-                  </select>
-                </div>
-              </div>
-            </div>
+        .section-title {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+        .subsection-title {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--text-main);
+        }
 
-            <!-- Emergency Contact Number -->
-            <div class="mb-4">
-              <label class="form-label-custom">Emergency Contact Number: <span class="text-danger">*</span></label>
-              <div class="input-group-custom">
-                <div class="tel-country-prefix">
-                  <span class="flag-icon-bd">🇧🇩</span>
-                  <span class="country-code">+880</span>
-                </div>
-                <input type="text" class="form-control form-control-custom border-0" value="18425632" />
-              </div>
-            </div>
+        .form-label {
+            font-weight: 500;
+            font-size: 12.5px;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+        .required::after {
+            content: " *";
+            color: #ef4444;
+        }
+        .form-control, .form-select {
+            font-size: 13.5px;
+            border-radius: 8px;
+            border: 1px solid #d1d5db;
+            padding: 10px 14px;
+            color: var(--text-main);
+            transition: all 0.1s ease;
+            background-color: #ffffff;
+        }
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+            outline: none;
+        }
+        
+        .form-control:disabled, .form-control[readonly],
+        .form-select:disabled {
+            background-color: #f3f4f6;
+            border-color: var(--border-light);
+            color: #6b7280;
+            cursor: not-allowed;
+        }
 
-            <!-- Mother's Name -->
-            <div class="mb-3">
-              <label class="form-label-custom">Mother Name: <span class="text-danger">*</span></label>
-              <input type="text" class="form-control form-control-custom" value="Saleha Begum" />
-            </div>
-          </div>
+        /* Phone Input styling */
+        .phone-input-group {
+            display: flex;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #ffffff;
+            transition: border-color 0.1s ease;
+        }
+        .phone-input-group:focus-within {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+        .phone-prefix {
+            background: #f8fafc;
+            border-right: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            gap: 6px;
+            font-size: 13px;
+            color: #475569;
+            font-weight: 500;
+            user-select: none;
+        }
+        .phone-prefix img {
+            width: 16px;
+            height: auto;
+        }
+        .phone-input-group .form-control {
+            border: none !important;
+            border-radius: 0;
+            box-shadow: none !important;
+        }
 
+        .form-check {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding-left: 0;
+        }
+        .form-check-input {
+            width: 16px;
+            height: 16px;
+            margin-top: 0;
+            cursor: pointer;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+        }
+        .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Action Buttons */
+        .btn-prev {
+            background: transparent;
+            border: 1px solid #cbd5e1;
+            color: #475569;
+            font-size: 13.5px;
+            font-weight: 500;
+            padding: 9px 24px;
+            border-radius: 8px;
+            transition: all 0.1s ease;
+        }
+        .btn-prev:hover {
+            background: #f1f5f9;
+            color: var(--text-main);
+        }
+        .btn-save-next {
+            background: var(--primary-color);
+            color: #ffffff;
+            font-size: 13.5px;
+            font-weight: 500;
+            padding: 9px 24px;
+            border: none;
+            border-radius: 8px;
+            transition: background 0.1s ease;
+        }
+        .btn-save-next:hover {
+            background: #047857;
+        }
+        
+        /* Interactive Empty Panel Placeholder styling */
+        .placeholder-card {
+            border: 2px dashed var(--border-light);
+            border-radius: 12px;
+            padding: 40px;
+            text-align: center;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+<body>
+
+<div class="container form-container px-3 px-sm-0">
+    <div class="form-card">
+        <!-- Step Tabs Navigation Links -->
+        <div class="step-tabs-container">
+            <ul class="step-tabs" id="profileTabsHeader">
+                <li><a href="#" class="step-item completed" data-target="tab-cv"><i class="fa-solid fa-circle-check"></i> CV & Documents</a></li>
+                <li><a href="#" class="step-item active" data-target="tab-basic"><i class="fa-solid fa-circle-user"></i> Basic Information</a></li>
+                <li><a href="#" class="step-item" data-target="tab-education"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
+                <li><a href="#" class="step-item" data-target="tab-work"><i class="fa-solid fa-briefcase"></i> Work Experience</a></li>
+                <li><a href="#" class="step-item" data-target="tab-certification"><i class="fa-solid fa-award"></i> Certification</a></li>
+                <li><a href="#" class="step-item" data-target="tab-references"><i class="fa-solid fa-users"></i> References</a></li>
+            </ul>
         </div>
-      </form>
-    </div>
 
-    <!-- Sticky Bottom Form Control Footer Actions -->
-    <div class="form-footer-action-panel p-4 d-flex justify-content-between align-items-center">
-      <button type="button" class="btn btn-cancel-custom">Cancel</button>
-      <button type="button" class="btn btn-submit-custom">Save & Next</button>
-    </div>
+        <!-- Single Core Unified Form Panel -->
+        <div class="p-4 p-md-5">
+            <form id="profileForm">
+                
+                <!-- TAB 1: CV & Documents (Placeholder) -->
+                <div class="tab-panel d-none" id="tab-cv">
+                    <div class="section-title border-bottom pb-2">CV & Documents</div>
+                    <div class="placeholder-card"><i class="fa-regular fa-file-pdf fa-2x mb-2"></i><p class="m-0">CV upload elements go here.</p></div>
+                </div>
 
-  </div>
+                <!-- TAB 2: Basic Information (Active) -->
+                <div class="tab-panel" id="tab-basic">
+                    <!-- PERSONAL INFORMATION SECTION -->
+                    <div class="mb-5">
+                        <div class="section-title border-bottom pb-2">Personal Information</div>
+                        <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                                <label class="form-label required">Applicant Name</label>
+                                <input type="text" class="form-control" value="Md. Fahim" readonly disabled>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label required">Mobile Number</label>
+                                <div class="phone-input-group">
+                                    <div class="phone-prefix"><img src="https://flagcdn.com/bd.svg" alt="BD Flag"><span>+880</span></div>
+                                    <input type="tel" class="form-control" value="17145817845" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-sm-7 col-md-4">
+                                <label class="form-label required">Date of Birth</label>
+                                <input type="text" class="form-control" value="10 / 12 / 1971" readonly disabled>
+                                <span class="text-muted d-block mt-1" style="font-size: 11px;">Age: 54 years, 2 months, 3 days</span>
+                            </div>
+                            <div class="col-12 col-sm-5 col-md-2">
+                                <label class="form-label required">NID Number</label>
+                                <input type="text" class="form-control" placeholder="Enter NID" required>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label class="form-label required">Nationality</label>
+                                <select class="form-select" required>
+                                    <option selected>Bangladeshi</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-sm-6 col-md-3">
+                                <label class="form-label required">Gender</label>
+                                <select class="form-select" required>
+                                    <option disabled>Select Gender</option>
+                                    <option selected>Male</option>
+                                    <option>Female</option>
+                                    <option>Other</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label required">Email Address</label>
+                                <input type="email" class="form-control" value="pbl.fahim@gmail.com" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label required">Emergency Contact Number</label>
+                                <div class="phone-input-group">
+                                    <div class="phone-prefix"><img src="https://flagcdn.com/bd.svg" alt="BD Flag"><span>+880</span></div>
+                                    <input type="tel" class="form-control" placeholder="Contact number" required>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Marital Status</label>
+                                <select class="form-select" id="maritalStatus">
+                                    <option selected disabled>Select Status</option>
+                                    <option value="Single">Single</option>
+                                    <option value="Married">Married</option>
+                                    <option value="Divorced">Divorced</option>
+                                </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label">Spouse Name</label>
+                                <input type="text" class="form-control" value="Tasnia">
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label required">Father Name</label>
+                                <input type="text" class="form-control" placeholder="Father's full name" required>
+                            </div>
+                            <div class="col-12 col-md-6">
+                                <label class="form-label required">Mother Name</label>
+                                <input type="text" class="form-control" placeholder="Mother's full name" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- ADDRESS INFORMATION SECTION -->
+                    <div class="mb-4">
+                        <div class="section-title border-bottom pb-2 mb-4">Address Details</div>
+                        <div class="row g-4 g-lg-5">
+                            <!-- PERMANENT ADDRESS BLOCK -->
+                            <div class="col-12 col-md-6">
+                                <div class="subsection-title mb-3 text-secondary">Permanent Address</div>
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <label class="form-label required">District</label>
+                                        <select class="form-select" id="permDistrict" required>
+                                            <option selected disabled value="">Select District</option>
+                                            <option value="Dhaka">Dhaka</option>
+                                            <option value="Chittagong">Chittagong</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label required">Thana</label>
+                                        <select class="form-select" id="permThana" required>
+                                            <option selected disabled value="">Select Thana</option>
+                                            <option value="Gulshan">Gulshan</option>
+                                            <option value="Banani">Banani</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Area/Village</label>
+                                        <input type="text" class="form-control" id="permArea">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label required">House/Road</label>
+                                        <input type="text" class="form-control" id="permHouse" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label">Postal Code</label>
+                                        <input type="text" class="form-control" id="permPostal">
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label">Post Office</label>
+                                        <input type="text" class="form-control" id="permPostOffice">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PRESENT ADDRESS BLOCK -->
+                            <div class="col-12 col-md-6">
+                                <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+                                    <div class="subsection-title text-secondary">Present Address</div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="sameAsPermanent">
+                                        <label class="form-check-label" for="sameAsPermanent">Same as Permanent</label>
+                                    </div>
+                                </div>
+                                <div class="row g-3">
+                                    <div class="col-6">
+                                        <label class="form-label required">District</label>
+                                        <select class="form-select" id="presDistrict" required>
+                                            <option selected disabled value="">Select District</option>
+                                            <option value="Dhaka">Dhaka</option>
+                                            <option value="Chittagong">Chittagong</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label required">Thana</label>
+                                        <select class="form-select" id="presThana" required>
+                                            <option selected disabled value="">Select Thana</option>
+                                            <option value="Gulshan">Gulshan</option>
+                                            <option value="Banani">Banani</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label">Area/Village</label>
+                                        <input type="text" class="form-control" id="presArea">
+                                    </div>
+                                    <div class="col-12">
+                                        <label class="form-label required">House/Road</label>
+                                        <input type="text" class="form-control" id="presHouse" required>
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label">Postal Code</label>
+                                        <input type="text" class="form-control" id="presPostal">
+                                    </div>
+                                    <div class="col-6">
+                                        <label class="form-label">Post Office</label>
+                                        <input type="text" class="form-control" id="presPostOffice">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 3: Education (Placeholder) -->
+                <div class="tab-panel d-none" id="tab-education">
+                    <div class="section-title border-bottom pb-2">Education Qualifications</div>
+                    <div class="placeholder-card"><i class="fa-solid fa-graduation-cap fa-2x mb-2"></i><p class="m-0">Academic records inputs go here.</p></div>
+                </div>
+
+                <!-- TAB 4: Work Experience (Placeholder) -->
+                <div class="tab-panel d-none" id="tab-work">
+                    <div class="section-title border-bottom pb-2">Employment History</div>
+                    <div class="placeholder-card"><i class="fa-solid fa-briefcase fa-2x mb-2"></i><p class="m-0">Professional experience layout details go here.</p></div>
+                </div>
+
+                <!-- TAB 5: Certification (Placeholder) -->
+                <div class="tab-panel d-none" id="tab-certification">
+                    <div class="section-title border-bottom pb-2">Certifications</div>
+                    <div class="placeholder-card"><i class="fa-solid fa-award fa-2x mb-2"></i><p class="m-0">Professional certificates tracking data goes here.</p></div>
+                </div>
+
+                <!-- TAB 6: References (Placeholder) -->
+                <div class="tab-panel d-none" id="tab-references">
+                    <div class="section-title border-bottom pb-2">References</div>
+                    <div class="placeholder-card"><i class="fa-solid fa-users fa-2x mb-2"></i><p class="m-0">Professional reference connections layout goes here.</p></div>
+                </div>
+
+                <!-- UNIFIED ACTION BUTTON FOOTER -->
+                <div class="pt-4 mt-5 border-top d-flex justify-content-between align-items-center">
+                    <button type="button" class="btn btn-prev" id="btnPrev">Cancel</button>
+                    <button type="button" class="btn btn-save-next" id="btnNext">Save & Next <i class="fa-solid fa-arrow-right ms-1" style="font-size: 12px;"></i></button>
+                </div>
+
+            </form>
+        </div>
+    </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    // --- TABS & NAVIGATION STATE ENGINE ---
+    const tabs = Array.from(document.querySelectorAll('#profileTabsHeader .step-item'));
+    const panels = Array.from(document.querySelectorAll('.tab-panel'));
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const profileForm = document.getElementById('profileForm');
+    
+    let currentTabIndex = 1; // Start on 'Basic Information' (index 1)
+
+    function updateTabNavigationUI() {
+        // Toggle Active States on Headers
+        tabs.forEach((tab, index) => {
+            tab.classList.remove('active');
+            if(index === currentTabIndex) {
+                tab.classList.add('active');
+            }
+        });
+
+        // Show/Hide Panels 
+        panels.forEach((panel, index) => {
+            if(index === currentTabIndex) {
+                panel.classList.remove('d-none');
+            } else {
+                panel.classList.add('d-none');
+            }
+        });
+
+        // Dynamic Footer Control Adaptation
+        if (currentTabIndex === 0) {
+            btnPrev.textContent = "Cancel";
+        } else {
+            btnPrev.innerHTML = `<i class="fa-solid fa-arrow-left me-1" style="font-size: 12px;"></i> Back`;
+        }
+
+        if (currentTabIndex === tabs.length - 1) {
+            btnNext.innerHTML = `Submit Application <i class="fa-solid fa-check ms-1" style="font-size: 12px;"></i>`;
+        } else {
+            btnNext.innerHTML = `Save & Next <i class="fa-solid fa-arrow-right ms-1" style="font-size: 12px;"></i>`;
+        }
+    }
+
+    // Step Forward Navigation Action Handler
+    btnNext.addEventListener('click', () => {
+        const activePanel = panels[currentTabIndex];
+        
+        // Native HTML5 Validation check for the visible active panel fields
+        const inputs = activePanel.querySelectorAll('input, select, textarea');
+        let isValid = true;
+        
+        inputs.forEach(input => {
+            if(!input.checkValidity()) {
+                input.reportValidity();
+                isValid = false;
+            }
+        });
+
+        if (!isValid) return; // Halt navigation if fields are incomplete
+
+        // Mark current tab completed
+        tabs[currentTabIndex].classList.add('completed');
+
+        if (currentTabIndex < tabs.length - 1) {
+            currentTabIndex++;
+            updateTabNavigationUI();
+        } else {
+            // Last step reached -> Native Submit
+            profileForm.requestSubmit();
+        }
+    });
+
+    // Step Backward Navigation Action Handler
+    btnPrev.addEventListener('click', () => {
+        if (currentTabIndex > 0) {
+            currentTabIndex--;
+            updateTabNavigationUI();
+        } else {
+            // Handle root level cancel behavior (e.g. redirect back to dashboard)
+            alert("Form operation cancelled.");
+        }
+    });
+
+    // Make step headers click-responsive directly
+    tabs.forEach((tab, index) => {
+        tab.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Prevent directly skipping forward without validation
+            if (index > currentTabIndex && !tabs[currentTabIndex].classList.contains('completed')) {
+                btnNext.click(); // Trigger native browser validation block check
+                return;
+            }
+            currentTabIndex = index;
+            updateTabNavigationUI();
+        });
+    });
+
+    // Handle final Form Submit data print out
+    profileForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert("Form processing! Verification passed across all tabs successfully.");
+        console.log("Gathered Form Data Package Submitted successfully.");
+    });
+
+
+    // --- SAME AS PERMANENT ADDRESS SYNC LOGIC ---
+    const checkbox = document.getElementById('sameAsPermanent');
+    const permFields = {
+        district: document.getElementById('permDistrict'),
+        thana: document.getElementById('permThana'),
+        area: document.getElementById('permArea'),
+        house: document.getElementById('permHouse'),
+        postal: document.getElementById('permPostal'),
+        postOffice: document.getElementById('permPostOffice')
+    };
+    const presFields = {
+        district: document.getElementById('presDistrict'),
+        thana: document.getElementById('presThana'),
+        area: document.getElementById('presArea'),
+        house: document.getElementById('presHouse'),
+        postal: document.getElementById('presPostal'),
+        postOffice: document.getElementById('presPostOffice')
+    };
+
+    function syncFields() {
+        if (checkbox.checked) {
+            Object.keys(permFields).forEach(key => {
+                presFields[key].value = permFields[key].value;
+                presFields[key].disabled = true;
+            });
+        }
+    }
+
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+            syncFields();
+        } else {
+            Object.values(presFields).forEach(field => {
+                field.disabled = false;
+                field.value = '';
+            });
+            presFields.district.selectedIndex = 0;
+            presFields.thana.selectedIndex = 0;
+        }
+    });
+
+    Object.values(permFields).forEach(field => {
+        field.addEventListener('input', syncFields);
+        field.addEventListener('change', syncFields);
+    });
+</script>
+</body>
+</html>

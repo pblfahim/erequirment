@@ -15,6 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
     <link rel="stylesheet" href="assets/css/appdash.css" />
+
 </head>
 
 <body>
@@ -137,193 +138,271 @@
 
             <!-- Middle Inner Form/Content Canvas Placeholder Area -->
             <div class="flex-grow-1 p-4">
-                <div class="flex-grow-1 p-4 bg-light-gray-canvas">
-                    <div class="form-card-container">
+                <!-- 
+              Your primary profile setup/basic information layout content forms 
+              live directly inside this flex-grow container box block.
+          -->
 
-                        <!-- Step Navigation Tabs Header -->
-                        <div class="step-navigation-container">
-                            <ul class="nav nav-tabs-custom border-bottom" id="profileStepsTab" role="tablist">
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link-custom-tab completed" id="cv-tab" data-bs-toggle="tab"
-                                        type="button" role="tab">
-                                        <i class="bi bi-file-earmark-person fs-5 me-2"></i> CV & Documents <i
-                                            class="bi bi-check2-circle text-success ms-1"></i>
-                                    </button>
+                <div class="container form-container ">
+                    <div class="form-card">
+                        <!-- Step Tabs Navigation -->
+                        <div class="step-tabs-container">
+                            <ul class="step-tabs">
+                                <li>
+                                    <a href="#" class="step-item completed">
+                                        <i class="fa-solid fa-circle-check text-success"></i> CV & Documents
+                                    </a>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link-custom-tab active" id="basic-info-tab" data-bs-toggle="tab"
-                                        type="button" role="tab">
-                                        <i class="bi bi-layers fs-5 me-2"></i> Basic Information
-                                    </button>
+                                <li>
+                                    <a href="#" class="step-item active">
+                                        <i class="fa-solid fa-circle-user"></i> Basic Information
+                                    </a>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link-custom-tab disabled" id="education-tab" data-bs-toggle="tab"
-                                        type="button" role="tab">
-                                        <i class="bi bi-journal-bookmark fs-5 me-2"></i> Education
-                                    </button>
+                                <li><a href="#" class="step-item"><i class="fa-solid fa-graduation-cap"></i>
+                                        Education</a></li>
+                                <li><a href="#" class="step-item"><i class="fa-solid fa-briefcase"></i> Work
+                                        Experience</a></li>
+                                <li><a href="#" class="step-item"><i class="fa-solid fa-award"></i> Certification</a>
                                 </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link-custom-tab disabled" id="work-experience-tab"
-                                        data-bs-toggle="tab" type="button" role="tab">
-                                        <i class="bi bi-play-btn fs-5 me-2"></i> Work Experience
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link-custom-tab disabled" id="certification-tab"
-                                        data-bs-toggle="tab" type="button" role="tab">
-                                        <i class="bi bi-play-circle fs-5 me-2"></i> Certification
-                                    </button>
-                                </li>
-                                <li class="nav-item" role="presentation">
-                                    <button class="nav-link-custom-tab disabled" id="references-tab"
-                                        data-bs-toggle="tab" type="button" role="tab">
-                                        <i class="bi bi-play-circle fs-5 me-2"></i> References
-                                    </button>
-                                </li>
+                                <li><a href="#" class="step-item"><i class="fa-solid fa-users"></i> References</a></li>
                             </ul>
                         </div>
 
-                        <!-- Form Content Section -->
-                        <div class="form-content-body p-4 p-md-5">
-                            <h5 class="section-title mb-4">Personal Information</h5>
+                        <!-- Main Form Body Content -->
+                        <div class="p-4 p-md-1>
+                            <form id=" profileForm" onsubmit="event.preventDefault();">
 
-                            <form id="basicInfoForm">
+                            <!-- PERSONAL INFORMATION SECTION -->
+                            <div class="section-card">
+                                <div class="section-title">
+                                    <i class="fa-solid fa-user-gear"></i> Personal Information
+                                </div>
+
                                 <div class="row g-4">
+                                    <!-- Applicant Name -->
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label required">Applicant Name</label>
+                                        <input type="text" class="form-control" value="Md. Fahim" readonly disabled>
+                                    </div>
 
-                                    <!-- Left Column Group -->
-                                    <div class="col-12 col-lg-6">
-                                        <!-- Applicant Name -->
-                                        <div class="mb-4">
-                                            <label class="form-label-custom">Applicant Name: <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control form-control-custom read-only-input"
-                                                value="Md. Fahim" readonly />
+                                    <!-- Mobile Number -->
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label required">Mobile Number</label>
+                                        <div class="phone-input-group">
+                                            <div class="phone-prefix">
+                                                <img src="https://flagcdn.com/bd.svg" alt="BD Flag">
+                                                <span>+880</span>
+                                            </div>
+                                            <input type="tel" class="form-control input-filled-success"
+                                                value="17145817845">
                                         </div>
+                                    </div>
 
-                                        <!-- Date of Birth & NID Row -->
-                                        <div class="row g-3 mb-1">
+                                    <!-- Date of Birth & NID Number Grouping -->
+                                    <div class="col-12 col-md-6">
+                                        <div class="row g-3">
                                             <div class="col-7">
-                                                <label class="form-label-custom">Date of Birth: <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="dob-input-container read-only-input">
-                                                    <input type="text" class="dob-segment" value="10" readonly />
-                                                    <span class="dob-divider">/</span>
-                                                    <input type="text" class="dob-segment" value="12" readonly />
-                                                    <span class="dob-divider">/</span>
-                                                    <input type="text" class="dob-segment dob-year" value="1971"
-                                                        readonly />
+                                                <label class="form-label required">Date of Birth</label>
+                                                <input type="text" class="form-control" value="10  /  12  /  1971"
+                                                    readonly disabled>
+                                                <div class="input-note">
+                                                    <i class="fa-solid fa-circle-info text-primary"></i> Age as on:
+                                                    54 years, 2 months, 3 days
                                                 </div>
                                             </div>
                                             <div class="col-5">
-                                                <label class="form-label-custom">NID Number: <span
-                                                        class="text-danger">*</span></label>
-                                                <input type="text" class="form-control form-control-custom"
-                                                    value="28934855" />
+                                                <label class="form-label required">NID Number</label>
+                                                <input type="text" class="form-control" placeholder="Enter NID">
                                             </div>
-                                        </div>
-                                        <!-- Age Display Helper Text -->
-                                        <div class="mb-4">
-                                            <small class="text-muted" style="font-size: 0.75rem;">Age as on: 54 years 7
-                                                months 4 days</small>
-                                        </div>
-
-                                        <!-- Email Address -->
-                                        <div class="mb-4">
-                                            <label class="form-label-custom">Email Address: <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="email" class="form-control form-control-custom"
-                                                value="pbl.fahim@gmail.com" />
-                                        </div>
-
-                                        <!-- Father's Name -->
-                                        <div class="mb-3">
-                                            <label class="form-label-custom">Father Name: <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control form-control-custom"
-                                                value="Md. Amir Hossain" />
                                         </div>
                                     </div>
 
-                                    <!-- Right Column Group -->
-                                    <div class="col-12 col-lg-6">
-                                        <!-- Mobile Number -->
-                                        <div class="mb-4">
-                                            <label class="form-label-custom">Mobile Number: <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group-custom read-only-input">
-                                                <div class="tel-country-prefix">
-                                                    <span class="flag-icon-bd">🇧🇩</span>
-                                                    <span class="country-code">+880</span>
-                                                </div>
-                                                <input type="text" class="form-control form-control-custom border-0"
-                                                    value="17145817845" readonly />
-                                            </div>
-                                        </div>
-
-                                        <!-- Nationality & Gender Row -->
-                                        <div class="row g-3 mb-4">
+                                    <!-- Nationality & Gender Grouping -->
+                                    <div class="col-12 col-md-6">
+                                        <div class="row g-3">
                                             <div class="col-6">
-                                                <label class="form-label-custom">Nationality: <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="select-wrapper">
-                                                    <select class="form-select form-control-custom">
-                                                        <option selected>Bangladeshi</option>
-                                                    </select>
-                                                </div>
+                                                <label class="form-label required">Nationality</label>
+                                                <select class="form-select">
+                                                    <option selected>Bangladeshi</option>
+                                                    <option>Other</option>
+                                                </select>
                                             </div>
                                             <div class="col-6">
-                                                <label class="form-label-custom">Gender: <span
-                                                        class="text-danger">*</span></label>
-                                                <div class="select-wrapper">
-                                                    <select class="form-select form-control-custom">
-                                                        <option selected>Male</option>
-                                                        <option>Female</option>
-                                                        <option>Other</option>
-                                                    </select>
-                                                </div>
+                                                <label class="form-label required">Gender</label>
+                                                <select class="form-select">
+                                                    <option selected disabled>Select Gender</option>
+                                                    <option>Male</option>
+                                                    <option>Female</option>
+                                                    <option>Other</option>
+                                                </select>
                                             </div>
-                                        </div>
-
-                                        <!-- Emergency Contact Number -->
-                                        <div class="mb-4">
-                                            <label class="form-label-custom">Emergency Contact Number: <span
-                                                    class="text-danger">*</span></label>
-                                            <div class="input-group-custom">
-                                                <div class="tel-country-prefix">
-                                                    <span class="flag-icon-bd">🇧🇩</span>
-                                                    <span class="country-code">+880</span>
-                                                </div>
-                                                <input type="text" class="form-control form-control-custom border-0"
-                                                    value="18425632" />
-                                            </div>
-                                        </div>
-
-                                        <!-- Mother's Name -->
-                                        <div class="mb-3">
-                                            <label class="form-label-custom">Mother Name: <span
-                                                    class="text-danger">*</span></label>
-                                            <input type="text" class="form-control form-control-custom"
-                                                value="Saleha Begum" />
                                         </div>
                                     </div>
 
+                                    <!-- Email Address -->
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label required">Email Address</label>
+                                        <input type="email" class="form-control" value="pbl.fahim@gmail.com">
+                                    </div>
+
+                                    <!-- Emergency Contact Number -->
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label required">Emergency Contact Number</label>
+                                        <div class="phone-input-group">
+                                            <div class="phone-prefix">
+                                                <img src="https://flagcdn.com/bd.svg" alt="BD Flag">
+                                                <span>+880</span>
+                                            </div>
+                                            <input type="tel" class="form-control" placeholder="Contact number">
+                                        </div>
+                                    </div>
+
+                                    <!-- Marital Status -->
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label">Marital Status</label>
+                                        <select class="form-select" id="maritalStatus">
+                                            <option selected disabled>Select Status</option>
+                                            <option value="Single">Single</option>
+                                            <option value="Married">Married</option>
+                                            <option value="Divorced">Divorced</option>
+                                        </select>
+                                    </div>
+
+                                    <!-- Spouse Name -->
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label">Spouse Name</label>
+                                        <input type="text" class="form-control" value="Tasnia">
+                                    </div>
+
+                                    <!-- Father Name -->
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label required">Father Name</label>
+                                        <input type="text" class="form-control" placeholder="Father's full name">
+                                    </div>
+
+                                    <!-- Mother Name -->
+                                    <div class="col-12 col-md-6">
+                                        <label class="form-label required">Mother Name</label>
+                                        <input type="text" class="form-control" placeholder="Mother's full name">
+                                    </div>
                                 </div>
+                            </div>
+
+                            <!-- ADDRESS INFORMATION SECTION -->
+                            <div class="section-card">
+                                <div class="section-title">
+                                    <i class="fa-solid fa-map-location-dot"></i> Address Details
+                                </div>
+
+                                <div class="row g-5">
+                                    <!-- PERMANENT ADDRESS BLOCK -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="subsection-title text-success"><i
+                                                class="fa-solid fa-house-chimney me-2"></i>Permanent Address</div>
+
+                                        <div class="row g-3">
+                                            <div class="col-6">
+                                                <label class="form-label required">District</label>
+                                                <select class="form-select" id="permDistrict">
+                                                    <option selected disabled>Select District</option>
+                                                    <option value="Dhaka">Dhaka</option>
+                                                    <option value="Chittagong">Chittagong</option>
+                                                    <option value="Sylhet">Sylhet</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label required">Thana</label>
+                                                <select class="form-select" id="permThana">
+                                                    <option selected disabled>Select Thana</option>
+                                                    <option value="Gulshan">Gulshan</option>
+                                                    <option value="Banani">Banani</option>
+                                                    <option value="Dhanmondi">Dhanmondi</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label">Area/Village</label>
+                                                <input type="text" class="form-control" id="permArea">
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label required">House/Road</label>
+                                                <input type="text" class="form-control" id="permHouse">
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label">Postal Code</label>
+                                                <input type="text" class="form-control" id="permPostal">
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label">Post Office Name</label>
+                                                <input type="text" class="form-control" id="permPostOffice">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- PRESENT ADDRESS BLOCK -->
+                                    <div class="col-12 col-lg-6">
+                                        <div class="d-flex justify-content-between align-items-center mb-3">
+                                            <div class="subsection-title text-success mb-0"><i
+                                                    class="fa-solid fa-location-crosshairs me-2"></i>Present Address
+                                            </div>
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" id="sameAsPermanent">
+                                                <label class="form-check-label" for="sameAsPermanent">
+                                                    Same as Permanent
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="row g-3">
+                                            <div class="col-6">
+                                                <label class="form-label required">District</label>
+                                                <select class="form-select" id="presDistrict">
+                                                    <option selected disabled>Select District</option>
+                                                    <option value="Dhaka">Dhaka</option>
+                                                    <option value="Chittagong">Chittagong</option>
+                                                    <option value="Sylhet">Sylhet</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label required">Thana</label>
+                                                <select class="form-select" id="presThana">
+                                                    <option selected disabled>Select Thana</option>
+                                                    <option value="Gulshan">Gulshan</option>
+                                                    <option value="Banani">Banani</option>
+                                                    <option value="Dhanmondi">Dhanmondi</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label">Area/Village</label>
+                                                <input type="text" class="form-control" id="presArea">
+                                            </div>
+                                            <div class="col-12">
+                                                <label class="form-label required">House/Road</label>
+                                                <input type="text" class="form-control" id="presHouse">
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label">Postal Code</label>
+                                                <input type="text" class="form-control" id="presPostal">
+                                            </div>
+                                            <div class="col-6">
+                                                <label class="form-label">Post Office Name</label>
+                                                <input type="text" class="form-control" id="presPostOffice">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- FOOTER ACTIONS -->
+                            <div class="form-footer d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-cancel">Cancel</button>
+                                <button type="submit" class="btn btn-save-next">Save & Next <i
+                                        class="fa-solid fa-arrow-right ms-1"></i></button>
+                            </div>
+
                             </form>
                         </div>
-
-                        <!-- Sticky Bottom Form Control Footer Actions -->
-                        <div class="form-footer-action-panel p-4 d-flex justify-content-between align-items-center">
-                            <button type="button" class="btn btn-cancel-custom">Cancel</button>
-                            <button type="button" class="btn btn-submit-custom">Save & Next</button>
-                        </div>
-
                     </div>
                 </div>
-                <!-- 
-              Your primary profile setup/basic information layout content forms 
-              live directly inside this flex-grow container box block. 
-          -->
-
             </div>
 
             <!-- Application Dashboard Baseline Responsive Footer Layout -->
@@ -344,62 +423,7 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script>document.addEventListener("DOMContentLoaded", () => {
-            // Select components and links
-            const contentCanvas = document.querySelector(".flex-grow-1");
-            const mobileSidebarEl = document.getElementById("mobileSidebar");
-            const mobileSidebar = bootstrap.Offcanvas.getInstance(mobileSidebarEl) || new bootstrap.Offcanvas(mobileSidebarEl);
 
-            // Select all links from both desktop and mobile sidebars
-            const allNavLinks = document.querySelectorAll(".nav-link-custom");
-
-            // Mock Data Views for demonstration mapping
-            const views = {
-                "Dashboard": `<h4 class="fw-bold mb-3">Welcome Back, Fahim</h4><p class="text-secondary">Here is a quick snapshot of your recruitment funnel parameters today.</p>`,
-                "Profile": ``,
-                "Applied Jobs": `<h4 class="fw-bold mb-3">Applied Jobs</h4><p class="text-secondary">Track the real-time status of your active application workflows.</p>`,
-                "Favourite Jobs": `<h4 class="fw-bold mb-3">Favourite Jobs</h4><p class="text-secondary">Your bookmarked career postings across the network.</p>`,
-                "Job Alerts": `<h4 class="fw-bold mb-3">Job Alerts</h4><p class="text-secondary">Manage automated vacancy notifications matching your skill tags.</p>`,
-                "Settings": `<h4 class="fw-bold mb-3">Account Settings</h4><p class="text-secondary">Manage system security configurations and multi-factor flags.</p>`,
-                "Logout": `<h4 class="fw-bold text-danger mb-3">Logging out...</h4><p class="text-secondary">Clearing session tokens and redirecting to the gateway.</p>`
-            };
-
-            // Set initial default view context on load
-            const initialActive = document.querySelector(".nav-link-custom.active");
-            if (initialActive) {
-                const viewKey = initialActive.textContent.trim();
-                if (views[viewKey]) contentCanvas.innerHTML = views[viewKey];
-            }
-
-            // Unified click handler architecture
-            allNavLinks.forEach(link => {
-                link.addEventListener("click", (e) => {
-                    e.preventDefault();
-
-                    const targetText = link.textContent.trim();
-
-                    // 1. Synchronize the active DOM state matching the clicked label across both sidebars
-                    allNavLinks.forEach(item => {
-                        if (item.textContent.trim() === targetText) {
-                            item.classList.add("active");
-                        } else {
-                            item.classList.remove("active");
-                        }
-                    });
-
-                    // 2. Load the corresponding mock payload template into the content viewport
-                    if (views[targetText]) {
-                        contentCanvas.innerHTML = views[targetText];
-                    }
-
-                    // 3. If clicking from within the mobile drawer layer, collapse it gracefully
-                    if (mobileSidebarEl.contains(link)) {
-                        mobileSidebar.hide();
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 
 </html>

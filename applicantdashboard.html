@@ -1,0 +1,1162 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Basic Information | Pubali Bank PLC</title>
+    <!-- Standard Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+    <!-- Bootstrap & Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+
+    <style>
+        :root {
+            --brand-primary: #006747; /* Pubali Emerald Green */
+            --brand-secondary: #ED1C24; /* Pubali Crimson Red */
+            --brand-dark: #12211A;
+            --bg-light-canvas: #f4f6f8;
+            --surface-card: #ffffff;
+            --border-color: #e2e8f0;
+            --text-main: #2d3748;
+            --text-secondary: #718096;
+            --nav-hover: #e8f5e9;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: var(--bg-light-canvas);
+            color: var(--text-main);
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* Dashboard Layout wrapper */
+        .dash-wrapper {
+            display: flex;
+            min-height: 100vh;
+            width: 100vw;
+        }
+
+        /* Desktop Sidebar Viewport Panel */
+        .sidebar {
+            width: 280px;
+            background-color: #ffffff;
+            border-right: 1px solid var(--border-color);
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 100;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .logo-wrapper {
+            padding-bottom: 24px;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profile-card {
+            background-color: var(--bg-light-canvas);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+        }
+
+        .profile-img {
+            width: 64px;
+            height: 64px;
+            object-fit: cover;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Sidebar Custom Navigation Elements */
+        .nav-link-custom {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.2s ease;
+            margin-bottom: 4px;
+        }
+
+        .nav-link-custom:hover {
+            background-color: var(--nav-hover);
+            color: var(--brand-primary);
+        }
+
+        .nav-link-custom.active {
+            background-color: var(--brand-primary);
+            color: #ffffff;
+        }
+
+        .nav-link-custom i {
+            font-size: 1.2rem;
+        }
+
+        .nav-link-logout {
+            color: var(--brand-secondary);
+        }
+
+        .nav-link-logout:hover {
+            background-color: #ffebee;
+            color: var(--brand-secondary);
+        }
+
+        /* Right Side Layout viewport */
+        .main-content {
+            flex-grow: 1;
+            margin-left: 280px;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            width: calc(100% - 280px);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 991.98px) {
+            .sidebar {
+                transform: translateX(-100%);
+            }
+            .main-content {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+        /* Navigation Header */
+        .navbar {
+            background-color: #ffffff !important;
+            height: 70px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+        }
+
+        .nav-icon-btn {
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.2s ease;
+        }
+
+        .nav-icon-btn:hover {
+            background-color: var(--bg-light-canvas);
+        }
+
+        /* Dynamic wizard tabs */
+        .step-navigation-container {
+            margin-bottom: 30px;
+            overflow-x: auto;
+        }
+
+        .nav-tabs-custom {
+            display: flex;
+            flex-wrap: nowrap;
+            gap: 8px;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 8px;
+            min-width: 800px;
+        }
+
+        .nav-link-custom-tab {
+            background: none;
+            border: none;
+            padding: 12px 18px;
+            color: var(--text-secondary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-radius: 8px;
+            white-space: nowrap;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .nav-link-custom-tab:hover:not(.disabled) {
+            background-color: #f1f3f5;
+            color: var(--brand-dark);
+        }
+
+        .nav-link-custom-tab.active {
+            background-color: var(--brand-primary);
+            color: #ffffff;
+        }
+
+        .nav-link-custom-tab.completed {
+            color: var(--brand-primary);
+            background-color: #e8f5e9;
+        }
+
+        .nav-link-custom-tab.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        /* Core Form Visual Card */
+        .form-card-container {
+            background-color: #ffffff;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--border-color);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-label-custom {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-main);
+            margin-bottom: 6px;
+            display: block;
+        }
+
+        .form-control-custom {
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            padding: 12px 16px;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+        }
+
+        .form-control-custom:focus {
+            border-color: var(--brand-primary);
+            box-shadow: 0 0 0 4px rgba(0, 103, 71, 0.15);
+            outline: none;
+        }
+
+        .read-only-input {
+            background-color: #f8fafc !important;
+            border-color: #e2e8f0 !important;
+            color: #64748b !important;
+        }
+
+        /* Multi Segment DOB Input Container */
+        .dob-input-container {
+            display: flex;
+            align-items: center;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 12px 16px;
+            background-color: #ffffff;
+        }
+
+        .dob-segment {
+            border: none;
+            width: 30px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            outline: none;
+            color: var(--text-main);
+        }
+
+        .dob-segment.dob-year {
+            width: 50px;
+        }
+
+        .dob-divider {
+            color: #94a3b8;
+            margin: 0 8px;
+            font-weight: bold;
+        }
+
+        /* Flag and Tel input configurations */
+        .input-group-custom {
+            display: flex;
+            align-items: center;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .tel-country-prefix {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            background-color: #f1f5f9;
+            padding: 12px 16px;
+            border-right: 1px solid #cbd5e1;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #475569;
+        }
+
+        .select-wrapper {
+            position: relative;
+        }
+
+        .select-wrapper select {
+            appearance: none;
+            -webkit-appearance: none;
+        }
+
+        .select-wrapper::after {
+            content: "\F2E2";
+            font-family: "bootstrap-icons";
+            position: absolute;
+            top: 50%;
+            right: 16px;
+            transform: translateY(-50%);
+            color: var(--text-secondary);
+            pointer-events: none;
+        }
+
+        /* Footer actions configuration */
+        .form-footer-action-panel {
+            background-color: #f8fafc;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .btn-submit-custom {
+            background-color: var(--brand-primary);
+            color: #ffffff;
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-submit-custom:hover {
+            background-color: #005238;
+            color: #ffffff;
+        }
+
+        .btn-cancel-custom {
+            background-color: #e2e8f0;
+            color: var(--text-main);
+            font-weight: 600;
+            padding: 12px 24px;
+            border-radius: 10px;
+            border: none;
+            transition: all 0.2s ease;
+        }
+
+        .btn-cancel-custom:hover {
+            background-color: #cbd5e1;
+            color: var(--text-main);
+        }
+
+        /* Card Metric Elements */
+        .metric-card {
+            background-color: #ffffff;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .metric-icon-box {
+            width: 52px;
+            height: 52px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        /* Document drop area block */
+        .document-drop-zone {
+            border: 2px dashed #cbd5e1;
+            border-radius: 12px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.2s ease;
+            background-color: #fafafa;
+            cursor: pointer;
+        }
+
+        .document-drop-zone:hover {
+            border-color: var(--brand-primary);
+            background-color: #f0fdf4;
+        }
+
+        /* Alert notifications */
+        .notification-toast {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 1050;
+            background-color: #ffffff;
+            border-left: 5px solid var(--brand-primary);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 16px 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            transform: translateY(120%);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .notification-toast.show {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Main Flexible SPA layout container -->
+    <div class="dash-wrapper">
+        
+        <!-- Left Sidebar Viewport Container -->
+        <div class="sidebar d-none d-lg-flex flex-column justify-content-between">
+            <div>
+                <div class="logo-wrapper">
+                    <div class="d-flex align-items-center gap-2">
+                        <i class="bi bi-bank2 text-success fs-3"></i>
+                        <span class="fw-bold fs-5 tracking-wide text-success">PUBALI BANK PLC</span>
+                    </div>
+                </div>
+                <div class="profile-card text-center">
+                    <img src="https://placehold.co/128x128/006747/ffffff?text=Fahim" class="rounded-circle profile-img mb-2 profile-pic-sync" alt="User profile" />
+                    <h6 class="fw-bold mb-1 user-name-sync" style="color: var(--brand-primary)">
+                        Md. Fahim
+                    </h6>
+                    <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">ID : 1284647</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <a class="nav-link-custom" href="#" data-view="Dashboard"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                    <a class="nav-link-custom active" href="#" data-view="Profile"><i class="bi bi-person-vcard"></i> Profile</a>
+                    <a class="nav-link-custom" href="#" data-view="Applied Jobs"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+                    <a class="nav-link-custom" href="#" data-view="Favourite Jobs"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+                    <a class="nav-link-custom" href="#" data-view="Job Alerts"><i class="bi bi-bell"></i> Job Alerts</a>
+                    <a class="nav-link-custom" href="#" data-view="Settings"><i class="bi bi-shield-lock"></i> Settings</a>
+                </div>
+            </div>
+
+            <!-- Desktop Logout anchor -->
+            <div>
+                <a class="nav-link-custom nav-link-logout" href="#" data-view="Logout">
+                    <i class="bi bi-box-arrow-left"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Sidebar Component Drawers -->
+        <div class="offcanvas offcanvas-start w-75" id="mobileSidebar" tabindex="-1">
+            <div class="d-flex flex-column justify-content-between h-100">
+                <div>
+                    <div class="offcanvas-header border-bottom">
+                        <div class="d-flex align-items-center gap-2">
+                            <i class="bi bi-bank2 text-success fs-4"></i>
+                            <span class="fw-bold fs-6 text-success">PUBALI BANK PLC</span>
+                        </div>
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body p-0">
+                        <div class="profile-card text-center my-3 mx-3">
+                            <img src="https://placehold.co/128x128/006747/ffffff?text=Fahim" class="rounded-circle profile-img mb-2 profile-pic-sync" alt="User profile" />
+                            <h6 class="fw-bold mb-1 user-name-sync" style="color: var(--brand-primary)">
+                                Md. Fahim
+                            </h6>
+                            <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">ID : 1284647</span>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <a class="nav-link-custom" href="#" data-view="Dashboard"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                            <a class="nav-link-custom active" href="#" data-view="Profile"><i class="bi bi-person-vcard"></i> Profile</a>
+                            <a class="nav-link-custom" href="#" data-view="Applied Jobs"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+                            <a class="nav-link-custom" href="#" data-view="Favourite Jobs"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+                            <a class="nav-link-custom" href="#" data-view="Job Alerts"><i class="bi bi-bell"></i> Job Alerts</a>
+                            <a class="nav-link-custom" href="#" data-view="Settings"><i class="bi bi-shield-lock"></i> Settings</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Drawer Logout button -->
+                <div class="p-3">
+                    <a class="nav-link-custom nav-link-logout" href="#" data-view="Logout">
+                        <i class="bi bi-box-arrow-left"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Main Content Viewport Area -->
+        <div class="main-content d-flex flex-column">
+            <!-- Nav Bar Component Header -->
+            <nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
+                <div class="d-flex align-items-center w-100 justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                            <i class="bi bi-list fs-4"></i>
+                        </button>
+                        <div class="search-container d-none d-sm-block position-relative">
+                            <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+                            <input class="form-control search-input ps-5" type="search" placeholder="Search application status..." id="dashboardSearch" style="border-radius: 20px; min-width: 280px" />
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
+                            <i class="bi bi-bell fs-5"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+                        </div>
+                        <div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="https://placehold.co/128x128/006747/ffffff?text=Fahim" width="36" height="36" class="rounded-circle border profile-pic-sync" alt="Profile Layout" />
+                            <span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md. Fahim</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Main Content Container Block -->
+            <div class="flex-grow-1 p-4" id="mainCanvas">
+                <!-- Initial Profile View dynamically built here on load -->
+            </div>
+
+            <!-- Dashboard Footer Component -->
+            <footer class="dash-footer bg-white border-top p-3 mt-auto">
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+                    <div>
+                        <span class="small text-secondary">© 2026 <strong>Pubali Bank PLC.</strong> All rights reserved.</span>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-decoration-none text-secondary small">Privacy Policy</a>
+                        <a href="#" class="text-decoration-none text-secondary small">Terms of Service</a>
+                        <a href="#" class="text-decoration-none text-secondary small">Support</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Interactive Alerts Overlay toast -->
+    <div class="notification-toast" id="systemToast">
+        <i class="bi bi-check-circle-fill text-success fs-4"></i>
+        <div>
+            <h6 class="mb-0 fw-bold" id="toastTitle">Success</h6>
+            <p class="mb-0 small text-secondary" id="toastMessage">Updates saved successfully.</p>
+        </div>
+    </div>
+
+    <!-- Bootstrap Bundle script -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // Client state object holding edits across sessions
+            const state = {
+                activeStep: "basic-info-tab",
+                profile: {
+                    name: "Md. Fahim",
+                    dob: "1991-12-10",
+                    nid: "28934855",
+                    email: "pbl.fahim@gmail.com",
+                    fatherName: "Md. Amir Hossain",
+                    motherName: "Saleha Begum",
+                    mobile: "17145817845",
+                    nationality: "Bangladeshi",
+                    gender: "Male",
+                    emergencyContact: "18425632"
+                },
+                appliedJobs: [
+                    { id: "MTO-001", position: "Management Trainee Officer", dept: "General Banking", appliedOn: "12-05-2026", status: "Shortlisted" },
+                    { id: "SO-108", position: "Senior Officer (IT)", dept: "Information Technology Division", appliedOn: "04-06-2026", status: "Applied" }
+                ],
+                bookmarks: [
+                    { id: "MTO-2026", position: "Management Trainee Officer (MTO)", deadline: "15-08-2026", location: "Dhaka, Bangladesh" },
+                    { id: "AM-2026", position: "Assistant Manager (Credit Division)", deadline: "20-08-2026", location: "Sylhet, Bangladesh" }
+                ]
+            };
+
+            const mainCanvas = document.getElementById("mainCanvas");
+            const allNavLinks = document.querySelectorAll(".nav-link-custom");
+
+            // Utility to trigger visual Toast alerts
+            function showToast(title, message, iconClass = "bi-check-circle-fill text-success") {
+                const toast = document.getElementById("systemToast");
+                const icon = toast.querySelector("i");
+                document.getElementById("toastTitle").textContent = title;
+                document.getElementById("toastMessage").textContent = message;
+                icon.className = `bi fs-4 ${iconClass}`;
+                
+                toast.classList.add("show");
+                setTimeout(() => {
+                    toast.classList.remove("show");
+                }, 3500);
+            }
+
+            // Realtime Age Helper calculation engine
+            function calculateAge(dobString) {
+                if (!dobString) return "Provide Date of Birth";
+                const dob = new Date(dobString);
+                const today = new Date();
+                
+                let years = today.getFullYear() - dob.getFullYear();
+                let months = today.getMonth() - dob.getMonth();
+                let days = today.getDate() - dob.getDate();
+
+                if (days < 0) {
+                    months--;
+                    const previousMonth = new Date(today.getFullYear(), today.getMonth(), 0);
+                    days += previousMonth.getDate();
+                }
+                if (months < 0) {
+                    years--;
+                    months += 12;
+                }
+
+                return `${years} years ${months} months ${days} days`;
+            }
+
+            const viewRenderers = {
+                "Dashboard": () => {
+                    return `
+                        <div class="row g-4 mb-4">
+                            <div class="col-12 col-md-4">
+                                <div class="metric-card">
+                                    <div class="metric-icon-box bg-success-subtle text-success">
+                                        <i class="bi bi-briefcase-fill"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="fw-bold mb-0">${state.appliedJobs.length}</h4>
+                                        <span class="text-secondary small">Active Applied Jobs</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="metric-card">
+                                    <div class="metric-icon-box bg-primary-subtle text-primary">
+                                        <i class="bi bi-bookmark-heart-fill"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="fw-bold mb-0">${state.bookmarks.length}</h4>
+                                        <span class="text-secondary small">Bookmarked Positions</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 col-md-4">
+                                <div class="metric-card">
+                                    <div class="metric-icon-box bg-warning-subtle text-warning">
+                                        <i class="bi bi-clock-history"></i>
+                                    </div>
+                                    <div>
+                                        <h4 class="fw-bold mb-0">85%</h4>
+                                        <span class="text-secondary small">Profile Setup Complete</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card border-0 shadow-sm p-4 rounded-4 bg-white mb-4">
+                            <h5 class="fw-bold mb-3">Recent Notifications</h5>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item px-0 py-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="badge bg-success-subtle text-success">Shortlist Alert</span>
+                                        <small class="text-secondary">Today</small>
+                                    </div>
+                                    <p class="mb-0 text-secondary small">Congratulations! You have been shortlisted for management evaluation for Management Trainee Officer position.</p>
+                                </li>
+                                <li class="list-group-item px-0 py-3">
+                                    <div class="d-flex justify-content-between align-items-center mb-1">
+                                        <span class="badge bg-secondary-subtle text-secondary">System Warning</span>
+                                        <small class="text-secondary">2 days ago</small>
+                                    </div>
+                                    <p class="mb-0 text-secondary small">Your profile certification uploads remain pending step verification.</p>
+                                </li>
+                            </ul>
+                        </div>
+                    `;
+                },
+
+                "Profile": () => {
+                    const dobValue = state.profile.dob || "1991-12-10";
+                    const [dobY, dobM, dobD] = dobValue.split("-");
+                    const calculatedAgeText = calculateAge(dobValue);
+
+                    // Dynamic template injection supporting state parameters
+                    return `
+                        <div class="form-card-container">
+                            <!-- Step Tab Wizards -->
+                            <div class="step-navigation-container p-4 pb-0">
+                                <ul class="nav nav-tabs-custom border-bottom" id="profileStepsTab">
+                                    <li class="nav-item">
+                                        <button class="nav-link-custom-tab ${state.activeStep === 'cv-tab' ? 'active' : 'completed'}" id="cv-tab">
+                                            <i class="bi bi-file-earmark-person fs-5"></i> CV & Documents 
+                                            ${state.activeStep !== 'cv-tab' ? '<i class="bi bi-check2-circle text-success"></i>' : ''}
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link-custom-tab ${state.activeStep === 'basic-info-tab' ? 'active' : ''}" id="basic-info-tab">
+                                            <i class="bi bi-layers fs-5"></i> Basic Information
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link-custom-tab ${state.activeStep === 'education-tab' ? 'active' : 'disabled'}" id="education-tab">
+                                            <i class="bi bi-journal-bookmark fs-5"></i> Education
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link-custom-tab ${state.activeStep === 'work-experience-tab' ? 'active' : 'disabled'}" id="work-experience-tab">
+                                            <i class="bi bi-briefcase fs-5"></i> Work Experience
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link-custom-tab ${state.activeStep === 'certification-tab' ? 'active' : 'disabled'}" id="certification-tab">
+                                            <i class="bi bi-patch-check fs-5"></i> Certification
+                                        </button>
+                                    </li>
+                                    <li class="nav-item">
+                                        <button class="nav-link-custom-tab ${state.activeStep === 'references-tab' ? 'active' : 'disabled'}" id="references-tab">
+                                            <i class="bi bi-people fs-5"></i> References
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Dynamic Content Render Panel based on active wizard step -->
+                            <div class="form-content-body p-4 p-md-5" id="wizardBody">
+                                ${renderActiveStepContent(dobD, dobM, dobY, calculatedAgeText)}
+                            </div>
+
+                            <!-- Bottom Navigation Command Panel Actions -->
+                            <div class="form-footer-action-panel p-4 d-flex justify-content-between align-items-center">
+                                <button type="button" class="btn btn-cancel-custom" id="btnStepCancel">Back to Dashboard</button>
+                                <button type="button" class="btn btn-submit-custom" id="btnStepNext">Save & Next</button>
+                            </div>
+                        </div>
+                    `;
+                },
+
+                "Applied Jobs": () => {
+                    return `
+                        <div class="card border-0 shadow-sm p-4 rounded-4 bg-white">
+                            <h5 class="fw-bold mb-3">Applied Jobs Log</h5>
+                            <div class="table-responsive">
+                                <table class="table align-middle">
+                                    <thead>
+                                        <tr class="text-secondary small">
+                                            <th>POSITION</th>
+                                            <th>DEPARTMENT</th>
+                                            <th>APPLIED ON</th>
+                                            <th>STATUS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        ${state.appliedJobs.map(job => `
+                                            <tr>
+                                                <td class="fw-semibold text-success">${job.position}</td>
+                                                <td>${job.dept}</td>
+                                                <td>${job.appliedOn}</td>
+                                                <td>
+                                                    <span class="badge ${job.status === 'Shortlisted' ? 'bg-success' : 'bg-secondary'}">
+                                                        ${job.status}
+                                                    </span>
+                                                </td>
+                                            </tr>
+                                        `).join('')}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    `;
+                },
+
+                "Favourite Jobs": () => {
+                    return `
+                        <div class="row g-4">
+                            ${state.bookmarks.map(job => `
+                                <div class="col-12 col-md-6" id="fav-job-${job.id}">
+                                    <div class="card border-0 shadow-sm p-4 rounded-4 bg-white">
+                                        <div class="d-flex justify-content-between">
+                                            <h6 class="fw-bold mb-1 text-success">${job.position}</h6>
+                                            <button class="btn btn-sm btn-outline-danger btn-remove-fav" data-id="${job.id}">
+                                                <i class="bi bi-bookmark-fill"></i>
+                                            </button>
+                                        </div>
+                                        <span class="text-secondary small mb-3 block"><i class="bi bi-geo-alt"></i> ${job.location}</span>
+                                        <div class="d-flex justify-content-between align-items-center mt-2 pt-2 border-top">
+                                            <small class="text-muted">Deadline: ${job.deadline}</small>
+                                            <button class="btn btn-success btn-sm px-3 rounded-pill">Apply Now</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    `;
+                },
+
+                "Job Alerts": () => {
+                    return `
+                        <div class="card border-0 shadow-sm p-4 rounded-4 bg-white">
+                            <h5 class="fw-bold mb-4">Notification Settings</h5>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault1" checked />
+                                <label class="form-check-label fw-semibold" for="flexSwitchCheckDefault1">Email alerts on matching job postings</label>
+                            </div>
+                            <div class="form-check form-switch mb-3">
+                                <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault2" checked />
+                                <label class="form-check-label fw-semibold" for="flexSwitchCheckDefault2">SMS verification status alerts</label>
+                            </div>
+                        </div>
+                    `;
+                },
+
+                "Settings": () => {
+                    return `
+                        <div class="card border-0 shadow-sm p-4 rounded-4 bg-white">
+                            <h5 class="fw-bold mb-4">Security Parameters</h5>
+                            <div class="mb-3 col-md-6">
+                                <label class="form-label fw-semibold text-secondary">Applicant Name</label>
+                                <input type="text" class="form-control form-control-custom" id="settingsName" value="${state.profile.name}">
+                            </div>
+                            <button type="button" class="btn btn-success" id="btnSaveSettings">Save Changes</button>
+                        </div>
+                    `;
+                },
+
+                "Logout": () => {
+                    return `
+                        <div class="text-center py-5">
+                            <i class="bi bi-box-arrow-left text-danger display-1 mb-4"></i>
+                            <h4 class="fw-bold">Logout Confirmation</h4>
+                            <p class="text-secondary">Are you sure you want to end your dashboard session?</p>
+                            <div class="d-flex justify-content-center gap-3 mt-4">
+                                <button class="btn btn-outline-secondary px-4 py-2" id="btnLogoutCancel">Cancel</button>
+                                <button class="btn btn-danger px-4 py-2" onclick="window.location.reload()">End Session</button>
+                            </div>
+                        </div>
+                    `;
+                }
+            };
+
+            // Helper parsing and routing multi-step profile fields
+            function renderActiveStepContent(dobD, dobM, dobY, ageText) {
+                if (state.activeStep === "cv-tab") {
+                    return `
+                        <h5 class="section-title mb-4">CV & Document Uploads</h5>
+                        <div class="mb-4">
+                            <label class="form-label-custom">Upload Applicant CV/Resume: <span class="text-danger">*</span></label>
+                            <div class="document-drop-zone" id="cvDropZone">
+                                <i class="bi bi-cloud-arrow-up text-success display-6 mb-2"></i>
+                                <p class="mb-1 fw-semibold text-main">Drag and drop your PDF CV here</p>
+                                <small class="text-muted">Maximum limit: 5MB</small>
+                            </div>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label-custom">Upload Profile Photograph: <span class="text-danger">*</span></label>
+                            <div class="document-drop-zone" id="photoDropZone">
+                                <i class="bi bi-image text-success display-6 mb-2"></i>
+                                <p class="mb-1 fw-semibold text-main">Drag and drop profile image</p>
+                                <small class="text-muted">Format: JPG, PNG</small>
+                            </div>
+                        </div>
+                    `;
+                } else if (state.activeStep === "basic-info-tab") {
+                    return `
+                        <h5 class="section-title mb-4">Personal Information</h5>
+                        <form id="basicInfoForm">
+                            <div class="row g-4">
+                                <div class="col-12 col-lg-6">
+                                    <div class="mb-4">
+                                        <label class="form-label-custom">Applicant Name: <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-custom read-only-input" id="profName" value="${state.profile.name}" readonly />
+                                    </div>
+                                    <div class="row g-3 mb-1">
+                                        <div class="col-7">
+                                            <label class="form-label-custom">Date of Birth: <span class="text-danger">*</span></label>
+                                            <input type="date" class="form-control form-control-custom" id="profDob" value="${state.profile.dob}" />
+                                        </div>
+                                        <div class="col-5">
+                                            <label class="form-label-custom">NID Number: <span class="text-danger">*</span></label>
+                                            <input type="text" class="form-control form-control-custom" id="profNid" value="${state.profile.nid}" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <small class="text-muted fw-semibold" id="ageDisplay" style="font-size: 0.75rem;">Age: ${ageText}</small>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label-custom">Email Address: <span class="text-danger">*</span></label>
+                                        <input type="email" class="form-control form-control-custom" id="profEmail" value="${state.profile.email}" />
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label-custom">Father Name: <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-custom" id="profFather" value="${state.profile.fatherName}" />
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="mb-4">
+                                        <label class="form-label-custom">Mobile Number: <span class="text-danger">*</span></label>
+                                        <div class="input-group-custom read-only-input">
+                                            <div class="tel-country-prefix">
+                                                <span>🇧🇩</span>
+                                                <span class="country-code">+880</span>
+                                            </div>
+                                            <input type="text" class="form-control form-control-custom border-0" value="${state.profile.mobile}" readonly style="background:transparent;" />
+                                        </div>
+                                    </div>
+                                    <div class="row g-3 mb-4">
+                                        <div class="col-6">
+                                            <label class="form-label-custom">Nationality: <span class="text-danger">*</span></label>
+                                            <div class="select-wrapper">
+                                                <select class="form-select form-control-custom" id="profNationality">
+                                                    <option selected>Bangladeshi</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label class="form-label-custom">Gender: <span class="text-danger">*</span></label>
+                                            <div class="select-wrapper">
+                                                <select class="form-select form-control-custom" id="profGender">
+                                                    <option ${state.profile.gender === 'Male' ? 'selected' : ''}>Male</option>
+                                                    <option ${state.profile.gender === 'Female' ? 'selected' : ''}>Female</option>
+                                                    <option ${state.profile.gender === 'Other' ? 'selected' : ''}>Other</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="form-label-custom">Emergency Contact Number: <span class="text-danger">*</span></label>
+                                        <div class="input-group-custom">
+                                            <div class="tel-country-prefix">
+                                                <span>🇧🇩</span>
+                                                <span class="country-code">+880</span>
+                                            </div>
+                                            <input type="text" class="form-control form-control-custom border-0" id="profEmergency" value="${state.profile.emergencyContact}" />
+                                        </div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label-custom">Mother Name: <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-custom" id="profMother" value="${state.profile.motherName}" />
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    `;
+                } else if (state.activeStep === "education-tab") {
+                    return `
+                        <h5 class="section-title mb-4">Educational Qualifications</h5>
+                        <form id="educationForm">
+                            <div class="row g-4 mb-4">
+                                <div class="col-12 col-md-4">
+                                    <label class="form-label-custom">Degree Type: <span class="text-danger">*</span></label>
+                                    <div class="select-wrapper">
+                                        <select class="form-select form-control-custom" id="eduDegree">
+                                            <option>BSc (Engineering)</option>
+                                            <option>MBA</option>
+                                            <option>BBA</option>
+                                            <option>HSC</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <label class="form-label-custom">Institution: <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control form-control-custom" id="eduInst" placeholder="e.g. BUET, DU" />
+                                </div>
+                                <div class="col-12 col-md-4">
+                                    <label class="form-label-custom">Passing Year: <span class="text-danger">*</span></label>
+                                    <input type="number" class="form-control form-control-custom" id="eduYear" placeholder="2014" />
+                                </div>
+                            </div>
+                        </form>
+                    `;
+                } else if (state.activeStep === "work-experience-tab") {
+                    return `
+                        <h5 class="section-title mb-4">Employment History</h5>
+                        <div class="mb-4">
+                            <label class="form-label-custom">Company Name:</label>
+                            <input type="text" class="form-control form-control-custom mb-3" placeholder="Pubali Bank PLC" />
+                            <label class="form-label-custom">Designation:</label>
+                            <input type="text" class="form-control form-control-custom" placeholder="Software Engineer" />
+                        </div>
+                    `;
+                } else {
+                    return `
+                        <h5 class="section-title mb-4">Verification Steps Pending</h5>
+                        <p class="text-secondary small">This segment is currently locked until basic information verification is completed by the central systems.</p>
+                    `;
+                }
+            }
+
+            // Router listener executing view shifts cleanly
+            function routeView(targetView) {
+                if (viewRenderers[targetView]) {
+                    mainCanvas.innerHTML = viewRenderers[targetView]();
+                    attachViewEvents(targetView);
+                }
+            }
+
+            // Event bindings based on loaded canvas content view
+            function attachViewEvents(viewName) {
+                if (viewName === "Profile") {
+                    
+                    // Bind listener to wizard next step button
+                    const btnNext = document.getElementById("btnStepNext");
+                    const btnCancel = document.getElementById("btnStepCancel");
+                    
+                    btnCancel.addEventListener("click", () => {
+                        routeView("Dashboard");
+                        allNavLinks.forEach(item => {
+                            if (item.dataset.view === "Dashboard") item.classList.add("active");
+                            else item.classList.remove("active");
+                        });
+                    });
+
+                    btnNext.addEventListener("click", () => {
+                        saveWizardStepState();
+                        if (state.activeStep === "cv-tab") {
+                            state.activeStep = "basic-info-tab";
+                        } else if (state.activeStep === "basic-info-tab") {
+                            state.activeStep = "education-tab";
+                        } else if (state.activeStep === "education-tab") {
+                            state.activeStep = "work-experience-tab";
+                        } else if (state.activeStep === "work-experience-tab") {
+                            state.activeStep = "certification-tab";
+                        } else if (state.activeStep === "certification-tab") {
+                            state.activeStep = "references-tab";
+                        } else {
+                            state.activeStep = "cv-tab";
+                        }
+                        routeView("Profile");
+                        showToast("Information Saved", "Step fields verified successfully.");
+                    });
+
+                    // Dynamic step tabs triggers
+                    const tabButtons = document.querySelectorAll(".nav-link-custom-tab");
+                    tabButtons.forEach(btn => {
+                        btn.addEventListener("click", () => {
+                            if (!btn.classList.contains("disabled")) {
+                                saveWizardStepState();
+                                state.activeStep = btn.id;
+                                routeView("Profile");
+                            }
+                        });
+                    });
+
+                    // Real-time Age listener for Datepicker modifications
+                    const dobInput = document.getElementById("profDob");
+                    if (dobInput) {
+                        dobInput.addEventListener("change", (e) => {
+                            const newDob = e.target.value;
+                            state.profile.dob = newDob;
+                            document.getElementById("ageDisplay").textContent = `Age: ${calculateAge(newDob)}`;
+                        });
+                    }
+
+                    // Simulated uploads click hooks
+                    const cvDrop = document.getElementById("cvDropZone");
+                    const photoDrop = document.getElementById("photoDropZone");
+                    if (cvDrop) {
+                        cvDrop.addEventListener("click", () => showToast("Upload Triggered", "Selecting CV file attachment."));
+                    }
+                    if (photoDrop) {
+                        photoDrop.addEventListener("click", () => showToast("Upload Triggered", "Selecting photo attachment."));
+                    }
+
+                } else if (viewName === "Favourite Jobs") {
+                    
+                    // Remove bookmark functionality hooks
+                    const removeButtons = document.querySelectorAll(".btn-remove-fav");
+                    removeButtons.forEach(btn => {
+                        btn.addEventListener("click", () => {
+                            const id = btn.dataset.id;
+                            state.bookmarks = state.bookmarks.filter(b => b.id !== id);
+                            const element = document.getElementById(`fav-job-${id}`);
+                            if (element) element.remove();
+                            showToast("Bookmark Removed", "Position un-flagged from alerts panel.", "bi-dash-circle-fill text-danger");
+                        });
+                    });
+
+                } else if (viewName === "Settings") {
+                    
+                    const btnSave = document.getElementById("btnSaveSettings");
+                    btnSave.addEventListener("click", () => {
+                        const newName = document.getElementById("settingsName").value;
+                        state.profile.name = newName;
+                        
+                        // Sync names across elements
+                        document.querySelectorAll(".user-name-sync").forEach(el => el.textContent = newName);
+                        showToast("Settings Saved", "Profile parameters updated.");
+                    });
+
+                } else if (viewName === "Logout") {
+                    
+                    document.getElementById("btnLogoutCancel").addEventListener("click", () => {
+                        routeView("Dashboard");
+                        allNavLinks.forEach(item => {
+                            if (item.dataset.view === "Dashboard") item.classList.add("active");
+                            else item.classList.remove("active");
+                        });
+                    });
+                }
+            }
+
+            // Save form edits dynamically to system state
+            function saveWizardStepState() {
+                if (state.activeStep === "basic-info-tab") {
+                    const profDob = document.getElementById("profDob")?.value;
+                    const profNid = document.getElementById("profNid")?.value;
+                    const profEmail = document.getElementById("profEmail")?.value;
+                    const profFather = document.getElementById("profFather")?.value;
+                    const profMother = document.getElementById("profMother")?.value;
+                    const profEmergency = document.getElementById("profEmergency")?.value;
+                    const profGender = document.getElementById("profGender")?.value;
+
+                    if (profDob) state.profile.dob = profDob;
+                    if (profNid) state.profile.nid = profNid;
+                    if (profEmail) state.profile.email = profEmail;
+                    if (profFather) state.profile.fatherName = profFather;
+                    if (profMother) state.profile.motherName = profMother;
+                    if (profEmergency) state.profile.emergencyContact = profEmergency;
+                    if (profGender) state.profile.gender = profGender;
+                }
+            }
+
+            // Bind Navigation anchors for unified clicks
+            allNavLinks.forEach(link => {
+                link.addEventListener("click", (e) => {
+                    e.preventDefault();
+                    const targetView = link.dataset.view || link.textContent.trim();
+
+                    // Update Active states visually matching clicked sidebar button
+                    allNavLinks.forEach(item => {
+                        if (item.dataset.view === targetView || item.textContent.trim() === targetView) {
+                            item.classList.add("active");
+                        } else {
+                            item.classList.remove("active");
+                        }
+                    });
+
+                    routeView(targetView);
+
+                    // Collapse mobile view sidebar nicely on select click
+                    const mobileSidebarEl = document.getElementById("mobileSidebar");
+                    const bsOffcanvas = bootstrap.Offcanvas.getInstance(mobileSidebarEl);
+                    if (bsOffcanvas) bsOffcanvas.hide();
+                });
+            });
+
+            // Set default route panel on boot
+            routeView("Profile");
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,781 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Basic Information | Pubali Bank PLC</title>
+    <!-- Standard PNG Icon -->
+    <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+        rel="stylesheet" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="assets/css/appdash.css" />
+
+</head>
+
+<body>
+    <!-- Main Flex wrapper ensures clean column rendering instead of standard bootstrap row behavior -->
+    <div class="dash-wrapper">
+        <!-- Left Sidebar Viewport Container -->
+        <div class="sidebar d-none d-lg-flex flex-column justify-content-between">
+            <div>
+                <div class="logo-wrapper">
+                    <img src="assets/images/pbplc.svg" alt="Pubali Logo"
+                        style="max-width: 180px; width: 100%; height: auto" />
+                </div>
+                <div class="profile-card text-center">
+                    <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
+                    <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">
+                        Md. Fahim
+                    </h6>
+                    <span class="badge bg-white text-success border px-2 py-1"
+                        style="font-size: 0.75rem; font-weight: 600">ID :
+                        1284647</span>
+                </div>
+                <div class="d-flex flex-column">
+                    <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i>
+                        Dashboard</a>
+                    <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i>
+                        Applied Jobs</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job
+                        Alerts</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+                </div>
+            </div>
+
+            <!-- Desktop Logout Row Link Anchor Block -->
+            <div>
+                <a class="nav-link-custom nav-link-logout" href="#">
+                    <i class="bi bi-box-arrow-left"></i> Logout
+                </a>
+            </div>
+        </div>
+
+        <!-- Mobile Sidebar Menu Component -->
+        <div class="offcanvas offcanvas-start w-75" id="mobileSidebar" tabindex="-1">
+            <div class="d-flex flex-column justify-content-between h-100">
+                <div>
+                    <div class="offcanvas-header border-bottom">
+                        <img src="assets/images/pbplc.svg" alt="Pubali Logo"
+                            style="max-width: 180px; width: 100%; height: auto" />
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body p-0">
+                        <div class="profile-card text-center my-3 mx-3">
+                            <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2"
+                                alt="User profile" />
+                            <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">
+                                Md. Fahim
+                            </h6>
+                            <span class="badge bg-white text-success border px-2 py-1"
+                                style="font-size: 0.75rem; font-weight: 600">ID
+                                :
+                                1284647</span>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                            <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i>
+                                Job Alerts</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Drawer Panel Logout Button Container -->
+                <div class="px-0">
+                    <a class="nav-link-custom nav-link-logout" href="#">
+                        <i class="bi bi-box-arrow-left"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side Main Content Viewport -->
+        <div class="main-content d-flex flex-column">
+            <!-- Nav Bar Header Component -->
+            <nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
+                <div class="d-flex align-items-center w-100 justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button"
+                            data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                            <i class="bi bi-list fs-4"></i>
+                        </button>
+                        <div class="search-container d-none d-sm-block position-relative">
+                            <i
+                                class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+                            <input class="form-control search-input ps-5" type="search"
+                                placeholder="Search parameters..." id="dashboardSearch"
+                                style="border-radius: 20px; min-width: 260px" />
+                        </div>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
+                            <i class="bi bi-bell fs-5"></i>
+                            <span
+                                class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+                        </div>
+                        <div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="assets/images/fahimsm.png" width="36" height="36"
+                                class="rounded-circle border profile-pic-sync" alt="Profile Layout" />
+                            <span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md.
+                                Fahim</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Middle Inner Form/Content Canvas Placeholder Area -->
+            <div class="flex-grow-1 p-4">
+                <!-- 
+              Your primary profile setup/basic information layout content forms 
+              live directly inside this flex-grow container box block.
+          -->
+<div class="container form-container px-3 px-sm-0">
+    <div class="form-card">
+        <!-- Step Tabs Navigation -->
+        <div class="step-tabs-container">
+            <ul class="step-tabs">
+                <li>
+                    <a href="#" class="step-item completed">
+                        <i class="fa-solid fa-circle-check"></i> CV & Documents 
+                    </a>
+                </li>
+                <li>
+                    <a href="#" class="step-item active">
+                        <i class="fa-solid fa-circle-user"></i> Basic Information
+                    </a>
+                </li>
+                <li><a href="#" class="step-item"><i class="fa-solid fa-graduation-cap"></i> Education</a></li>
+                <li><a href="#" class="step-item"><i class="fa-solid fa-briefcase"></i> Work Experience</a></li>
+                <li><a href="#" class="step-item"><i class="fa-solid fa-award"></i> Certification</a></li>
+                <li><a href="#" class="step-item"><i class="fa-solid fa-users"></i> References</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Form Body Content -->
+        <div class="p-4">
+            <form id="profileForm" onsubmit="event.preventDefault();">
+                
+                <!-- PERSONAL INFORMATION SECTION -->
+                <div class="mb-5">
+                    <div class="section-title border-bottom pb-2">
+                        Personal Information
+                    </div>
+                    
+                    <div class="row g-3">
+                        <!-- Applicant Name -->
+                        <div class="col-12 col-md-6">
+                            <label class="form-label required">Applicant Name</label>
+                            <input type="text" class="form-control" value="Md. Fahim" readonly disabled>
+                        </div>
+                        
+                        <!-- Mobile Number -->
+                        <div class="col-12 col-md-6">
+                            <label class="form-label required">Mobile Number</label>
+                            <div class="phone-input-group">
+                                <div class="phone-prefix">
+                                    <img src="https://flagcdn.com/bd.svg" alt="BD Flag">
+                                    <span>+880</span>
+                                </div>
+                                <input type="tel" class="form-control" value="17145817845" readonly disabled>
+                            </div>
+                        </div>
+
+                        <!-- Date of Birth -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <label class="form-label required">Date of Birth</label>
+                            <input type="text" class="form-control" value="10 / 12 / 1971" readonly disabled>
+                            <span class="text-muted d-block mt-1" style="font-size: 11px;">
+                                Age: 54 years, 2 months, 3 days
+                            </span>
+                        </div>
+
+                        <!-- NID Number -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <label class="form-label required">NID Number</label>
+                            <!-- NID Field Update -->
+<input type="text" class="form-control" placeholder="Enter NID" inputmode="numeric" maxlength="17">
+                        </div>
+
+                        <!-- Nationality -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <label class="form-label required">Nationality</label>
+                            <select class="form-select">
+                                <option selected>Bangladeshi</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Gender -->
+                        <div class="col-12 col-sm-6 col-md-3">
+                            <label class="form-label required">Gender</label>
+                            <select class="form-select">
+                                <option selected disabled>Select Gender</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+
+                        <!-- Email Address -->
+                        <div class="col-12 col-md-6">
+                            <label class="form-label required">Email Address</label>
+                            <input type="email" class="form-control" value="pbl.fahim@gmail.com">
+                        </div>
+
+                        <!-- Emergency Contact Number -->
+                        <div class="col-12 col-md-6">
+                            <label class="form-label required">Emergency Contact Number</label>
+                            <div class="phone-input-group">
+                                <div class="phone-prefix">
+                                    <img src="https://flagcdn.com/bd.svg" alt="BD Flag">
+                                    <span>+880</span>
+                                </div>
+                               <!-- Emergency Contact Field Update -->
+<input type="tel" class="form-control" placeholder="Contact number" inputmode="numeric" maxlength="11">
+                            </div>
+                        </div>
+
+                        <!-- Marital Status -->
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Marital Status</label>
+                            <select class="form-select" id="maritalStatus">
+                                <option selected disabled>Select Status</option>
+                                <option value="Single">Single</option>
+                                <option value="Married">Married</option>
+                                <option value="Divorced">Divorced</option>
+                            </select>
+                        </div>
+
+                        <!-- Spouse Name -->
+                        <div class="col-12 col-md-6">
+                            <label class="form-label">Spouse Name</label>
+                            <input type="text" class="form-control" value="Tasnia">
+                        </div>
+
+                        <!-- Father Name -->
+                        <div class="col-12 col-md-6">
+                            <label class="form-label required">Father Name</label>
+                            <input type="text" class="form-control" placeholder="Father's full name">
+                        </div>
+
+                        <!-- Mother Name -->
+                        <div class="col-12 col-md-6">
+                            <label class="form-label required">Mother Name</label>
+                            <input type="text" class="form-control" placeholder="Mother's full name">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ADDRESS INFORMATION SECTION -->
+                <div class="mb-4">
+                    <div class="section-title border-bottom pb-2 mb-4">
+                        Address Details
+                    </div>
+
+                    <div class="row g-4 g-lg-5">
+                        <!-- PERMANENT ADDRESS BLOCK -->
+                        <div class="col-12 col-md-6">
+                            <div class="subsection-title mb-4 text-secondary">Permanent Address</div>
+                            
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <label class="form-label required">District</label>
+                                    <select class="form-select" id="permDistrict">
+                                        <option selected disabled>Select District</option>
+                                        <option value="Dhaka">Dhaka</option>
+                                        <option value="Chittagong">Chittagong</option>
+                                        <option value="Sylhet">Sylhet</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label required">Thana</label>
+                                    <select class="form-select" id="permThana">
+                                        <option selected disabled>Select Thana</option>
+                                        <option value="Gulshan">Gulshan</option>
+                                        <option value="Banani">Banani</option>
+                                        <option value="Dhanmondi">Dhanmondi</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Area/Village</label>
+                                    <input type="text" class="form-control" id="permArea">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label required">House/Road</label>
+                                    <input type="text" class="form-control" id="permHouse">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Postal Code</label>
+                                    <input type="text" class="form-control" id="permPostal">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Post Office</label>
+                                    <input type="text" class="form-control" id="permPostal" inputmode="numeric" maxlength="4">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PRESENT ADDRESS BLOCK -->
+                        <div class="col-12 col-md-6">
+                            <div class="d-flex justify-content-between align-items-center mb-1 flex-wrap gap-2">
+                                <div class="subsection-title text-secondary">Present Address</div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="sameAsPermanent">
+                                    <label class="form-check-label" for="sameAsPermanent">
+                                        Same as Permanent
+                                    </label>
+                                </div>
+                            </div>
+                            
+                            <div class="row g-3">
+                                <div class="col-6">
+                                    <label class="form-label required">District</label>
+                                    <select class="form-select" id="presDistrict">
+                                        <option selected disabled>Select District</option>
+                                        <option value="Dhaka">Dhaka</option>
+                                        <option value="Chittagong">Chittagong</option>
+                                        <option value="Sylhet">Sylhet</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label required">Thana</label>
+                                    <select class="form-select" id="presThana">
+                                        <option selected disabled>Select Thana</option>
+                                        <option value="Gulshan">Gulshan</option>
+                                        <option value="Banani">Banani</option>
+                                        <option value="Dhanmondi">Dhanmondi</option>
+                                    </select>
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label">Area/Village</label>
+                                    <input type="text" class="form-control" id="presArea">
+                                </div>
+                                <div class="col-12">
+                                    <label class="form-label required">House/Road</label>
+                                    <input type="text" class="form-control" id="presHouse">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Postal Code</label>
+                                    <input type="text" class="form-control" id="presPostal">
+                                </div>
+                                <div class="col-6">
+                                    <label class="form-label">Post Office</label>
+                                    <input type="text" class="form-control" id="presPostOffice">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FOOTER ACTIONS -->
+                <div class="pt-4 mt-5 border-top d-flex justify-content-between align-items-center">
+                    <button type="button" class="btn btn-cancel">Cancel</button>
+                    <button type="submit" class="btn btn-save-next">Save & Next <i class="fa-solid fa-arrow-right ms-1" style="font-size: 12px;"></i></button>
+                </div>
+
+            </form>
+        </div>
+    </div>
+</div>
+            </div>
+
+            <!-- Application Dashboard Baseline Responsive Footer Layout -->
+            <footer class="dash-footer bg-white border-top p-3 mt-auto">
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+                    <div>
+                        <span class="small text-secondary">© 2026 <strong>Pubali Bank PLC.</strong> All rights
+                            reserved.</span>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-decoration-none text-secondary small">Privacy Policy</a>
+                        <a href="#" class="text-decoration-none text-secondary small">Terms of Service</a>
+                        <a href="#" class="text-decoration-none text-secondary small">Support</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    // =========================================================================
+    // 1. DOM ELEMENT SELECTIONS
+    // =========================================================================
+    const form = document.getElementById('profileForm');
+    const cancelBtn = document.querySelector('.btn-cancel');
+    
+    // Marital Status & Spouse Elements
+    const maritalStatusSelect = document.getElementById('maritalStatus');
+    const spouseInputContainer = document.querySelector('input[value="Tasnia"]')?.parentElement || 
+                                 document.getElementById('spouseName')?.parentElement;
+    const spouseInputField = spouseInputContainer?.querySelector('input');
+
+    // NID, Email & Emergency Contact Fields
+    const nidInput = document.querySelector('input[placeholder="Enter NID"]');
+    const emailInput = document.querySelector('input[type="email"]');
+    const emergencyInput = document.querySelector('input[placeholder="Contact number"]');
+    const genderSelect = document.querySelectorAll('select')[1]; // Secondary select dropdown
+
+    // Parents' Fields
+    const fatherInput = document.querySelector('input[placeholder="Father\'s full name"]');
+    const motherInput = document.querySelector('input[placeholder="Mother\'s full name"]');
+
+    // Address Copying Toggle & Field Maps
+    const sameAsPermanentCheckbox = document.getElementById('sameAsPermanent');
+    
+    const permFields = {
+        district: document.getElementById('permDistrict'),
+        thana: document.getElementById('permThana'),
+        area: document.getElementById('permArea'),
+        house: document.getElementById('permHouse'),
+        postal: document.getElementById('permPostal'),
+        postOffice: document.getElementById('permPostOffice')
+    };
+    
+    const presFields = {
+        district: document.getElementById('presDistrict'),
+        thana: document.getElementById('presThana'),
+        area: document.getElementById('presArea'),
+        house: document.getElementById('presHouse'),
+        postal: document.getElementById('presPostal'),
+        postOffice: document.getElementById('presPostOffice')
+    };
+
+    // =========================================================================
+    // 2. FEEDBACK UI ENGINE (Applies Green/Red state classes)
+    // =========================================================================
+    function showFeedback(element, isValid, message) {
+        if (!element) return;
+
+        // Clean previous feedback wrappers
+        element.classList.remove('is-valid', 'is-invalid');
+        
+        const container = element.parentElement.classList.contains('phone-input-group') 
+            ? element.parentElement.parentElement 
+            : element.parentElement;
+        
+        const oldFeedback = container.querySelector('.valid-feedback, .invalid-feedback');
+        if (oldFeedback) oldFeedback.remove();
+
+        // Build new feedback element and apply border colors
+        const feedbackDiv = document.createElement('div');
+        if (isValid) {
+            element.classList.add('is-valid'); // Triggers the green border
+            feedbackDiv.className = 'valid-feedback d-block';
+            feedbackDiv.innerText = message;
+        } else {
+            element.classList.add('is-invalid'); // Triggers the red border
+            feedbackDiv.className = 'invalid-feedback d-block';
+            feedbackDiv.innerText = message;
+        }
+        container.appendChild(feedbackDiv);
+    }
+
+    function clearFeedback(element) {
+        if (!element) return;
+        element.classList.remove('is-valid', 'is-invalid');
+        const container = element.parentElement.classList.contains('phone-input-group') 
+            ? element.parentElement.parentElement 
+            : element.parentElement;
+        const oldFeedback = container.querySelector('.valid-feedback, .invalid-feedback');
+        if (oldFeedback) oldFeedback.remove();
+    }
+
+    // =========================================================================
+    // 3. INPUT FILTERING (Numeric Only)
+    // =========================================================================
+    const enforceNumericOnly = (event) => {
+        const allowedKeys = ['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab'];
+        if (allowedKeys.includes(event.key)) return;
+        
+        if (!/^\d$/.test(event.key)) {
+            event.preventDefault();
+        }
+    };
+
+    const sanitizePasteData = (event) => {
+        const pasteData = (event.clipboardData || window.clipboardData).getData('text');
+        if (!/^\d+$/.test(pasteData)) {
+            event.preventDefault();
+        }
+    };
+
+    const numericFields = [nidInput, emergencyInput, permFields.postal, presFields.postal];
+    numericFields.forEach(field => {
+        if (field) {
+            field.addEventListener('keydown', enforceNumericOnly);
+            field.addEventListener('paste', sanitizePasteData);
+        }
+    });
+
+    // =========================================================================
+    // 4. CORE VALIDATION RULES
+    // =========================================================================
+    
+    function validateNID(input) {
+        if (!input) return false;
+        const val = input.value.trim();
+        if (!val) {
+            showFeedback(input, false, 'National ID is required.');
+            return false;
+        }
+        if ([10, 13, 17].includes(val.length)) {
+            showFeedback(input, true, `✓ Valid NID (${val.length}-digit EC format approved).`);
+            return true;
+        }
+        showFeedback(input, false, `✕ Invalid length (${val.length} digits). Must be exactly 10, 13, or 17 digits.`);
+        return false;
+    }
+
+    function validateEmail(input) {
+        if (!input) return false;
+        const val = input.value.trim();
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        
+        if (!val) {
+            showFeedback(input, false, 'Email address is required.');
+            return false;
+        }
+        if (emailRegex.test(val)) {
+            showFeedback(input, true, '✓ Email address format is valid.');
+            return true;
+        }
+        showFeedback(input, false, '✕ Please enter a functional, valid email address.');
+        return false;
+    }
+
+    function validateEmergencyContact(input) {
+        if (!input) return false;
+        const val = input.value.trim();
+        if (!val) {
+            showFeedback(input, false, 'Emergency mobile number is required.');
+            return false;
+        }
+        if (/^01[3-9]\d{8}$/.test(val)) {
+            showFeedback(input, true, '✓ Valid Bangladesh mobile number format.');
+            return true;
+        }
+        let errorMsg = '✕ Must be an 11-digit mobile number starting with 013-019.';
+        if (val.length > 0 && !val.startsWith('01')) {
+            errorMsg = '✕ Number must start with standard operator prefix (01...).';
+        }
+        showFeedback(input, false, errorMsg);
+        return false;
+    }
+
+    function validatePostalCode(input) {
+        if (!input) return false;
+        const val = input.value.trim();
+        if (!val) {
+            showFeedback(input, false, 'Postal code is required.');
+            return false;
+        }
+        if (val.length === 4) {
+            showFeedback(input, true, '✓ Valid 4-digit Post Office code.');
+            return true;
+        }
+        showFeedback(input, false, '✕ Postal code must be exactly 4 digits.');
+        return false;
+    }
+
+    function validateRequiredText(input, fieldName) {
+        if (!input) return false;
+        if (!input.value.trim()) {
+            showFeedback(input, false, `${fieldName} is required.`);
+            return false;
+        }
+        showFeedback(input, true, '✓ Looks good!');
+        return true;
+    }
+
+    function validateDropdown(select, fieldName) {
+        if (!select) return false;
+        if (select.selectedIndex <= 0) {
+            showFeedback(select, false, `Please select a ${fieldName}.`);
+            return false;
+        }
+        showFeedback(select, true, '✓ Selected.');
+        return true;
+    }
+
+    // =========================================================================
+    // 5. EVENT BINDINGS FOR REAL-TIME FEEDBACK
+    // =========================================================================
+    if (nidInput) {
+        nidInput.addEventListener('input', function() { if (this.value.length >= 10) validateNID(this); });
+        nidInput.addEventListener('blur', function() { validateNID(this); });
+    }
+
+    if (emailInput) {
+        emailInput.addEventListener('input', function() { validateEmail(this); });
+        emailInput.addEventListener('blur', function() { validateEmail(this); });
+    }
+
+    if (emergencyInput) {
+        emergencyInput.addEventListener('input', function() { if (this.value.length === 11) validateEmergencyContact(this); });
+        emergencyInput.addEventListener('blur', function() { validateEmergencyContact(this); });
+    }
+
+    [permFields.postal, presFields.postal].forEach(postalField => {
+        if (postalField) {
+            postalField.addEventListener('input', function() {
+                if (this.value.length === 4) validatePostalCode(this);
+            });
+            postalField.addEventListener('blur', function() {
+                if (this.id === 'presPostal' && sameAsPermanentCheckbox.checked) return;
+                validatePostalCode(this);
+            });
+        }
+    });
+
+    // =========================================================================
+    // 6. FORM LOGIC (SPOUSE FIELD & ADDRESS SYNCHRONIZATION)
+    // =========================================================================
+    function toggleSpouseField() {
+        if (!spouseInputField || !spouseInputContainer) return;
+
+        if (maritalStatusSelect.value === 'Married') {
+            spouseInputContainer.style.display = 'block';
+            spouseInputField.removeAttribute('disabled');
+        } else {
+            spouseInputContainer.style.display = 'none';
+            spouseInputField.setAttribute('disabled', 'true');
+            spouseInputField.value = ''; 
+            clearFeedback(spouseInputField);
+        }
+    }
+
+    function syncAddresses() {
+        if (!sameAsPermanentCheckbox) return;
+
+        if (sameAsPermanentCheckbox.checked) {
+            Object.keys(permFields).forEach(key => {
+                if (permFields[key] && presFields[key]) {
+                    presFields[key].value = permFields[key].value;
+                    presFields[key].setAttribute('disabled', 'true');
+                    clearFeedback(presFields[key]);
+                }
+            });
+        } else {
+            Object.keys(presFields).forEach(key => {
+                if (presFields[key]) presFields[key].removeAttribute('disabled');
+            });
+        }
+    }
+
+    if (maritalStatusSelect) {
+        maritalStatusSelect.value = "Married"; 
+        toggleSpouseField();
+        maritalStatusSelect.addEventListener('change', toggleSpouseField);
+    }
+
+    if (sameAsPermanentCheckbox) {
+        sameAsPermanentCheckbox.addEventListener('change', syncAddresses);
+        
+        Object.keys(permFields).forEach(key => {
+            if (permFields[key]) {
+                const updateOnTrigger = () => {
+                    if (sameAsPermanentCheckbox.checked && presFields[key]) {
+                        presFields[key].value = permFields[key].value;
+                    }
+                };
+                permFields[key].addEventListener('input', updateOnTrigger);
+                permFields[key].addEventListener('change', updateOnTrigger);
+            }
+        });
+    }
+
+    // =========================================================================
+    // 7. FORM SUBMISSION VALIDATION RUNTIME
+    // =========================================================================
+    if (form) {
+        form.addEventListener('submit', function (event) {
+            let isValid = true;
+
+            if (!validateNID(nidInput)) isValid = false;
+            if (!validateEmail(emailInput)) isValid = false;
+            if (!validateEmergencyContact(emergencyInput)) isValid = false;
+            if (!validateRequiredText(fatherInput, "Father's name")) isValid = false;
+            if (!validateRequiredText(motherInput, "Mother's name")) isValid = false;
+            if (!validateDropdown(genderSelect, "gender")) isValid = false;
+
+            if (maritalStatusSelect.value === 'Married' && spouseInputField) {
+                if (!validateRequiredText(spouseInputField, "Spouse's name")) isValid = false;
+            }
+
+            if (!validateDropdown(permFields.district, "district")) isValid = false;
+            if (!validateDropdown(permFields.thana, "thana")) isValid = false;
+            if (!validateRequiredText(permFields.house, "House details")) isValid = false;
+            if (!validatePostalCode(permFields.postal)) isValid = false;
+
+            if (!sameAsPermanentCheckbox.checked) {
+                if (!validateDropdown(presFields.district, "district")) isValid = false;
+                if (!validateDropdown(presFields.thana, "thana")) isValid = false;
+                if (!validateRequiredText(presFields.house, "House details")) isValid = false;
+                if (!validatePostalCode(presFields.postal)) isValid = false;
+            }
+
+            if (!isValid) {
+                event.preventDefault(); 
+                const firstError = document.querySelector('.is-invalid');
+                if (firstError) {
+                    firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    firstError.focus();
+                }
+                return;
+            }
+
+            event.preventDefault(); 
+            
+            const disabledInputs = form.querySelectorAll('[disabled]');
+            disabledInputs.forEach(input => input.removeAttribute('disabled'));
+
+            const formData = new FormData(form);
+            const formPayload = Object.fromEntries(formData.entries());
+            console.log('Validated Profile Payload Ready:', formPayload);
+
+            syncAddresses();
+            
+            const lockFields = [
+                document.querySelector('input[value="Md. Fahim"]'),
+                document.querySelector('input[value="17145817845"]'),
+                document.querySelector('input[value="10 / 12 / 1971"]')
+            ];
+            lockFields.forEach(field => { if (field) field.setAttribute('disabled', 'true'); });
+
+            alert('Profile Section Saved successfully!');
+        });
+    }
+
+    if (cancelBtn && form) {
+        cancelBtn.addEventListener('click', function() {
+            if (confirm('Are you sure you want to discard your progress?')) {
+                form.reset();
+                document.querySelectorAll('.is-invalid, .is-valid').forEach(el => el.classList.remove('is-invalid', 'is-valid'));
+                document.querySelectorAll('.invalid-feedback, .valid-feedback').forEach(el => el.remove());
+                toggleSpouseField();
+                syncAddresses();
+            }
+        });
+    }
+});
+</script>
+
+
+</body>
+
+</html>
