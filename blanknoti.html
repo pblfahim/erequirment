@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basic Information | Pubali Bank PLC</title>
+  <!-- Standard PNG Icon -->
+  <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/appdash.css" />
+</head>
+
+<body>
+  <!-- Main Flex wrapper ensures clean column rendering instead of standard bootstrap row behavior -->
+  <div class="dash-wrapper">
+    <!-- Left Sidebar Viewport Container -->
+    <div class="sidebar d-none d-lg-flex flex-column justify-content-between">
+      <div>
+        <div class="logo-wrapper">
+          <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
+        </div>
+        <div class="profile-card text-center">
+          <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
+          <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">
+            Md. Fahim
+          </h6>
+          <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">ID :
+            1284647</span>
+        </div>
+        <div class="d-flex flex-column">
+          <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i>
+            Dashboard</a>
+          <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+          <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i>
+            Applied Jobs</a>
+          <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+          <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job
+            Alerts</a>
+          <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+        </div>
+      </div>
+
+      <!-- Desktop Logout Row Link Anchor Block -->
+      <div>
+        <a class="nav-link-custom nav-link-logout" href="#">
+          <i class="bi bi-box-arrow-left"></i> Logout
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Sidebar Menu Component -->
+    <div class="offcanvas offcanvas-start w-75" id="mobileSidebar" tabindex="-1">
+      <div class="d-flex flex-column justify-content-between h-100">
+        <div>
+          <div class="offcanvas-header border-bottom">
+            <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+          </div>
+          <div class="offcanvas-body p-0">
+            <div class="profile-card text-center my-3 mx-3">
+              <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
+              <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">
+                Md. Fahim
+              </h6>
+              <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">ID
+                :
+                1284647</span>
+            </div>
+            <div class="d-flex flex-column">
+              <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+              <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+              <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+              <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+              <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i>
+                Job Alerts</a>
+              <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Drawer Panel Logout Button Container -->
+        <div class="px-0">
+          <a class="nav-link-custom nav-link-logout" href="#">
+            <i class="bi bi-box-arrow-left"></i> Logout
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Side Main Content Viewport -->
+    <div class="main-content d-flex flex-column">
+      <!-- Nav Bar Header Component -->
+      <nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
+        <div class="d-flex align-items-center w-100 justify-content-between">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+              <i class="bi bi-list fs-4"></i>
+            </button>
+            <div class="search-container d-none d-sm-block position-relative">
+              <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+              <input class="form-control search-input ps-5" type="search" placeholder="Search parameters..."
+                id="dashboardSearch" style="border-radius: 20px; min-width: 260px" />
+            </div>
+          </div>
+
+          <div class="d-flex align-items-center gap-3">
+            <div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
+              <i class="bi bi-bell fs-5"></i>
+              <span
+                class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+            </div>
+            <div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
+            <div class="d-flex align-items-center gap-2">
+              <img src="assets/images/fahimsm.png" width="36" height="36" class="rounded-circle border profile-pic-sync"
+                alt="Profile Layout" />
+              <span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md. Fahim</span>
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Middle Inner Form/Content Canvas Placeholder Area -->
+      <div class="flex-grow-1 p-4">
+        <!-- 
+              Your primary profile setup/basic information layout content forms 
+              live directly inside this flex-grow container box block.
+          -->
+      </div>
+
+      <!-- Application Dashboard Baseline Responsive Footer Layout -->
+      <footer class="dash-footer">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+          <div>
+            <span>&copy; 2026 <strong>Pubali Bank PLC.</strong> All rights
+              reserved.</span>
+          </div>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-decoration-none text-secondary">Privacy
+              Policy</a>
+            <a href="#" class="text-decoration-none text-secondary">Terms of
+              Service</a>
+            <a href="#" class="text-decoration-none text-secondary">Support</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", () => {
+      // Select components and links
+      const contentCanvas = document.querySelector(".flex-grow-1");
+      const mobileSidebarEl = document.getElementById("mobileSidebar");
+      const mobileSidebar = bootstrap.Offcanvas.getInstance(mobileSidebarEl) || new bootstrap.Offcanvas(mobileSidebarEl);
+
+      // Select all links from both desktop and mobile sidebars
+      const allNavLinks = document.querySelectorAll(".nav-link-custom");
+
+      // Mock Data Views for demonstration mapping
+      const views = {
+        "Dashboard": `<h4 class="fw-bold mb-3">Welcome Back, Fahim</h4><p class="text-secondary">Here is a quick snapshot of your recruitment funnel parameters today.</p>`,
+        "Profile": `<h4 class="fw-bold mb-3">Profile & Basic Information</h4><p class="text-secondary">Keep your academic and professional history updated.</p>`,
+        "Applied Jobs": `<h4 class="fw-bold mb-3">Applied Jobs</h4><p class="text-secondary">Track the real-time status of your active application workflows.</p>`,
+        "Favourite Jobs": `<h4 class="fw-bold mb-3">Favourite Jobs</h4><p class="text-secondary">Your bookmarked career postings across the network.</p>`,
+        "Job Alerts": `<h4 class="fw-bold mb-3">Job Alerts</h4><p class="text-secondary">Manage automated vacancy notifications matching your skill tags.</p>`,
+        "Settings": `<h4 class="fw-bold mb-3">Account Settings</h4><p class="text-secondary">Manage system security configurations and multi-factor flags.</p>`,
+        "Logout": `<h4 class="fw-bold text-danger mb-3">Logging out...</h4><p class="text-secondary">Clearing session tokens and redirecting to the gateway.</p>`
+      };
+
+      // Set initial default view context on load
+      const initialActive = document.querySelector(".nav-link-custom.active");
+      if (initialActive) {
+        const viewKey = initialActive.textContent.trim();
+        if (views[viewKey]) contentCanvas.innerHTML = views[viewKey];
+      }
+
+      // Unified click handler architecture
+      allNavLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          const targetText = link.textContent.trim();
+
+          // 1. Synchronize the active DOM state matching the clicked label across both sidebars
+          allNavLinks.forEach(item => {
+            if (item.textContent.trim() === targetText) {
+              item.classList.add("active");
+            } else {
+              item.classList.remove("active");
+            }
+          });
+
+          // 2. Load the corresponding mock payload template into the content viewport
+          if (views[targetText]) {
+            contentCanvas.innerHTML = views[targetText];
+          }
+
+          // 3. If clicking from within the mobile drawer layer, collapse it gracefully
+          if (mobileSidebarEl.contains(link)) {
+            mobileSidebar.hide();
+          }
+        });
+      });
+    });
+  </script>
+  <script>// --- NAVBAR FUNCTIONALITY ---
+
+// 1. Interactive Search with Debouncing
+const searchInput = document.getElementById("dashboardSearch");
+let searchTimeout;
+
+if (searchInput) {
+  searchInput.addEventListener("input", (e) => {
+    clearTimeout(searchTimeout);
+    const query = e.target.value.trim();
+
+    // Debounce for 300ms to mimic a real API query cycle
+    searchTimeout = setTimeout(() => {
+      if (query.length > 0) {
+        console.log(`Searching system indexes for: "${query}"`);
+        // Optional: Filter active items or surface an inline modal overlay here
+      }
+    }, 300);
+  });
+}
+
+// 2. Notification Badge & Micro-Popover
+const notificationBell = document.getElementById("notificationBell");
+
+if (notificationBell) {
+  // Add programmatic Bootstrap Popover parameters
+  const popover = new bootstrap.Popover(notificationBell, {
+    container: "body",
+    html: true,
+    placement: "bottom",
+    trigger: "click",
+    title: `<div class="d-flex justify-content-between align-items-center fw-bold" style="font-size:0.85rem;">
+              Notifications 
+              <a href="#" id="clearNotifications" class="text-decoration-none text-success tracking-tight" style="font-size:0.75rem;">Clear all</a>
+            </div>`,
+    content: `
+      <div class="p-1" style="min-width: 240px; font-size:0.8rem;">
+        <div class="py-2 border-bottom text-dark">
+          <i class="bi bi-circle-fill text-success me-1" style="font-size: 0.5rem;"></i>
+          <strong>Application Received:</strong> Management Trainee Officer phase 1 track updated.
+        </div>
+        <div class="py-2 text-secondary">
+          <i class="bi bi-check-all text-muted me-1"></i> Password successfully rotated 3 days ago.
+        </div>
+      </div>
+    `
+  });
+
+  // Clear red notification dot on click
+  notificationBell.addEventListener("click", () => {
+    const badge = notificationBell.querySelector(".bg-danger");
+    if (badge) {
+      badge.style.display = "none";
+    }
+  });
+
+  // Handle popover cleanup interceptor actions
+  document.addEventListener("click", (e) => {
+    if (e.target.id === "clearNotifications") {
+      e.preventDefault();
+      popover.setContent({
+        title: popover._config.title,
+        content: '<div class="text-muted text-center py-3" style="min-width: 240px; font-size:0.8rem;">No unread system updates.</div>'
+      });
+    }
+  });
+}</script>
+</body>
+
+</html>

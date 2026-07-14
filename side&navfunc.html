@@ -1,504 +1,573 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Basic Information | Pubali Bank PLC</title>
-    <!-- Standard PNG Icon -->
-    <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-    <link rel="stylesheet" href="assets/css/appdash.css"/>
-  </head>
 
-  <body>
-    <!-- Main Flex wrapper ensures clean column rendering instead of standard bootstrap row behavior -->
-    <div class="dash-wrapper">
-      <!-- Left Sidebar Viewport Container -->
-      <div class="sidebar d-none d-lg-flex flex-column justify-content-between">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Basic Information | Pubali Bank PLC</title>
+  <!-- Standard PNG Icon -->
+  <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/appdash.css" />
+</head>
+
+<body>
+  <!-- Main Flex wrapper ensures clean column rendering instead of standard bootstrap row behavior -->
+  <div class="dash-wrapper">
+    <!-- Left Sidebar Viewport Container -->
+    <div class="sidebar d-none d-lg-flex flex-column justify-content-between">
+      <div>
+        <div class="logo-wrapper">
+          <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
+        </div>
+        <div class="profile-card text-center">
+          <div class="position-relative d-inline-block">
+            <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2 profile-pic-sync"
+              alt="User profile" style="width: 60px; height: 60px; object-fit: cover;" />
+          </div>
+          <h6 class="fw-bold mb-1 user-name-sync" style="color: var(--brand-primary, #006a4e)">
+            Md. Fahim
+          </h6>
+          <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">ID :
+            1284647</span>
+        </div>
+        <div class="d-flex flex-column dynamic-nav">
+          <a class="nav-link-custom" href="#" data-target="dashboard"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+          <a class="nav-link-custom active" href="#" data-target="profile"><i class="bi bi-person-vcard"></i>
+            Profile</a>
+          <a class="nav-link-custom" href="#" data-target="applied"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+          <a class="nav-link-custom" href="#" data-target="favourite"><i class="bi bi-bookmark-heart"></i> Favourite
+            Jobs</a>
+          <a class="nav-link-custom" href="#" data-target="alerts"><i class="bi bi-bell"></i> Job Alerts</a>
+          <a class="nav-link-custom" href="#" data-target="settings"><i class="bi bi-shield-lock"></i> Settings</a>
+        </div>
+      </div>
+
+      <!-- Desktop Logout Row Link Anchor Block -->
+      <div>
+        <a class="nav-link-custom nav-link-logout" href="#" id="desktopLogoutBtn">
+          <i class="bi bi-box-arrow-left"></i> Logout
+        </a>
+      </div>
+    </div>
+
+    <!-- Mobile Sidebar Menu Component -->
+    <div class="offcanvas offcanvas-start w-75" id="mobileSidebar" tabindex="-1">
+      <div class="d-flex flex-column justify-content-between h-100">
         <div>
-          <div class="logo-wrapper">
+          <div class="offcanvas-header border-bottom">
             <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
           </div>
-          <div class="profile-card text-center">
-            <div class="position-relative d-inline-block">
-              <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2 profile-pic-sync" alt="User profile" style="width: 60px; height: 60px; object-fit: cover;" />
+          <div class="offcanvas-body p-0">
+            <div class="profile-card text-center my-3 mx-3">
+              <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2 profile-pic-sync"
+                alt="User profile" style="width: 80px; height: 80px; object-fit: cover;" />
+              <h6 class="fw-bold mb-1 user-name-sync" style="color: var(--brand-primary, #006a4e)">
+                Md. Fahim
+              </h6>
+              <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">ID
+                : 1284647</span>
             </div>
-            <h6 class="fw-bold mb-1 user-name-sync" style="color: var(--brand-primary, #006a4e)">
-              Md. Fahim
-            </h6>
-            <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">ID : 1284647</span>
-          </div>
-          <div class="d-flex flex-column dynamic-nav">
-            <a class="nav-link-custom" href="#" data-target="dashboard"><i class="bi bi-grid-1x2"></i> Dashboard</a>
-            <a class="nav-link-custom active" href="#" data-target="profile"><i class="bi bi-person-vcard"></i> Profile</a>
-            <a class="nav-link-custom" href="#" data-target="applied"><i class="bi bi-briefcase"></i> Applied Jobs</a>
-            <a class="nav-link-custom" href="#" data-target="favourite"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
-            <a class="nav-link-custom" href="#" data-target="alerts"><i class="bi bi-bell"></i> Job Alerts</a>
-            <a class="nav-link-custom" href="#" data-target="settings"><i class="bi bi-shield-lock"></i> Settings</a>
+            <div class="d-flex flex-column dynamic-nav">
+              <a class="nav-link-custom" href="#" data-target="dashboard"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+              <a class="nav-link-custom active" href="#" data-target="profile"><i class="bi bi-person-vcard"></i>
+                Profile</a>
+              <a class="nav-link-custom" href="#" data-target="applied"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+              <a class="nav-link-custom" href="#" data-target="favourite"><i class="bi bi-bookmark-heart"></i> Favourite
+                Jobs</a>
+              <a class="nav-link-custom" href="#" data-target="alerts"><i class="bi bi-bell"></i> Job Alerts</a>
+              <a class="nav-link-custom" href="#" data-target="settings"><i class="bi bi-shield-lock"></i> Settings</a>
+            </div>
           </div>
         </div>
 
-        <!-- Desktop Logout Row Link Anchor Block -->
-        <div>
-          <a class="nav-link-custom nav-link-logout" href="#" id="desktopLogoutBtn">
+        <!-- Mobile Drawer Panel Logout Button Container -->
+        <div class="px-0">
+          <a class="nav-link-custom nav-link-logout" href="#" id="mobileLogoutBtn">
             <i class="bi bi-box-arrow-left"></i> Logout
           </a>
         </div>
       </div>
-
-      <!-- Mobile Sidebar Menu Component -->
-      <div class="offcanvas offcanvas-start w-75" id="mobileSidebar" tabindex="-1">
-        <div class="d-flex flex-column justify-content-between h-100">
-          <div>
-            <div class="offcanvas-header border-bottom">
-              <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-            </div>
-            <div class="offcanvas-body p-0">
-              <div class="profile-card text-center my-3 mx-3">
-                <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2 profile-pic-sync" alt="User profile" style="width: 80px; height: 80px; object-fit: cover;" />
-                <h6 class="fw-bold mb-1 user-name-sync" style="color: var(--brand-primary, #006a4e)">
-                  Md. Fahim
-                </h6>
-                <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">ID : 1284647</span>
-              </div>
-              <div class="d-flex flex-column dynamic-nav">
-                <a class="nav-link-custom" href="#" data-target="dashboard"><i class="bi bi-grid-1x2"></i> Dashboard</a>
-                <a class="nav-link-custom active" href="#" data-target="profile"><i class="bi bi-person-vcard"></i> Profile</a>
-                <a class="nav-link-custom" href="#" data-target="applied"><i class="bi bi-briefcase"></i> Applied Jobs</a>
-                <a class="nav-link-custom" href="#" data-target="favourite"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
-                <a class="nav-link-custom" href="#" data-target="alerts"><i class="bi bi-bell"></i> Job Alerts</a>
-                <a class="nav-link-custom" href="#" data-target="settings"><i class="bi bi-shield-lock"></i> Settings</a>
-              </div>
-            </div>
-          </div>
-
-          <!-- Mobile Drawer Panel Logout Button Container -->
-          <div class="px-0">
-            <a class="nav-link-custom nav-link-logout" href="#" id="mobileLogoutBtn">
-              <i class="bi bi-box-arrow-left"></i> Logout
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Side Main Content Viewport -->
-      <div class="main-content d-flex flex-column">
-        <!-- Nav Bar Header Component -->
-        <nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
-          <div class="d-flex align-items-center w-100 justify-content-between">
-<div class="d-flex align-items-center gap-2">
-              <button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
-                <i class="bi bi-list fs-4"></i>
-              </button>
-              <div class="search-container d-none d-sm-block position-relative">
-                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
-                <input class="form-control search-input ps-5" type="search" placeholder="Search parameters..." id="dashboardSearch" style="border-radius: 20px; min-width: 260px;">
-              </div>
-            </div>
-
-            <div class="d-flex align-items-center gap-3">
-              <div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
-                <i class="bi bi-bell fs-5"></i>
-                <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-              </div>
-              <div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
-              <div class="d-flex align-items-center gap-2">
-                <img src="assets/images/fahimsm.png" width="36" height="36" class="rounded-circle border profile-pic-sync" alt="Profile Layout" />
-                <span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md. Fahim</span>
-              </div>
-            </div>
-          </div>
-        </nav>
-
-        <!-- Middle Inner Form/Content Canvas Placeholder Area -->
-        <div class="flex-grow-1 p-4" id="viewContainer">
-          
-          <!-- View: Profile View Container (Default View) -->
-          <div id="view-profile" class="app-view">
-            <div class="card border-0 shadow-sm mb-4">
-              <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                  <div>
-                    <h4 class="fw-bold mb-1">Complete Candidate Profile</h4>
-                    <p class="text-muted small mb-0">Please fill out the steps below accurately to process your employment registry details.</p>
-                  </div>
-                  <div class="text-end d-none d-md-block">
-                    <span class="text-muted small">Completion State:</span>
-                    <h5 class="fw-bold text-success mb-0" id="progressPct">33%</h5>
-                  </div>
-                </div>
-                <div class="progress" style="height: 6px;">
-                  <div class="progress-bar bg-success" role="progressbar" id="profileProgressBar" style="width: 33%" aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="col-12 col-xl-9">
-                <form id="profileWizardForm" class="needs-validation" novalidate>
-                  
-                  <!-- STEP 1: Basic Information -->
-                  <div class="card border-0 shadow-sm mb-4 step-container" id="step-1">
-                    <div class="card-header bg-white border-bottom py-3">
-                      <h5 class="fw-bold mb-0 text-dark"><span class="badge bg-success me-2">1</span> Basic Information</h5>
-                    </div>
-                    <div class="card-body p-4">
-                      <div class="row g-3">
-                        <div class="col-12 col-md-3 text-center mb-3">
-                          <div class="avatar-upload-box mx-auto position-relative border rounded p-2 style-dashed" style="width: 140px; height: 140px; cursor: pointer;">
-                            <img src="assets/images/fahim.png" id="avatarPreview" class="img-fluid rounded profile-pic-sync" style="width: 100%; height: 100%; object-fit: cover;" alt="Avatar placeholder" />
-                            <div class="position-absolute bottom-0 end-0 bg-success text-white p-1 rounded-circle border shadow-sm" style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
-                              <i class="bi bi-camera-fill small"></i>
-                            </div>
-                            <input type="file" id="avatarInput" accept="image/png, image/jpeg" class="d-none" />
-                          </div>
-                          <small class="text-muted d-block mt-2">JPEG/PNG max 2MB</small>
-                        </div>
-                        <div class="col-12 col-md-9">
-                          <div class="row g-3">
-                            <div class="col-12 col-sm-6">
-                              <label class="form-label small fw-semibold">Full Name *</label>
-                              <input type="text" class="form-control" id="inputFullName" value="Md. Fahim" required />
-                              <div class="invalid-feedback">Please enter your structural full name.</div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                              <label class="form-label small fw-semibold">Father's Name *</label>
-                              <input type="text" class="form-control" id="inputFatherName" required />
-                              <div class="invalid-feedback">Father's legal name required.</div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                              <label class="form-label small fw-semibold">Date of Birth *</label>
-                              <input type="date" class="form-control" id="inputDOB" required />
-                              <div class="invalid-feedback">Select validation birth date parameters.</div>
-                            </div>
-                            <div class="col-12 col-sm-6">
-                              <label class="form-label small fw-semibold">Gender *</label>
-                              <select class="form-select" id="inputGender" required>
-                                <option value="" selected disabled>Select Gender...</option>
-                                <option value="Male">Male</option>
-                                <option value="Female">Female</option>
-                                <option value="Other">Other</option>
-                              </select>
-                              <div class="invalid-feedback">Gender field definition required.</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="d-flex justify-content-end mt-4">
-                        <button type="button" class="btn btn-success px-4 next-step-btn" data-next="2">Continue <i class="bi bi-arrow-right ms-1"></i></button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- STEP 2: Contact Information -->
-                  <div class="card border-0 shadow-sm mb-4 step-container d-none" id="step-2">
-                    <div class="card-header bg-white border-bottom py-3">
-                      <h5 class="fw-bold mb-0 text-dark"><span class="badge bg-success me-2">2</span> Contact Architecture</h5>
-                    </div>
-                    <div class="card-body p-4">
-                      <div class="row g-3">
-                        <div class="col-12 col-sm-6">
-                          <label class="form-label small fw-semibold">Primary Email *</label>
-                          <input type="email" class="form-control" id="inputEmail" placeholder="name@domain.com" required />
-                          <div class="invalid-feedback">Enter a functional personal email node.</div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                          <label class="form-label small fw-semibold">Mobile Number *</label>
-                          <div class="input-group">
-                            <span class="input-group-text">+880</span>
-                            <input type="tel" class="form-control" id="inputMobile" placeholder="1XXXXXXXXX" pattern="[0-9]{10}" required />
-                            <div class="invalid-feedback">Enter a valid 10-digit mobile line mapping.</div>
-                          </div>
-                        </div>
-                        <div class="col-12">
-                          <label class="form-label small fw-semibold">Mailing Address Address *</label>
-                          <textarea class="form-control" id="inputAddress" rows="3" placeholder="Street layout, city index details..." required></textarea>
-                          <div class="invalid-feedback">Provide active postal transmission address.</div>
-                        </div>
-                      </div>
-                      <div class="d-flex justify-content-between mt-4">
-                        <button type="button" class="btn btn-outline-secondary px-4 prev-step-btn" data-prev="1"><i class="bi bi-arrow-left me-1"></i> Return</button>
-                        <button type="button" class="btn btn-success px-4 next-step-btn" data-next="3">Continue <i class="bi bi-arrow-right ms-1"></i></button>
-                      </div>
-                    </div>
-                  </div>
-
-                  <!-- STEP 3: Educational Qualifications -->
-                  <div class="card border-0 shadow-sm mb-4 step-container d-none" id="step-3">
-                    <div class="card-header bg-white border-bottom py-3">
-                      <h5 class="fw-bold mb-0 text-dark"><span class="badge bg-success me-2">3</span> Academic Background</h5>
-                    </div>
-                    <div class="card-body p-4">
-                      <div class="row g-3">
-                        <div class="col-12 col-sm-6">
-                          <label class="form-label small fw-semibold">Highest Degree *</label>
-                          <select class="form-select" id="inputDegree" required>
-                            <option value="" selected disabled>Select Degree...</option>
-                            <option value="BSc">Bachelor of Science (BSc)</option>
-                            <option value="BBA">Bachelor of Business Admin (BBA)</option>
-                            <option value="MSc">Master of Science (MSc)</option>
-                            <option value="MBA">Master of Business Admin (MBA)</option>
-                          </select>
-                          <div class="invalid-feedback">Academic qualification metric selection mandatory.</div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                          <label class="form-label small fw-semibold">Institution/University Name *</label>
-                          <input type="text" class="form-control" id="inputInstitution" placeholder="University details" required />
-                          <div class="invalid-feedback">Institution tracking description required.</div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                          <label class="form-label small fw-semibold">Graduation Calendar Year *</label>
-                          <input type="number" class="form-control" id="inputGradYear" min="1990" max="2026" placeholder="2024" required />
-                          <div class="invalid-feedback">Valid structural year array bounds (1990 - 2026).</div>
-                        </div>
-                        <div class="col-12 col-sm-6">
-                          <label class="form-label small fw-semibold">CGPA/GPA *</label>
-                          <input type="number" class="form-control" id="inputCGPA" min="2.00" max="4.00" step="0.01" placeholder="3.75" required />
-                          <div class="invalid-feedback">CGPA boundary ranges between 2.00 to 4.00 metric nodes.</div>
-                        </div>
-                      </div>
-                      <div class="d-flex justify-content-between mt-4">
-                        <button type="button" class="btn btn-outline-secondary px-4 prev-step-btn" data-prev="2"><i class="bi bi-arrow-left me-1"></i> Return</button>
-                        <button type="submit" class="btn btn-primary px-5" id="submitWizardBtn"><i class="bi bi-cloud-arrow-up-fill me-1"></i> Finalize Profile</button>
-                      </div>
-                    </div>
-                  </div>
-
-                </form>
-              </div>
-
-              <!-- Sticky Summary Sidebar Panel Layout context -->
-              <div class="col-12 col-xl-3 d-none d-xl-block">
-                <div class="card border-0 shadow-sm position-sticky" style="top: 90px;">
-                  <div class="card-header bg-white border-bottom py-3">
-                    <h6 class="fw-bold mb-0">Live Summary Block</h6>
-                  </div>
-                  <div class="card-body p-3">
-                    <div class="mb-2">
-                      <label class="text-muted extra-small d-block text-uppercase fw-semibold" style="font-size: 0.65rem;">Applicant Tracker Name</label>
-                      <span class="small fw-semibold text-dark id-sync-name">Md. Fahim</span>
-                    </div>
-                    <div class="mb-2">
-                      <label class="text-muted extra-small d-block text-uppercase fw-semibold" style="font-size: 0.65rem;">Identity Node</label>
-                      <span class="small text-secondary">ID: 1284647</span>
-                    </div>
-                    <hr class="my-2 opacity-55">
-                    <div class="mb-2">
-                      <label class="text-muted extra-small d-block text-uppercase fw-semibold" style="font-size: 0.65rem;">Active Phone Map</label>
-                      <span class="small text-dark text-break" id="summaryPhone">Not Provided</span>
-                    </div>
-                    <div>
-                      <label class="text-muted extra-small d-block text-uppercase fw-semibold" style="font-size: 0.65rem;">Academic Parameter Target</label>
-                      <span class="small text-dark text-break" id="summaryDegree">Not Configured</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Fallback Lazy Layout View Container Elements (For Simulation Engine Routing) -->
-          <div id="view-dashboard" class="app-view d-none">
-            <div class="card border-0 shadow-sm p-4">
-              <h4>System Administration Dashboard</h4>
-              <p class="text-muted">Welcome to your central tracking environment module. Here you can monitor dynamic metrics.</p>
-              <div class="row g-3 mt-2">
-                <div class="col-12 col-sm-4"><div class="p-3 border rounded bg-light"><strong>Active Positions:</strong> 14 Open slots</div></div>
-                <div class="col-12 col-sm-4"><div class="p-3 border rounded bg-light"><strong>Profile Standing:</strong> Review Process</div></div>
-                <div class="col-12 col-sm-4"><div class="p-3 border rounded bg-light"><strong>System Alerts:</strong> 2 Unread items</div></div>
-              </div>
-            </div>
-          </div>
-          
-          <div id="view-applied" class="app-view d-none"><div class="card border-0 shadow-sm p-4"><h4>Applied Jobs Array Container</h4><p class="text-muted">No historical job submission structures tracked inside this contextual lifecycle view block.</p></div></div>
-          <div id="view-favourite" class="app-view d-none"><div class="card border-0 shadow-sm p-4"><h4>Bookmarked Indices</h4><p class="text-muted">Your curated favorites pipeline references will appear dynamically within this layout node.</p></div></div>
-          <div id="view-alerts" class="app-view d-none"><div class="card border-0 shadow-sm p-4"><h4>Communication Logs & Notification Parameters</h4><p class="text-muted">Broadcast array metrics configured via standard system updates.</p></div></div>
-          <div id="view-settings" class="app-view d-none"><div class="card border-0 shadow-sm p-4"><h4>Security Control Configurations</h4><p class="text-muted">Credential processing, secondary authentication protocols configuration dashboard.</p></div></div>
-
-        </div>
-
-        <!-- Application Dashboard Baseline Responsive Footer Layout -->
-        <footer class="dash-footer bg-white border-top p-3 mt-auto">
-          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
-            <div>
-              <span class="small text-secondary">&copy; 2026 <strong>Pubali Bank PLC.</strong> All rights reserved.</span>
-            </div>
-            <div class="d-flex gap-3">
-              <a href="#" class="text-decoration-none text-secondary small">Privacy Policy</a>
-              <a href="#" class="text-decoration-none text-secondary small">Terms of Service</a>
-              <a href="#" class="text-decoration-none text-secondary small">Support</a>
-            </div>
-          </div>
-        </footer>
-      </div>
-
     </div>
 
-    <!-- Initialization Bootstrap Processing Bundle Logic -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Core Application Dashboard Controller Engine script -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        
-        // --- MULTI-STEP NAVIGATION WIZARD ENGINE ---
-        const stepContainers = document.querySelectorAll(".step-container");
-        const progressBar = document.getElementById("profileProgressBar");
-        const progressPct = document.getElementById("progressPct");
+    <!-- Right Side Main Content Viewport -->
+    <div class="main-content d-flex flex-column">
+      <!-- Nav Bar Header Component -->
+      <nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
+        <div class="d-flex align-items-center w-100 justify-content-between">
+          <div class="d-flex align-items-center gap-2">
+            <button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button"
+              data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+              <i class="bi bi-list fs-4"></i>
+            </button>
+            <div class="search-container d-none d-sm-block position-relative">
+              <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+              <input class="form-control search-input ps-5" type="search" placeholder="Search parameters..."
+                id="dashboardSearch" style="border-radius: 20px; min-width: 260px;">
+            </div>
+          </div>
 
-        function updateProgress(stepIndex) {
-          const percentageMap = { 1: 33, 2: 66, 3: 100 };
-          const targetPct = percentageMap[stepIndex] || 33;
-          progressBar.style.width = targetPct + "%";
-          progressBar.setAttribute("aria-valuenow", targetPct);
-          progressPct.innerText = targetPct + "%";
-        }
+          <div class="d-flex align-items-center gap-3">
+            <div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
+              <i class="bi bi-bell fs-5"></i>
+              <span
+                class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+            </div>
+            <div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
+            <div class="d-flex align-items-center gap-2">
+              <img src="assets/images/fahimsm.png" width="36" height="36" class="rounded-circle border profile-pic-sync"
+                alt="Profile Layout" />
+              <span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md. Fahim</span>
+            </div>
+          </div>
+        </div>
+      </nav>
 
-        document.querySelectorAll(".next-step-btn").forEach(button => {
-          button.addEventListener("click", function () {
-            const currentStepCard = this.closest(".step-container");
-            
-            // Validate only inputs inside the active step container card segment
-            const fieldsToValidate = currentStepCard.querySelectorAll("input, select, textarea");
-            let stepIsValid = true;
-            
-            fieldsToValidate.forEach(field => {
-              if (!field.checkValidity()) {
-                field.classList.add("is-invalid");
-                stepIsValid = false;
-              } else {
-                field.classList.remove("is-invalid");
-                field.classList.add("is-valid");
-              }
-            });
+      <!-- Middle Inner Form/Content Canvas Placeholder Area -->
+      <div class="flex-grow-1 p-4" id="viewContainer">
 
-            if (stepIsValid) {
-              const nextStepId = this.getAttribute("data-next");
-              currentStepCard.classList.add("d-none");
-              document.getElementById("step-" + nextStepId).classList.remove("d-none");
-              updateProgress(parseInt(nextStepId));
-              window.scrollTo({ top: 0, behavior: "smooth" });
+        <!-- View: Profile View Container (Default View) -->
+        <div id="view-profile" class="app-view">
+          <div class="card border-0 shadow-sm mb-4">
+            <div class="card-body p-4">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <div>
+                  <h4 class="fw-bold mb-1">Complete Candidate Profile</h4>
+                  <p class="text-muted small mb-0">Please fill out the steps below accurately to process your employment
+                    registry details.</p>
+                </div>
+                <div class="text-end d-none d-md-block">
+                  <span class="text-muted small">Completion State:</span>
+                  <h5 class="fw-bold text-success mb-0" id="progressPct">33%</h5>
+                </div>
+              </div>
+              <div class="progress" style="height: 6px;">
+                <div class="progress-bar bg-success" role="progressbar" id="profileProgressBar" style="width: 33%"
+                  aria-valuenow="33" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-xl-9">
+              <form id="profileWizardForm" class="needs-validation" novalidate>
+
+                <!-- STEP 1: Basic Information -->
+                <div class="card border-0 shadow-sm mb-4 step-container" id="step-1">
+                  <div class="card-header bg-white border-bottom py-3">
+                    <h5 class="fw-bold mb-0 text-dark"><span class="badge bg-success me-2">1</span> Basic Information
+                    </h5>
+                  </div>
+                  <div class="card-body p-4">
+                    <div class="row g-3">
+                      <div class="col-12 col-md-3 text-center mb-3">
+                        <div class="avatar-upload-box mx-auto position-relative border rounded p-2 style-dashed"
+                          style="width: 140px; height: 140px; cursor: pointer;">
+                          <img src="assets/images/fahim.png" id="avatarPreview"
+                            class="img-fluid rounded profile-pic-sync"
+                            style="width: 100%; height: 100%; object-fit: cover;" alt="Avatar placeholder" />
+                          <div
+                            class="position-absolute bottom-0 end-0 bg-success text-white p-1 rounded-circle border shadow-sm"
+                            style="width: 28px; height: 28px; display: flex; align-items: center; justify-content: center;">
+                            <i class="bi bi-camera-fill small"></i>
+                          </div>
+                          <input type="file" id="avatarInput" accept="image/png, image/jpeg" class="d-none" />
+                        </div>
+                        <small class="text-muted d-block mt-2">JPEG/PNG max 2MB</small>
+                      </div>
+                      <div class="col-12 col-md-9">
+                        <div class="row g-3">
+                          <div class="col-12 col-sm-6">
+                            <label class="form-label small fw-semibold">Full Name *</label>
+                            <input type="text" class="form-control" id="inputFullName" value="Md. Fahim" required />
+                            <div class="invalid-feedback">Please enter your structural full name.</div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <label class="form-label small fw-semibold">Father's Name *</label>
+                            <input type="text" class="form-control" id="inputFatherName" required />
+                            <div class="invalid-feedback">Father's legal name required.</div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <label class="form-label small fw-semibold">Date of Birth *</label>
+                            <input type="date" class="form-control" id="inputDOB" required />
+                            <div class="invalid-feedback">Select validation birth date parameters.</div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <label class="form-label small fw-semibold">Gender *</label>
+                            <select class="form-select" id="inputGender" required>
+                              <option value="" selected disabled>Select Gender...</option>
+                              <option value="Male">Male</option>
+                              <option value="Female">Female</option>
+                              <option value="Other">Other</option>
+                            </select>
+                            <div class="invalid-feedback">Gender field definition required.</div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-end mt-4">
+                      <button type="button" class="btn btn-success px-4 next-step-btn" data-next="2">Continue <i
+                          class="bi bi-arrow-right ms-1"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- STEP 2: Contact Information -->
+                <div class="card border-0 shadow-sm mb-4 step-container d-none" id="step-2">
+                  <div class="card-header bg-white border-bottom py-3">
+                    <h5 class="fw-bold mb-0 text-dark"><span class="badge bg-success me-2">2</span> Contact Architecture
+                    </h5>
+                  </div>
+                  <div class="card-body p-4">
+                    <div class="row g-3">
+                      <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold">Primary Email *</label>
+                        <input type="email" class="form-control" id="inputEmail" placeholder="name@domain.com"
+                          required />
+                        <div class="invalid-feedback">Enter a functional personal email node.</div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold">Mobile Number *</label>
+                        <div class="input-group">
+                          <span class="input-group-text">+880</span>
+                          <input type="tel" class="form-control" id="inputMobile" placeholder="1XXXXXXXXX"
+                            pattern="[0-9]{10}" required />
+                          <div class="invalid-feedback">Enter a valid 10-digit mobile line mapping.</div>
+                        </div>
+                      </div>
+                      <div class="col-12">
+                        <label class="form-label small fw-semibold">Mailing Address Address *</label>
+                        <textarea class="form-control" id="inputAddress" rows="3"
+                          placeholder="Street layout, city index details..." required></textarea>
+                        <div class="invalid-feedback">Provide active postal transmission address.</div>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4">
+                      <button type="button" class="btn btn-outline-secondary px-4 prev-step-btn" data-prev="1"><i
+                          class="bi bi-arrow-left me-1"></i> Return</button>
+                      <button type="button" class="btn btn-success px-4 next-step-btn" data-next="3">Continue <i
+                          class="bi bi-arrow-right ms-1"></i></button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- STEP 3: Educational Qualifications -->
+                <div class="card border-0 shadow-sm mb-4 step-container d-none" id="step-3">
+                  <div class="card-header bg-white border-bottom py-3">
+                    <h5 class="fw-bold mb-0 text-dark"><span class="badge bg-success me-2">3</span> Academic Background
+                    </h5>
+                  </div>
+                  <div class="card-body p-4">
+                    <div class="row g-3">
+                      <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold">Highest Degree *</label>
+                        <select class="form-select" id="inputDegree" required>
+                          <option value="" selected disabled>Select Degree...</option>
+                          <option value="BSc">Bachelor of Science (BSc)</option>
+                          <option value="BBA">Bachelor of Business Admin (BBA)</option>
+                          <option value="MSc">Master of Science (MSc)</option>
+                          <option value="MBA">Master of Business Admin (MBA)</option>
+                        </select>
+                        <div class="invalid-feedback">Academic qualification metric selection mandatory.</div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold">Institution/University Name *</label>
+                        <input type="text" class="form-control" id="inputInstitution" placeholder="University details"
+                          required />
+                        <div class="invalid-feedback">Institution tracking description required.</div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold">Graduation Calendar Year *</label>
+                        <input type="number" class="form-control" id="inputGradYear" min="1990" max="2026"
+                          placeholder="2024" required />
+                        <div class="invalid-feedback">Valid structural year array bounds (1990 - 2026).</div>
+                      </div>
+                      <div class="col-12 col-sm-6">
+                        <label class="form-label small fw-semibold">CGPA/GPA *</label>
+                        <input type="number" class="form-control" id="inputCGPA" min="2.00" max="4.00" step="0.01"
+                          placeholder="3.75" required />
+                        <div class="invalid-feedback">CGPA boundary ranges between 2.00 to 4.00 metric nodes.</div>
+                      </div>
+                    </div>
+                    <div class="d-flex justify-content-between mt-4">
+                      <button type="button" class="btn btn-outline-secondary px-4 prev-step-btn" data-prev="2"><i
+                          class="bi bi-arrow-left me-1"></i> Return</button>
+                      <button type="submit" class="btn btn-primary px-5" id="submitWizardBtn"><i
+                          class="bi bi-cloud-arrow-up-fill me-1"></i> Finalize Profile</button>
+                    </div>
+                  </div>
+                </div>
+
+              </form>
+            </div>
+
+            <!-- Sticky Summary Sidebar Panel Layout context -->
+            <div class="col-12 col-xl-3 d-none d-xl-block">
+              <div class="card border-0 shadow-sm position-sticky" style="top: 90px;">
+                <div class="card-header bg-white border-bottom py-3">
+                  <h6 class="fw-bold mb-0">Live Summary Block</h6>
+                </div>
+                <div class="card-body p-3">
+                  <div class="mb-2">
+                    <label class="text-muted extra-small d-block text-uppercase fw-semibold"
+                      style="font-size: 0.65rem;">Applicant Tracker Name</label>
+                    <span class="small fw-semibold text-dark id-sync-name">Md. Fahim</span>
+                  </div>
+                  <div class="mb-2">
+                    <label class="text-muted extra-small d-block text-uppercase fw-semibold"
+                      style="font-size: 0.65rem;">Identity Node</label>
+                    <span class="small text-secondary">ID: 1284647</span>
+                  </div>
+                  <hr class="my-2 opacity-55">
+                  <div class="mb-2">
+                    <label class="text-muted extra-small d-block text-uppercase fw-semibold"
+                      style="font-size: 0.65rem;">Active Phone Map</label>
+                    <span class="small text-dark text-break" id="summaryPhone">Not Provided</span>
+                  </div>
+                  <div>
+                    <label class="text-muted extra-small d-block text-uppercase fw-semibold"
+                      style="font-size: 0.65rem;">Academic Parameter Target</label>
+                    <span class="small text-dark text-break" id="summaryDegree">Not Configured</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fallback Lazy Layout View Container Elements (For Simulation Engine Routing) -->
+        <div id="view-dashboard" class="app-view d-none">
+          <div class="card border-0 shadow-sm p-4">
+            <h4>System Administration Dashboard</h4>
+            <p class="text-muted">Welcome to your central tracking environment module. Here you can monitor dynamic
+              metrics.</p>
+            <div class="row g-3 mt-2">
+              <div class="col-12 col-sm-4">
+                <div class="p-3 border rounded bg-light"><strong>Active Positions:</strong> 14 Open slots</div>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="p-3 border rounded bg-light"><strong>Profile Standing:</strong> Review Process</div>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="p-3 border rounded bg-light"><strong>System Alerts:</strong> 2 Unread items</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="view-applied" class="app-view d-none">
+          <div class="card border-0 shadow-sm p-4">
+            <h4>Applied Jobs Array Container</h4>
+            <p class="text-muted">No historical job submission structures tracked inside this contextual lifecycle view
+              block.</p>
+          </div>
+        </div>
+        <div id="view-favourite" class="app-view d-none">
+          <div class="card border-0 shadow-sm p-4">
+            <h4>Bookmarked Indices</h4>
+            <p class="text-muted">Your curated favorites pipeline references will appear dynamically within this layout
+              node.</p>
+          </div>
+        </div>
+        <div id="view-alerts" class="app-view d-none">
+          <div class="card border-0 shadow-sm p-4">
+            <h4>Communication Logs & Notification Parameters</h4>
+            <p class="text-muted">Broadcast array metrics configured via standard system updates.</p>
+          </div>
+        </div>
+        <div id="view-settings" class="app-view d-none">
+          <div class="card border-0 shadow-sm p-4">
+            <h4>Security Control Configurations</h4>
+            <p class="text-muted">Credential processing, secondary authentication protocols configuration dashboard.</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Application Dashboard Baseline Responsive Footer Layout -->
+      <footer class="dash-footer bg-white border-top p-3 mt-auto">
+        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+          <div>
+            <span class="small text-secondary">&copy; 2026 <strong>Pubali Bank PLC.</strong> All rights reserved.</span>
+          </div>
+          <div class="d-flex gap-3">
+            <a href="#" class="text-decoration-none text-secondary small">Privacy Policy</a>
+            <a href="#" class="text-decoration-none text-secondary small">Terms of Service</a>
+            <a href="#" class="text-decoration-none text-secondary small">Support</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+  </div>
+
+  <!-- Initialization Bootstrap Processing Bundle Logic -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- Core Application Dashboard Controller Engine script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      // --- MULTI-STEP NAVIGATION WIZARD ENGINE ---
+      const stepContainers = document.querySelectorAll(".step-container");
+      const progressBar = document.getElementById("profileProgressBar");
+      const progressPct = document.getElementById("progressPct");
+
+      function updateProgress(stepIndex) {
+        const percentageMap = { 1: 33, 2: 66, 3: 100 };
+        const targetPct = percentageMap[stepIndex] || 33;
+        progressBar.style.width = targetPct + "%";
+        progressBar.setAttribute("aria-valuenow", targetPct);
+        progressPct.innerText = targetPct + "%";
+      }
+
+      document.querySelectorAll(".next-step-btn").forEach(button => {
+        button.addEventListener("click", function () {
+          const currentStepCard = this.closest(".step-container");
+
+          // Validate only inputs inside the active step container card segment
+          const fieldsToValidate = currentStepCard.querySelectorAll("input, select, textarea");
+          let stepIsValid = true;
+
+          fieldsToValidate.forEach(field => {
+            if (!field.checkValidity()) {
+              field.classList.add("is-invalid");
+              stepIsValid = false;
+            } else {
+              field.classList.remove("is-invalid");
+              field.classList.add("is-valid");
             }
           });
-        });
 
-        document.querySelectorAll(".prev-step-btn").forEach(button => {
-          button.addEventListener("click", function () {
-            const currentStepCard = this.closest(".step-container");
-            const prevStepId = this.getAttribute("data-prev");
-            
+          if (stepIsValid) {
+            const nextStepId = this.getAttribute("data-next");
             currentStepCard.classList.add("d-none");
-            document.getElementById("step-" + prevStepId).classList.remove("d-none");
-            updateProgress(parseInt(prevStepId));
+            document.getElementById("step-" + nextStepId).classList.remove("d-none");
+            updateProgress(parseInt(nextStepId));
             window.scrollTo({ top: 0, behavior: "smooth" });
-          });
-        });
-
-        // --- REAL-TIME LIVE DATA BINDING SYNC ---
-        const inputFullName = document.getElementById("inputFullName");
-        const inputMobile = document.getElementById("inputMobile");
-        const inputDegree = document.getElementById("inputDegree");
-        const summaryPhone = document.getElementById("summaryPhone");
-        const summaryDegree = document.getElementById("summaryDegree");
-        const userNameSyncTargets = document.querySelectorAll(".user-name-sync");
-        const identityNameSync = document.querySelector(".id-sync-name");
-
-        inputFullName.addEventListener("input", function () {
-          const currentVal = this.value.trim() || "Md. Fahim";
-          userNameSyncTargets.forEach(el => el.innerText = currentVal);
-          if (identityNameSync) identityNameSync.innerText = currentVal;
-        });
-
-        inputMobile.addEventListener("input", function () {
-          summaryPhone.innerText = this.value.trim() ? "+880 " + this.value.trim() : "Not Provided";
-        });
-
-        inputDegree.addEventListener("change", function () {
-          summaryDegree.innerText = this.options[this.selectedIndex].text;
-        });
-
-        // --- INTERACTIVE AVATAR UPLOAD & IMAGE SYNCHRONIZATION ---
-        const avatarUploadBox = document.querySelector(".avatar-upload-box");
-        const avatarInput = document.getElementById("avatarInput");
-        const profilePicSyncTargets = document.querySelectorAll(".profile-pic-sync");
-
-        avatarUploadBox.addEventListener("click", () => avatarInput.click());
-
-        avatarInput.addEventListener("change", function () {
-          const chosenFile = this.files[0];
-          if (chosenFile) {
-            // Validate size limits (2MB threshold buffer)
-            if (chosenFile.size > 2 * 1024 * 1024) {
-              alert("File size exceeds 2MB boundary logic constraints.");
-              this.value = "";
-              return;
-            }
-            const fileReader = new FileReader();
-            fileReader.onload = function (e) {
-              profilePicSyncTargets.forEach(img => img.src = e.target.result);
-            };
-            fileReader.readAsDataURL(chosenFile);
           }
         });
+      });
 
-        // --- CENTRAL VIEW ENGINE ROUTING CONTROLLER ---
-        const navigationLinks = document.querySelectorAll(".dynamic-nav a");
-        const applicationViews = document.querySelectorAll(".app-view");
+      document.querySelectorAll(".prev-step-btn").forEach(button => {
+        button.addEventListener("click", function () {
+          const currentStepCard = this.closest(".step-container");
+          const prevStepId = this.getAttribute("data-prev");
 
-        navigationLinks.forEach(link => {
-          link.addEventListener("click", function (e) {
-            e.preventDefault();
-            const targetedRoute = this.getAttribute("data-target");
-
-            // Sync active visual selectors globally across mobile and desktop wrappers
-            document.querySelectorAll(`.dynamic-nav a[data-target]`).forEach(el => el.classList.remove("active"));
-            document.querySelectorAll(`.dynamic-nav a[data-target="${targetedRoute}"]`).forEach(el => el.classList.add("active"));
-
-            // Toggle viewport structural displays cleanly
-            applicationViews.forEach(view => view.classList.add("d-none"));
-            const currentActiveView = document.getElementById("view-" + targetedRoute);
-            if (currentActiveView) {
-              currentActiveView.classList.remove("d-none");
-            }
-
-            // Implicit dismissal structural hook for mobile drawer UI context switches
-            const activeOffcanvas = bootstrap.Offcanvas.getInstance(document.getElementById("mobileSidebar"));
-            if (activeOffcanvas) activeOffcanvas.hide();
-          });
+          currentStepCard.classList.add("d-none");
+          document.getElementById("step-" + prevStepId).classList.remove("d-none");
+          updateProgress(parseInt(prevStepId));
+          window.scrollTo({ top: 0, behavior: "smooth" });
         });
+      });
 
-        // --- GLOBAL ACTION INTERFACES SYSTEM LOOPS ---
-        const centralForm = document.getElementById("profileWizardForm");
-        centralForm.addEventListener("submit", function (e) {
-          e.preventDefault();
-          if (!this.checkValidity()) {
-            e.stopPropagation();
-            this.classList.add("needs-validation");
+      // --- REAL-TIME LIVE DATA BINDING SYNC ---
+      const inputFullName = document.getElementById("inputFullName");
+      const inputMobile = document.getElementById("inputMobile");
+      const inputDegree = document.getElementById("inputDegree");
+      const summaryPhone = document.getElementById("summaryPhone");
+      const summaryDegree = document.getElementById("summaryDegree");
+      const userNameSyncTargets = document.querySelectorAll(".user-name-sync");
+      const identityNameSync = document.querySelector(".id-sync-name");
+
+      inputFullName.addEventListener("input", function () {
+        const currentVal = this.value.trim() || "Md. Fahim";
+        userNameSyncTargets.forEach(el => el.innerText = currentVal);
+        if (identityNameSync) identityNameSync.innerText = currentVal;
+      });
+
+      inputMobile.addEventListener("input", function () {
+        summaryPhone.innerText = this.value.trim() ? "+880 " + this.value.trim() : "Not Provided";
+      });
+
+      inputDegree.addEventListener("change", function () {
+        summaryDegree.innerText = this.options[this.selectedIndex].text;
+      });
+
+      // --- INTERACTIVE AVATAR UPLOAD & IMAGE SYNCHRONIZATION ---
+      const avatarUploadBox = document.querySelector(".avatar-upload-box");
+      const avatarInput = document.getElementById("avatarInput");
+      const profilePicSyncTargets = document.querySelectorAll(".profile-pic-sync");
+
+      avatarUploadBox.addEventListener("click", () => avatarInput.click());
+
+      avatarInput.addEventListener("change", function () {
+        const chosenFile = this.files[0];
+        if (chosenFile) {
+          // Validate size limits (2MB threshold buffer)
+          if (chosenFile.size > 2 * 1024 * 1024) {
+            alert("File size exceeds 2MB boundary logic constraints.");
+            this.value = "";
             return;
           }
-          
-          const submitButton = document.getElementById("submitWizardBtn");
-          submitButton.disabled = true;
-          submitButton.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span> Processing Execution Pipeline...`;
-          
-          setTimeout(() => {
-            alert("Success! Candidate Application Profile verified and securely transmitted to Pubali Bank PLC human capital registry core databases.");
-            submitButton.disabled = false;
-            submitButton.innerHTML = `<i class="bi bi-cloud-arrow-up-fill me-1"></i> Finalize Profile`;
-          }, 1500);
-        });
-
-        // Interactive Notification & Search Alerts Hooks
-        document.getElementById("notificationBell").addEventListener("click", () => alert("Notifications Pipeline: Systems operating under normal status vectors. No new broadcast requests."));
-        
-        const logoutHandler = (e) => { e.preventDefault(); if(confirm("Are you sure you want to terminate your session context?")) alert("Terminating access token channels... Redirecting to baseline portal."); };
-        document.getElementById("desktopLogoutBtn").addEventListener("click", logoutHandler);
-        document.getElementById("mobileLogoutBtn").addEventListener("click", logoutHandler);
+          const fileReader = new FileReader();
+          fileReader.onload = function (e) {
+            profilePicSyncTargets.forEach(img => img.src = e.target.result);
+          };
+          fileReader.readAsDataURL(chosenFile);
+        }
       });
-    </script>
-  </body>
+
+      // --- CENTRAL VIEW ENGINE ROUTING CONTROLLER ---
+      const navigationLinks = document.querySelectorAll(".dynamic-nav a");
+      const applicationViews = document.querySelectorAll(".app-view");
+
+      navigationLinks.forEach(link => {
+        link.addEventListener("click", function (e) {
+          e.preventDefault();
+          const targetedRoute = this.getAttribute("data-target");
+
+          // Sync active visual selectors globally across mobile and desktop wrappers
+          document.querySelectorAll(`.dynamic-nav a[data-target]`).forEach(el => el.classList.remove("active"));
+          document.querySelectorAll(`.dynamic-nav a[data-target="${targetedRoute}"]`).forEach(el => el.classList.add("active"));
+
+          // Toggle viewport structural displays cleanly
+          applicationViews.forEach(view => view.classList.add("d-none"));
+          const currentActiveView = document.getElementById("view-" + targetedRoute);
+          if (currentActiveView) {
+            currentActiveView.classList.remove("d-none");
+          }
+
+          // Implicit dismissal structural hook for mobile drawer UI context switches
+          const activeOffcanvas = bootstrap.Offcanvas.getInstance(document.getElementById("mobileSidebar"));
+          if (activeOffcanvas) activeOffcanvas.hide();
+        });
+      });
+
+      // --- GLOBAL ACTION INTERFACES SYSTEM LOOPS ---
+      const centralForm = document.getElementById("profileWizardForm");
+      centralForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!this.checkValidity()) {
+          e.stopPropagation();
+          this.classList.add("needs-validation");
+          return;
+        }
+
+        const submitButton = document.getElementById("submitWizardBtn");
+        submitButton.disabled = true;
+        submitButton.innerHTML = `<span class="spinner-border spinner-border-sm me-2"></span> Processing Execution Pipeline...`;
+
+        setTimeout(() => {
+          alert("Success! Candidate Application Profile verified and securely transmitted to Pubali Bank PLC human capital registry core databases.");
+          submitButton.disabled = false;
+          submitButton.innerHTML = `<i class="bi bi-cloud-arrow-up-fill me-1"></i> Finalize Profile`;
+        }, 1500);
+      });
+
+      // Interactive Notification & Search Alerts Hooks
+      document.getElementById("notificationBell").addEventListener("click", () => alert("Notifications Pipeline: Systems operating under normal status vectors. No new broadcast requests."));
+
+      const logoutHandler = (e) => { e.preventDefault(); if (confirm("Are you sure you want to terminate your session context?")) alert("Terminating access token channels... Redirecting to baseline portal."); };
+      document.getElementById("desktopLogoutBtn").addEventListener("click", logoutHandler);
+      document.getElementById("mobileLogoutBtn").addEventListener("click", logoutHandler);
+    });
+  </script>
+</body>
+
 </html>

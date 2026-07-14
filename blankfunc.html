@@ -155,6 +155,62 @@
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", () => {
+      // Select components and links
+      const contentCanvas = document.querySelector(".flex-grow-1");
+      const mobileSidebarEl = document.getElementById("mobileSidebar");
+      const mobileSidebar = bootstrap.Offcanvas.getInstance(mobileSidebarEl) || new bootstrap.Offcanvas(mobileSidebarEl);
+
+      // Select all links from both desktop and mobile sidebars
+      const allNavLinks = document.querySelectorAll(".nav-link-custom");
+
+      // Mock Data Views for demonstration mapping
+      const views = {
+        "Dashboard": `<h4 class="fw-bold mb-3">Welcome Back, Fahim</h4><p class="text-secondary">Here is a quick snapshot of your recruitment funnel parameters today.</p>`,
+        "Profile": `<h4 class="fw-bold mb-3">Profile & Basic Information</h4><p class="text-secondary">Keep your academic and professional history updated.</p>`,
+        "Applied Jobs": `<h4 class="fw-bold mb-3">Applied Jobs</h4><p class="text-secondary">Track the real-time status of your active application workflows.</p>`,
+        "Favourite Jobs": `<h4 class="fw-bold mb-3">Favourite Jobs</h4><p class="text-secondary">Your bookmarked career postings across the network.</p>`,
+        "Job Alerts": `<h4 class="fw-bold mb-3">Job Alerts</h4><p class="text-secondary">Manage automated vacancy notifications matching your skill tags.</p>`,
+        "Settings": `<h4 class="fw-bold mb-3">Account Settings</h4><p class="text-secondary">Manage system security configurations and multi-factor flags.</p>`,
+        "Logout": `<h4 class="fw-bold text-danger mb-3">Logging out...</h4><p class="text-secondary">Clearing session tokens and redirecting to the gateway.</p>`
+      };
+
+      // Set initial default view context on load
+      const initialActive = document.querySelector(".nav-link-custom.active");
+      if (initialActive) {
+        const viewKey = initialActive.textContent.trim();
+        if (views[viewKey]) contentCanvas.innerHTML = views[viewKey];
+      }
+
+      // Unified click handler architecture
+      allNavLinks.forEach(link => {
+        link.addEventListener("click", (e) => {
+          e.preventDefault();
+
+          const targetText = link.textContent.trim();
+
+          // 1. Synchronize the active DOM state matching the clicked label across both sidebars
+          allNavLinks.forEach(item => {
+            if (item.textContent.trim() === targetText) {
+              item.classList.add("active");
+            } else {
+              item.classList.remove("active");
+            }
+          });
+
+          // 2. Load the corresponding mock payload template into the content viewport
+          if (views[targetText]) {
+            contentCanvas.innerHTML = views[targetText];
+          }
+
+          // 3. If clicking from within the mobile drawer layer, collapse it gracefully
+          if (mobileSidebarEl.contains(link)) {
+            mobileSidebar.hide();
+          }
+        });
+      });
+    });
+  </script>
 </body>
 
 </html>
