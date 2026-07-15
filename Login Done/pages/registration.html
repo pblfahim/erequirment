@@ -4,51 +4,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registration - Pubali Bank PLC.</title> <!-- Standard PNG Icon -->
-    <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32">
+    <title>Registration - Pubali Bank PLC.</title> 
+    
+    <!-- ==========================================
+         VENDORS & CORE ASSETS
+         ========================================== -->
+    <!-- Favicon: Standard PNG fallback for cross-browser enterprise support -->
+    <link rel="icon" type="image/png" href="../assets/images/icon.png" sizes="32x32">
+    <!-- UI Framework: Bootstrap v5.3.3 Core Layout Stylesheet -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconography: FontAwesome v6.5.2 Asset Vector Library -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Public+Sans:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Typography: Corporate Web Fonts Engine Deployment -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Public+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Theme Override: Core Application Business Rules Layout Stylesheet -->
+    <link rel="stylesheet" href="../assets/css/style.css">
 
+    <!-- ==========================================
+         PAGE-SPECIFIC COMPONENT OVERRIDES
+         ========================================== -->
     <style>
-        /* Interactive feedback styles for the Date of Birth requirement */
+        /* Interactive feedback styles for the Date of Birth validation state engine */
         .dob-helper-text {
             font-size: 0.825rem;
             transition: color 0.25s ease;
         }
 
+        /* Enforce corporate success theme matrix on dynamic field passing */
         .dob-helper-text.valid-age {
-            color: #198754 !important;
-            /* Bootstrap success green */
+            color: #198754 !important; /* Bootstrap success green */
         }
 
+        /* Enforce corporate failure danger theme matrix on target validation drop */
         .dob-helper-text.invalid-age {
-            color: #dc3545 !important;
-            /* Bootstrap danger red */
+            color: #dc3545 !important; /* Bootstrap danger red */
         }
     </style>
 </head>
 
 <body>
 
-    <div class="bg-blobs-container">
+    <!-- ==========================================
+         BACKGROUND LAYER (DECORATIVE CANVAS)
+         ========================================== -->
+    <div class="bg-blobs-container" aria-hidden="true">
         <div class="bg-left"></div>
         <div class="bg-right"></div>
     </div>
 
+    <!-- ==========================================
+         MAIN APPLICATION SURFACE
+         ========================================== -->
     <div class="main-content">
         <div class="card auth-card">
 
+            <!-- MODULE: Authentic Branding & System Identification Header -->
             <div class="auth-header">
                 <div class="brand-logo-fallback">
-                    <img src="assets/images/pbllogo.svg" alt="Pubali Logo" width="40" height="40">
+                    <img src="../assets/images/pbllogo.svg" alt="Pubali Logo" width="40" height="40">
                 </div>
                 <div class="header-title-area">
                     <div class="title-bangla">
-                        <img src="assets/images/pbllogotext.svg" alt="Pubali Bank" width="170" height="40">
+                        <img src="../assets/images/pbllogotext.svg" alt="Pubali Bank" width="170" height="40">
                     </div>
                 </div>
                 <div class="system-tag">
@@ -56,23 +73,24 @@
                 </div>
             </div>
 
+            <!-- MODULE: Registration Input Form Surface -->
             <div class="auth-body">
                 <h2>Complete Registration</h2>
 
-                <!-- Custom Alert Bar for Application State Notices -->
+                <!-- Runtime API / Client Validation Engine Notification Notification Bar -->
                 <div id="statusAlert" class="alert d-none animate__animated animate__fadeIn" role="alert"></div>
 
                 <form id="registrationForm" autocomplete="on" novalidate>
 
-                    <!-- Verified Mobile Number -->
+                    <!-- FIELD MODULE: PRE-VERIFIED MOBILE CREDENTIALS (READ-ONLY) -->
                     <div class="mb-3">
-                        <label class="form-label">Verified Mobile Number</label>
+                        <label class="form-label" for="mobileNumber">Verified Mobile Number</label>
                         <div class="input-group">
+                            <!-- Pointer events dropped completely to shield state values against client tampering -->
                             <input type="text" class="form-control is-valid bg-body-secondary text-muted"
                                 id="mobileNumber" value="01712345678" readonly style="pointer-events: none;">
-
                             <span class="input-group-text text-success bg-body-secondary">
-                                <i class="fa-solid fa-circle-check"></i>
+                                <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
                             </span>
                         </div>
                         <small class="text-success">
@@ -80,24 +98,19 @@
                         </small>
                     </div>
 
-                    <!-- Applicant Name -->
+                    <!-- FIELD MODULE: LEGAL IDENTIFICATION DATA -->
                     <div class="mb-3">
-                        <label for="applicantName" class="form-label">
-                            Applicant Name
-                        </label>
-                        <input type="text" class="form-control" id="applicantName" placeholder="Enter Applicant Name"
-                            required>
+                        <label for="applicantName" class="form-label">Applicant Name</label>
+                        <input type="text" class="form-control" id="applicantName" placeholder="Enter Applicant Name" required>
                         <div class="invalid-feedback" id="nameFeedback">
                             Please enter your full name (English letters, dots, and hyphens only, min 3 chars).
                         </div>
                         <small class="text-muted">Must exactly match your NID or SSC certificate.</small>
                     </div>
 
-                    <!-- Date of Birth -->
+                    <!-- FIELD MODULE: BIRTH MATRIX AGE LIMIT VALIDATION -->
                     <div class="mb-3">
-                        <label for="dob" class="form-label">
-                            Date of Birth
-                        </label>
+                        <label for="dob" class="form-label">Date of Birth</label>
                         <input type="date" class="form-control" id="dob" required>
                         <div class="invalid-feedback" id="dobFeedback">
                             Please select a valid date of birth.
@@ -107,17 +120,13 @@
                         </small>
                     </div>
 
-                    <!-- Password -->
+                    <!-- FIELD MODULE: ACCESS CONTROL SECURITY DATA -->
                     <div class="mb-3">
-                        <label for="passwordField" class="form-label">
-                            Password
-                        </label>
-
+                        <label for="passwordField" class="form-label">Password</label>
                         <div class="password-container">
-                            <input type="password" class="form-control" id="passwordField" placeholder="Enter Password"
-                                required>
-
-                            <span class="password-toggle-icon" onclick="togglePassword('passwordField','passwordIcon')">
+                            <input type="password" class="form-control" id="passwordField" placeholder="Enter Password" required>
+                            <!-- Visibility Toggle Trigger. Hooks up directly into localized global scripts -->
+                            <span class="password-toggle-icon" onclick="togglePassword('passwordField','passwordIcon')" role="button" aria-label="Toggle password visibility">
                                 <i class="fa-regular fa-eye" id="passwordIcon"></i>
                             </span>
                         </div>
@@ -129,30 +138,24 @@
                         </small>
                     </div>
 
-                    <!-- Confirm Password -->
+                    <!-- FIELD MODULE: SECURITY CREDENTIAL CONFIRMATION MAPPER -->
                     <div class="mb-4">
-                        <label for="confirmPassword" class="form-label">
-                            Confirm Password
-                        </label>
-
+                        <label for="confirmPassword" class="form-label">Confirm Password</label>
                         <div class="password-container">
-                            <input type="password" class="form-control" id="confirmPassword"
-                                placeholder="Confirm Password" required>
-
-                            <span class="password-toggle-icon"
-                                onclick="togglePassword('confirmPassword','confirmPasswordIcon')">
+                            <input type="password" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                            <span class="password-toggle-icon" onclick="togglePassword('confirmPassword','confirmPasswordIcon')" role="button" aria-label="Toggle confirmation password visibility">
                                 <i class="fa-regular fa-eye" id="confirmPasswordIcon"></i>
                             </span>
                         </div>
-
                         <div class="invalid-feedback" id="passwordFeedback">
                             Passwords do not match.
                         </div>
                     </div>
 
+                    <!-- SUBMIT DISPATCH NODE -->
                     <button type="submit" class="btn btn-signin" id="submitBtn" disabled>
                         <span id="btnText">Complete Registration</span>
-                        <i class="fa-solid fa-arrow-right-long ms-1" id="btnIcon"></i>
+                        <i class="fa-solid fa-arrow-right-long ms-1" id="btnIcon" aria-hidden="true"></i>
                     </button>
 
                 </form>
@@ -160,6 +163,9 @@
         </div>
     </div>
 
+    <!-- ==========================================
+         APPLICATION FOOTER AREA
+         ========================================== -->
     <footer>
         <div class="footer-container">
             <div>&copy; 2026 Pubali HR Management System. All rights reserved.</div>
@@ -167,8 +173,17 @@
         </div>
     </footer>
 
+    <!-- ==========================================
+         CORE BUSINESS APPLICATION LOGIC LAYER
+         ========================================== -->
     <script>
         document.addEventListener("DOMContentLoaded", () => {
+            /** 
+             * DOM Component Access References
+             * @type {HTMLFormElement} form - Target profile context capture container
+             * @type {HTMLInputElement} elements - Input targets monitored by state machine loops
+             * @type {HTMLButtonElement} submitBtn - Core form submission action controller
+             */
             const form = document.getElementById("registrationForm");
             const applicantName = document.getElementById("applicantName");
             const dob = document.getElementById("dob");
@@ -179,18 +194,21 @@
             const btnIcon = document.getElementById("btnIcon");
             const statusAlert = document.getElementById("statusAlert");
 
-            // Dynamic constraint injector to restrict calendar picker boundaries
+            /**
+             * Business Rule Matrix: Calendar Dynamic Parameter Initializer
+             * Restricts physical calendar pick structures dynamically to block obvious layout issues.
+             * Policy: Age window bounds strict targeting (Min: 18 years old + 1 day, Max: 60 years old)
+             */
             function applyDobCalendarLimits() {
                 const today = new Date();
 
-                // Max date (youngest allowed candidate: must be more than 18)
-                // Subtracting 18 years and 1 day to enforce strictly *older* than 18
+                // Max date configuration tracking bounds (Youngest entry allowed: current year minus 18)
                 const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate() - 1);
 
-                // Min date (oldest allowed candidate: up to 60 years old)
+                // Min date configuration tracking bounds (Oldest entry allowed: current year minus 60)
                 const minDate = new Date(today.getFullYear() - 60, today.getMonth(), today.getDate());
 
-                // Format dates to YYYY-MM-DD for input attributes
+                // Transform operational structures into system standard layout parsing string maps (YYYY-MM-DD)
                 const formatDateStr = (date) => date.toISOString().split('T')[0];
 
                 dob.setAttribute("min", formatDateStr(minDate));
@@ -198,16 +216,19 @@
             }
             applyDobCalendarLimits();
 
-            // Prevent manual keyboard entry of incomplete/broken years (e.g. 5-digit or 2-digit years)
+            /**
+             * Event Handler Rule: Keyboard Interception Loop for Native Component Elements
+             * Defends against manually written input manipulation anomalies like 5-digit year entries.
+             */
             dob.addEventListener("keydown", (e) => {
-                // Allow navigation/editing keys
+                // Bypass validation interrupts on key actions dealing directly with editing states
                 if (["Backspace", "Tab", "ArrowLeft", "ArrowRight", "Delete"].includes(e.key)) return;
 
-                // If the user attempts manual typing, monitor string formats
+                // Deferred task execution loop to evaluate string length mutations asynchronously
                 setTimeout(() => {
                     const parts = dob.value.split("-");
                     if (parts[0] && parts[0].length > 4) {
-                        // Truncate year to 4 digits if exceeded
+                        // Enforce system strict adherence down to a 4-digit character block limit
                         parts[0] = parts[0].substring(0, 4);
                         dob.value = parts.join("-");
                         validateForm();
@@ -215,14 +236,26 @@
                 }, 0);
             });
 
+            /**
+             * Regular Expression Security Engine Declarations
+             * Evaluates profile integrity metrics before allowing communication changes to database nodes.
+             */
             function validatePasswordStyle(pass) {
+                // Security policy requirements: Min 8 chars, 1 uppercase letter, 1 lowercase letter, 1 digit, 1 special character
                 return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^()_\-+=]).{8,}$/.test(pass);
             }
 
             function validateNameStyle(name) {
+                // Identity policy requirements: Only characters A-Z, space, dots, hyphens allowed. Min length 3
                 return /^[a-zA-Z\s\.\-]+$/.test(name.trim()) && name.trim().length >= 3;
             }
 
+            /**
+             * Chronological Date Conversion Engine
+             * Converts dynamic calendar data targets into real numeric age counts.
+             * @param {string} birthDateString - YYYY-MM-DD value map
+             * @returns {number} age - Calculated numeric integer age value
+             */
             function calculateAge(birthDateString) {
                 const birthDate = new Date(birthDateString);
                 const today = new Date();
@@ -230,13 +263,20 @@
                 let age = today.getFullYear() - birthDate.getFullYear();
                 const monthDifference = today.getMonth() - birthDate.getMonth();
 
+                // Date structural offset controller logic block
                 if (monthDifference < 0 || (monthDifference === 0 && today.getDate() < birthDate.getDate())) {
                     age--;
                 }
                 return age;
             }
 
+            /**
+             * Unified Field State Presentation Wrapper
+             * Toggles validation styling systems consistently inside the user interface grid.
+             * @returns {boolean} Status passing metric response
+             */
             function runFieldValidation(field, condition, feedbackElement = null, customMessage = "") {
+                // Allow elements to reset states gracefully if field target values are totally cleared
                 if (field.value.trim() === "") {
                     field.classList.remove("is-valid", "is-invalid");
                     return false;
@@ -256,8 +296,12 @@
                 }
             }
 
+            /**
+             * Central Reactive Form Validation State Machine Engine
+             * Evaluates the current state tree on each interaction and manages the primary action buttons.
+             */
             function validateForm() {
-                // 1. Name validation
+                // Rule Node 1: Identity Profile Validation
                 const isNameValid = runFieldValidation(
                     applicantName,
                     validateNameStyle(applicantName.value),
@@ -265,13 +309,11 @@
                     "Please enter a valid full name using only English letters, dots, or hyphens (Min 3 characters)."
                 );
 
-                // 2. Age / Date of Birth Validation (Strictly more than 18 to 60 years)
+                // Rule Node 2: Chronological HR Policy Verification (Older than 18, up to 60)
                 let isDobValid = false;
                 if (dob.value !== "") {
                     const age = calculateAge(dob.value);
                     const dobFeedback = document.getElementById("dobFeedback");
-
-                    // Extracts year portion to verify it is exactly 4 digits
                     const yearPart = dob.value.split("-")[0];
 
                     if (yearPart.length !== 4) {
@@ -291,10 +333,10 @@
                     dob.classList.remove("is-valid", "is-invalid");
                 }
 
-                // 3. Password Complex Metrics Validation
+                // Rule Node 3: Access Security System Matrix Check
                 const isPasswordValid = runFieldValidation(password, validatePasswordStyle(password.value));
 
-                // 4. Confirm Password Match Validation
+                // Rule Node 4: Password Equivalence Match Verification
                 let isConfirmMatch = false;
                 if (confirmPassword.value !== "") {
                     if (password.value === confirmPassword.value) {
@@ -309,7 +351,7 @@
                     confirmPassword.classList.remove("is-valid", "is-invalid");
                 }
 
-                // Global Button State Assessment
+                // Global Button State Update Loop
                 const formIsValid = isNameValid && isDobValid && isPasswordValid && isConfirmMatch;
                 submitBtn.disabled = !formIsValid;
 
@@ -320,49 +362,59 @@
                 }
             }
 
-            // Attaching validation logic to tracking input handlers
+            // Bind Event Listeners for Reactive Validation Tracking Loops
             applicantName.addEventListener("input", validateForm);
             dob.addEventListener("change", validateForm);
             dob.addEventListener("input", validateForm);
             password.addEventListener("input", validateForm);
             confirmPassword.addEventListener("input", validateForm);
 
-            // Form Submit Interceptor & Production Simulation Workflow
+            /**
+             * Form Submission Interceptor & Production Simulation Workflow
+             * Simulates network delays and manages processing UI states during account creation.
+             */
             form.addEventListener("submit", function (e) {
                 e.preventDefault();
 
+                // Enforce asynchronous request locking to prevent race conditions or double submission anomalies
                 submitBtn.disabled = true;
                 btnText.textContent = "Processing Profile...";
                 btnIcon.className = "fa-solid fa-spinner fa-spin ms-1";
                 statusAlert.classList.add("d-none");
 
+                // Simulate REST API Endpoint Processing Delay
                 setTimeout(() => {
                     const trackingYear = new Date().getFullYear();
                     const randomizedSerial = Math.floor(100000 + Math.random() * 900000);
                     const applicantId = `PBL-${trackingYear}-${randomizedSerial}`;
 
+                    // Update structural system elements with data payloads upon successful registration response
                     statusAlert.className = "alert alert-success animate__animated animate__fadeIn";
                     statusAlert.innerHTML = `
-                <div class="d-flex">
-                    <i class="fa-solid fa-circle-check fs-4 me-2 mt-1"></i>
-                    <div>
-                        <strong>Account Registration Successful!</strong><br>
-                        Your permanent Profile Reference ID is: <strong class="text-decoration-underline">${applicantId}</strong>.<br>
-                        <span class="small text-dark mt-1 d-block">Please record this Identification Number carefully. It serves as your primary credential along with your password to log in and track active applications.</span>
-                    </div>
-                </div>
-            `;
+                        <div class="d-flex">
+                            <i class="fa-solid fa-circle-check fs-4 me-2 mt-1" aria-hidden="true"></i>
+                            <div>
+                                <strong>Account Registration Successful!</strong><br>
+                                Your permanent Profile Reference ID is: <strong class="text-decoration-underline">${applicantId}</strong>.<br>
+                                <span class="small text-dark mt-1 d-block">Please record this Identification Number carefully. It serves as your primary credential along with your password to log in and track active applications.</span>
+                            </div>
+                        </div>
+                    `;
 
+                    // Reset form fields back to original neutral operational parameters
                     form.reset();
 
+                    // Strip visual UI status queues off component inputs completely
                     applicantName.classList.remove("is-valid", "is-invalid");
                     dob.classList.remove("is-valid", "is-invalid");
                     password.classList.remove("is-valid", "is-invalid");
                     confirmPassword.classList.remove("is-valid", "is-invalid");
 
+                    // Restore visual actionable elements inside button boundaries
                     btnText.textContent = "Create Account";
                     btnIcon.className = "fa-solid fa-arrow-right-long ms-1";
 
+                    // Bring UI state back into window focal point
                     window.scrollTo({ top: 0, behavior: 'smooth' });
 
                 }, 1800);
@@ -370,6 +422,9 @@
         });
     </script>
 
+    <!-- ==========================================
+         VENDOR COMPONENT ENGINE BINDINGS
+         ========================================== -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 

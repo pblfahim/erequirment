@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Pubali Bank PLC.</title>
+
+    <!-- =========================================================================
+         VENDORS & CORE ASSETS
+         ========================================================================= -->
+    <!-- Favicon: Standard PNG fallback for cross-browser enterprise support -->
+    <link rel="icon" type="image/png" href="../assets/images/icon.png" sizes="32x32">
+    <!-- UI Framework: Bootstrap v5.3.3 Core Layout Stylesheet -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Iconography: FontAwesome v6.5.2 Asset Vector Library -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" rel="stylesheet">
+    <!-- Typography: Corporate Web Fonts Engine Deployment -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;700&family=Public+Sans:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- Theme Override: Core Application Business Rules Layout Stylesheet -->
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+
+    <!-- =========================================================================
+         DECORATIVE BRAND CANVAS LAYER
+         ========================================================================= -->
+    <div class="bg-blobs-container" aria-hidden="true">
+        <div class="bg-left"></div>
+        <div class="bg-right"></div>
+    </div>
+
+    <!-- =========================================================================
+         MAIN APPLICATION SURFACE
+         ========================================================================= -->
+    <div class="main-content" role="main">
+        <div class="card auth-card">
+
+            <!-- MODULE: Authentic Branding & System Identification Header -->
+            <div class="auth-header">
+                <div class="brand-logo-fallback">
+                    <img src="../assets/images/pbllogo.svg" alt="Pubali Bank Logo" width="40" height="40"
+                        onerror="this.style.display='none'">
+                </div>
+                <div class="header-title-area">
+                    <div class="title-bangla">
+                        <img src="../assets/images/pbllogotext.svg" alt="Pubali Bank" width="170" height="40"
+                            onerror="this.style.display='none'">
+                    </div>
+                </div>
+                <div class="system-tag">E-recruitment System</div>
+            </div>
+
+            <!-- MODULE: Dynamic Two-Step Authentication Flow -->
+            <div class="auth-body">
+                <h2 id="formTitle">Create account.</h2>
+                <div class="account-switch-text" id="formSubtitle">
+                    Have an account? <a href="index.html">Log in</a>
+                </div>
+
+                <form id="authFlowForm" autocomplete="on" novalidate>
+
+                    <!-- STEP 1 ELEMENT: Mobile Credentials Entry -->
+                    <div class="mb-2">
+                        <label for="phoneNumberField" class="form-label">Mobile Number</label>
+                        <div class="input-group">
+                            <!-- Accessibility (ARIA): Described country-code addon to screen readers -->
+                            <span class="input-group-text phone-prefix" id="phoneAddon"
+                                aria-label="Country Code Bangladesh">
+                                <img src="https://flagcdn.com/w40/bd.png" alt="Bangladesh Flag" class="me-2" width="20">
+                                +880
+                            </span>
+                            <!-- Enforced maxlength of 10 to standardise BD network prefixes (excluding leading zero) -->
+                            <input type="tel" class="form-control phone-input-field" id="phoneNumberField"
+                                placeholder="1XXXXXXXXX" maxlength="10" required aria-describedby="phoneAddon">
+                            <div class="invalid-feedback">Please enter a valid Bangladeshi mobile number.</div>
+                        </div>
+                    </div>
+
+                    <!-- STEP 2 ELEMENT: Dynamic OTP Input Segment (Initially Hidden by CSS transitions) -->
+                    <div id="otpWrapper" class="transition-block" aria-live="polite">
+                        <label for="otpField" class="form-label">Enter 6-Digit OTP</label>
+                        <input type="text" class="form-control text-center otp-input-field" id="otpField"
+                            placeholder="******" maxlength="6" inputmode="numeric" pattern="[0-9]*">
+                        <div class="invalid-feedback">Please enter a valid 6-digit verification code.</div>
+
+                        <!-- Actions & Countdown metadata within the verification state -->
+                        <div class="d-flex justify-content-between align-items-center mt-2 px-1">
+                            <small class="text-muted" id="timerContainer">Resend code in <span
+                                    id="countdown">60</span>s</small>
+                            <button type="button" id="resendBtn"
+                                class="btn btn-link btn-sm p-0 d-none text-decoration-none fw-semibold"
+                                style="color: var(--brand-teal)">Resend OTP</button>
+                            <button type="button" id="changeNumBtn"
+                                class="btn btn-link btn-change btn-sm p-0 text-decoration-none small">Change
+                                Number</button>
+                        </div>
+                    </div>
+
+                    <!-- ACTION DISPATCH MODULE: Contextual Multi-State Trigger button -->
+                    <button type="submit" class="btn btn-signin" id="submitBtn" disabled>
+                        <span>Send OTP</span> <i class="fa-solid fa-arrow-right-long ms-1"></i>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================================================
+         APPLICATION FOOTER AREA
+         ========================================================================= -->
+    <footer>
+        <div class="footer-container">
+            <div>&copy; 2026 Pubali HR Management System. All rights reserved.</div>
+            <div>Last updated: June 15, 2026 &nbsp; &nbsp; | &nbsp; &nbsp; System Version: v1.0.0</div>
+        </div>
+    </footer>
+
+    <!-- =========================================================================
+         CORE JAVASCRIPT ENGINE & SYSTEM STAGED TRANSITIONS
+         ========================================================================= -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Core Application Logic Layer (Form validation and password visibility toggle engines) -->
+    <script src="../assets/js/otp.js"></script>
+</body>
+
+</html>

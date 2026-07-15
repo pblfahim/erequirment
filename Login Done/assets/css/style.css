@@ -1,27 +1,48 @@
-/* --- Design Tokens & Variables --- */
+/* ==========================================================================
+   1. DESIGN SYSTEM & ROOT TOKENS
+   ========================================================================== */
 :root {
+    /* Color Palette Archetypes */
     --bg-base: #A7D7C5;
     --bg-blob: #b9e3d8;
     --brand-green: #006837;
     --brand-teal: #0fa3a4;
     --text-dark: #1a1a1a;
+    --text-muted: #6c757d;
+    
+    /* Interactive Action States */
     --btn-teal: #0aa299;
     --btn-light-blue: #e8f0fe;
     --link-blue: #0d6efd;
+    --border-gray: #ced4da;
+    
+    /* Structural Rules */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease;
 }
 
-/* --- Global & Layout Styles --- */
+/* ==========================================================================
+   2. GLOBAL BASE RULES & ELEMENT RESET
+   ========================================================================== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Public Sans', 'Noto Sans Bengali', sans-serif;
     background-color: var(--bg-base);
     min-height: 100vh;
-    margin: 0;
     display: flex;
     flex-direction: column;
     position: relative;
     overflow-x: hidden;
 }
 
+/* ==========================================================================
+   3. CANVAS SYSTEM & GPU ACCELERATED GRAPHICS
+   ========================================================================== */
 .bg-blobs-container {
     position: absolute;
     top: 0;
@@ -42,16 +63,14 @@ body {
     padding: 40px 15px;
 }
 
-/* --- GPU Accelerated Background Animations --- */
+/* Keyframe Transform Vectors */
 @keyframes floatLeftBlob {
     0% {
         transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, -45deg) scale(1);
     }
-
     50% {
         transform: translate3d(40px, -35px, 0) rotate3d(0, 0, 1, -47deg) scale(1.06);
     }
-
     100% {
         transform: translate3d(0, -40px, 0) rotate3d(0, 0, 1, -45deg) scale(1);
     }
@@ -61,11 +80,9 @@ body {
     0% {
         transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg) scale(1);
     }
-
     50% {
         transform: translate3d(-40px, 40px, 0) rotate3d(0, 0, 1, 42deg) scale(1.06);
     }
-
     100% {
         transform: translate3d(0, 0, 0) rotate3d(0, 0, 1, 45deg) scale(1);
     }
@@ -97,7 +114,9 @@ body {
     will-change: transform;
 }
 
-/* --- Card Architecture --- */
+/* ==========================================================================
+   4. CARD ARCHITECTURE STRUCTURAL COMPONENTS
+   ========================================================================== */
 .auth-card {
     background-color: #ffffff;
     width: 100%;
@@ -108,7 +127,7 @@ body {
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
 }
 
-/* --- Header Component --- */
+/* Upper Brand Anchor Container */
 .auth-header {
     background-color: var(--brand-green);
     padding: 24px 32px;
@@ -155,12 +174,12 @@ body {
     font-size: 0.9rem;
     opacity: 0.9;
     font-weight: 500;
-    border-left: 2px solid rgba(226, 214, 214, 0.801);
+    border-left: 2px solid rgba(226, 214, 214, 0.8);
     padding-left: 10px;
     margin-left: auto;
 }
 
-/* --- Form Body & Global Form Fields --- */
+/* Primary Internal Canvas Wrapper */
 .auth-body {
     padding: 20px 40px 40px 40px;
 }
@@ -188,6 +207,9 @@ body {
     text-decoration: underline;
 }
 
+/* ==========================================================================
+   5. INPUT SYSTEMS & CONTROL ARCHITECTURE
+   ========================================================================== */
 .form-label {
     font-size: 0.9rem;
     font-weight: 600;
@@ -197,7 +219,7 @@ body {
 
 .form-control {
     height: 50px;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--border-gray);
     border-radius: 8px;
     padding: 10px 16px;
     font-size: 0.95rem;
@@ -213,9 +235,10 @@ body {
 .form-select:focus {
     border-color: var(--brand-teal);
     box-shadow: 0 0 0 0.25rem rgba(15, 163, 164, 0.15);
+    outline: none;
 }
 
-/* --- Input Group & Phone Specific Fields --- */
+/* Multi-segment Phone Interface Architecture */
 .country-select-dropdown {
     max-width: 115px;
     border-top-left-radius: 8px;
@@ -228,11 +251,11 @@ body {
 .phone-prefix {
     height: 50px;
     background: #f8f9fa;
-    border: 1px solid #ced4da;
+    border: 1px solid var(--border-gray);
     border-right: 0;
     border-radius: 8px 0 0 8px;
     font-weight: 600;
-    color: #444;
+    color: #444444;
     min-width: 95px;
     display: flex;
     align-items: center;
@@ -246,13 +269,14 @@ body {
     border-radius: 2px;
 }
 
-.phone-input-field,
-.otp-input-field {
+.phone-input-field {
     height: 50px;
     border-radius: 0 8px 8px 0 !important;
 }
 
+/* Security Verification Pin (OTP) Interface */
 .otp-input-field {
+    height: 50px;
     border-radius: 8px !important;
     letter-spacing: 6px;
     font-size: 1.25rem;
@@ -263,28 +287,34 @@ body {
     height: 14px;
 }
 
-/* --- Password Specifics --- */
+/* Password Complex Structural Node */
 .password-container {
     position: relative;
 }
 
+.password-container .form-control {
+    padding-right: 40px;
+}
+
 .password-toggle-icon {
     position: absolute;
-    right: 16px;
+    right: 12px;
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: #6c757d;
     z-index: 10;
+    color: var(--text-muted);
     font-size: 1.05rem;
-    transition: color 0.2s;
+    transition: var(--transition-fast);
 }
 
 .password-toggle-icon:hover {
     color: var(--brand-teal);
 }
 
-/* --- Validation UI Hints --- */
+/* ==========================================================================
+   6. REAL-TIME VALIDATION UI
+   ========================================================================== */
 .form-control.is-invalid-format {
     border-color: #dc3545;
     box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.15);
@@ -297,21 +327,14 @@ body {
     display: none;
 }
 
-/* --- Animation Utilities --- */
-.transition-block {
-    transition: all 0.4s ease-in-out;
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
+.form-control.is-valid,
+.form-control.is-invalid {
+    background-image: none !important; /* Resets default browser metrics to fix shifts */
 }
 
-.transition-block.show {
-    max-height: 150px;
-    opacity: 1;
-    margin-top: 16px;
-}
-
-/* --- Interactive Action Button --- */
+/* ==========================================================================
+   7. INTERACTIVE ACTION ENGINE CONTROLS
+   ========================================================================== */
 .btn-signin {
     background: #adb5bd;
     color: #ffffff;
@@ -326,20 +349,20 @@ body {
     align-items: center;
     justify-content: center;
     gap: 8px;
-    transition: all .3s ease, transform 0.1s;
+    transition: var(--transition-smooth), transform 0.1s;
     cursor: not-allowed;
 }
 
 .btn-signin:disabled {
     background: #adb5bd;
-    color: #fff;
+    color: #ffffff;
     opacity: 1;
     cursor: not-allowed;
 }
 
 .btn-signin.active {
     background-color: var(--brand-teal);
-    color: #fff;
+    color: #ffffff;
     cursor: pointer;
 }
 
@@ -352,25 +375,19 @@ body {
 }
 
 .btn-change {
-    color: var(--bs-secondary-color);
+    color: var(--text-muted);
 }
 
 .btn-change:hover {
     color: #0d8c8d;
 }
 
-/* Ensuring perfect password container sizing with relative layout */
-.password-container {
-    position: relative;
-}
-
-/* Card Body Customization */
+/* Custom Alternative Contexts */
 .card-body-custom {
     padding: 40px 30px;
     text-align: center;
 }
 
-/* 3D-styled Congratulations Banner */
 .congrats-banner {
     background-color: #fff4f2;
     border-radius: 50px;
@@ -392,20 +409,22 @@ body {
     margin-right: auto;
 }
 
-/* Buttons Styling */
-.btn-view-dashboard {
-    background-color: var(--btn-light-blue);
-    color: #2b70e4;
+.btn-view-dashboard,
+.btn-create-profile {
     font-size: 1rem;
     font-weight: 600;
-    /* width: 100%; */
     border-radius: 8px;
     height: 52px;
     border: none;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: var(--transition-smooth);
+}
+
+.btn-view-dashboard {
+    background-color: var(--btn-light-blue);
+    color: #2b70e4;
 }
 
 .btn-view-dashboard:hover {
@@ -416,16 +435,6 @@ body {
 .btn-create-profile {
     background-color: var(--btn-teal);
     color: #ffffff;
-    font-size: 1rem;
-    font-weight: 600;
-    /* width: 100%; */
-    border-radius: 8px;
-    height: 52px;
-    border: none;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
 }
 
 .btn-create-profile:hover {
@@ -433,34 +442,25 @@ body {
     color: #ffffff;
 }
 
-
-.password-toggle-icon {
-    position: absolute;
-    right: 12px;
-    top: 50%;
-    transform: translateY(-50%);
-    cursor: pointer;
-    z-index: 10;
-    color: #6c757d;
+/* ==========================================================================
+   8. TRANSITION RUNTIMES
+   ========================================================================== */
+.transition-block {
+    transition: var(--transition-smooth);
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
 }
 
-.password-container .form-control {
-    padding-right: 40px;
-}
-
-/* Styling for smooth validation transitions */
-.form-control.is-valid,
-.form-control.is-invalid {
-    background-image: none !important;
-    /* Remove default bootstrap check icons to avoid icon overlapping */
-}
-
-.btn-signin:not(:disabled) {
-    cursor: pointer;
+.transition-block.show {
+    max-height: 150px;
     opacity: 1;
+    margin-top: 16px;
 }
 
-/* --- Footer --- */
+/* ==========================================================================
+   9. GLOBAL BASE SYSTEM FOOTER
+   ========================================================================== */
 footer {
     background-color: #ffffff;
     border-top: 1px solid #eef2f5;
@@ -480,10 +480,10 @@ footer {
 }
 
 /* ==========================================================================
-   --- Fully Responsive Viewports (Tablets & Mobile) ---
+   10. COMPREHENSIVE BREAKPOINTS (MEDIA QUERIES)
    ========================================================================== */
 
-/* --- Tablet Devices (Large screens to Portrait Tablets) --- */
+/* --- TABLET ENGINE SYSTEMS (Up to 1024px) --- */
 @media (max-width: 1024px) {
     .bg-left {
         width: 480px;
@@ -504,11 +504,10 @@ footer {
     }
 }
 
-/* --- Small Tablets & Large Phones --- */
+/* --- SMALL PORTRAIT TABLETS & MID RANGE DISPLAY GRID (Up to 768px) --- */
 @media (max-width: 768px) {
     .bg-blobs-container {
-        display: none;
-        /* Disables CPU/GPU load from heavy rotating animations on medium screens */
+        display: none; /* Disables heavy visual engines to lower frame drops */
     }
 
     .main-content {
@@ -519,7 +518,6 @@ footer {
         border-radius: 28px;
     }
 
-    /* --- Header Component --- */
     .auth-header {
         padding: 16px 22px;
     }
@@ -535,18 +533,16 @@ footer {
     }
 }
 
-/* --- Standard & Small Mobile Devices (e.g., iPhones, Pixels, Galaxy) --- */
+/* --- MOBILE SMARTPHONES & MICRO VIEWPORTS (Down to 480px) --- */
 @media (max-width: 480px) {
     .main-content {
         padding: 20px 15px;
-        align-items: flex-start;
-        /* Prevents awkward clipping on short mobile screens in landscape */
+        align-items: flex-start; /* Stops overflow cut-offs in mobile horizontal landscape orientation */
     }
 
     .auth-card {
         align-self: center;
         border-radius: 20px;
-        /* Softer, native-app feel on small devices */
     }
 
     .auth-header {
@@ -575,12 +571,10 @@ footer {
 
     .auth-body {
         padding: 24px 20px 28px 20px;
-        /* Maximizes lateral space for form inputs */
     }
 
     .auth-body h2 {
         font-size: 1.65rem;
-        /* Scales down from 2rem to prevent text wrapping issues */
         margin-bottom: 4px;
     }
 
@@ -589,7 +583,6 @@ footer {
         margin-bottom: 18px;
     }
 
-    /* Streamlining form fields for thumb-tap interactions */
     .form-control,
     .country-select-dropdown,
     .phone-prefix {
@@ -599,8 +592,7 @@ footer {
 
     .otp-input-field {
         font-size: 1.15rem;
-        letter-spacing: 4px;
-        /* Slightly tighter spacing to fit small displays perfectly */
+        letter-spacing: 4px; /* Tighter letter gap values to prevent clipping on small 320px UI frames */
     }
 
     .btn-signin {
