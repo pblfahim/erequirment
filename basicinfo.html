@@ -55,7 +55,7 @@
         </div>
 
         <!-- Mobile Sidebar Menu Component -->
-        <div class="offcanvas offcanvas-start w-75" id="mobileSidebar" tabindex="-1">
+        <div class="offcanvas offcanvas-start w-100" id="mobileSidebar" tabindex="-1" style="max-width: var(--sidebar-width);">
             <div class="d-flex flex-column justify-content-between h-100">
                 <div>
                     <div class="offcanvas-header border-bottom">
@@ -283,11 +283,12 @@
                                             </div>
 
                                             <div class="col-12 col-md-6">
-                                                <label class="form-label fw-medium">Marital Status</label>
+                                                <label class="form-label required fw-medium">Marital Status</label>
                                                 <select class="form-select" id="maritalStatus">
                                                     <option value="" selected disabled>Select Status</option>
                                                     <option value="Single">Single</option>
                                                     <option value="Married">Married</option>
+                                                    <option value="Window">Window</option>
                                                     <option value="Divorced">Divorced</option>
                                                 </select>
                                             </div>
@@ -311,6 +312,32 @@
                                                     placeholder="Mother's full name" required>
                                                 <div class="invalid-feedback">Mother's name is required.</div>
                                             </div>
+
+                                            <div class="col-12 col-md-6">
+                                                <label class="form-label required fw-medium">Religion</label>
+                                                <select class="form-select" id="religion">
+                                                    <option value="" selected disabled>Select Religion</option>
+                                                    <option value="Islam">Islam</option>
+                                                    <option value="Hinduism">Hinduism</option>
+                                                    <option value="Buddhism">Buddhism</option>
+                                                    <option value="Christianity">Christianity</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-12 col-md-6">
+                                                <label class="form-label required fw-medium">Blood Group</label>
+                                                <select class="form-select" id="bloodGroup">
+                                                    <option value="" selected disabled>Select Blood Group</option>
+                                                    <option value="A+">A+</option>
+                                                    <option value="A-">A-</option>
+                                                    <option value="B+">B+</option>
+                                                    <option value="B-">B-</option>
+                                                    <option value="O+">O+</option>
+                                                    <option value="O-">O-</option>
+                                                    <option value="AB+">AB+</option>
+                                                    <option value="AB-">AB-</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -323,10 +350,18 @@
                                         <div class="row g-5">
                                             <!-- Permanent Address Side -->
                                             <div class="col-12 col-lg-6 border-end-lg">
-                                                <div class="subsection-title text-success mb-3 fw-semibold border-bottom pb-2">
+                                                <div
+                                                    class="subsection-title text-success fw-semibold border-bottom pb-2 mr-5">
                                                     <i class="fa-solid fa-house-chimney me-2"></i>Permanent Address
                                                 </div>
                                                 <div class="row g-3">
+                                                    <div class="col-12">
+                                                        <label
+                                                            class="form-label required fw-medium">Area/Village/House/Road</label>
+                                                        <input type="text" class="form-control perm-field"
+                                                            id="permHouse" required>
+                                                        <div class="invalid-feedback">Required.</div>
+                                                    </div>
                                                     <div class="col-6">
                                                         <label class="form-label required fw-medium">District</label>
                                                         <select class="form-select perm-field" id="permDistrict"
@@ -348,13 +383,6 @@
                                                         </select>
                                                         <div class="invalid-feedback">Required.</div>
                                                     </div>
-                                                    <div class="col-12">
-                                                        <label
-                                                            class="form-label required fw-medium">Area/Village/House/Road</label>
-                                                        <input type="text" class="form-control perm-field"
-                                                            id="permHouse" required>
-                                                        <div class="invalid-feedback">Required.</div>
-                                                    </div>
                                                     <div class="col-6">
                                                         <label class="form-label fw-medium">Postal Code</label>
                                                         <input type="text" class="form-control perm-field"
@@ -370,7 +398,8 @@
 
                                             <!-- Present Address Side -->
                                             <div class="col-12 col-lg-6">
-                                                <div class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+                                                <div
+                                                    class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                                                     <div class="subsection-title text-success mb-0 fw-semibold ">
                                                         <i class="fa-solid fa-location-crosshairs me-2"></i>Present
                                                         Address
@@ -384,6 +413,13 @@
                                                 </div>
 
                                                 <div class="row g-3">
+                                                    <div class="col-12">
+                                                        <label
+                                                            class="form-label required fw-medium">Area/Village/House/Road</label>
+                                                        <input type="text" class="form-control pres-field"
+                                                            id="presHouse" required>
+                                                        <div class="invalid-feedback">Required.</div>
+                                                    </div>
                                                     <div class="col-6">
                                                         <label class="form-label required fw-medium">District</label>
                                                         <select class="form-select pres-field" id="presDistrict"
@@ -405,13 +441,6 @@
                                                         </select>
                                                         <div class="invalid-feedback">Required.</div>
                                                     </div>
-                                                    <div class="col-12">
-                                                        <label
-                                                            class="form-label required fw-medium">Area/Village/House/Road</label>
-                                                        <input type="text" class="form-control pres-field"
-                                                            id="presHouse" required>
-                                                        <div class="invalid-feedback">Required.</div>
-                                                    </div>
                                                     <div class="col-6">
                                                         <label class="form-label fw-medium">Postal Code</label>
                                                         <input type="text" class="form-control pres-field"
@@ -430,9 +459,8 @@
 
                                 <!-- FOOTER ACTIONS -->
                                 <div class="form-footer d-flex justify-content-between align-items-center mt-4">
-                                    <button type="button" class="btn btn-cancel px-4 py-2" id="prevBtn"
-                                        disabled>Back</button>
-                                    <button type="submit" class="btn btn-save-next px-4 py-2" id="nextBtn">
+                                    <button type="button" class="btn btn-cancel" id="prevBtn" disabled>Back</button>
+                                    <button type="submit" class="btn btn-save-next" id="nextBtn">
                                         Save & Next <i class="fa-solid fa-arrow-right ms-1"></i>
                                     </button>
                                 </div>

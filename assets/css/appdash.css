@@ -532,7 +532,7 @@ body {
    ========================================================================= */
 .form-footer {
   border-top: 1px solid var(--border-light);
-  padding: 24px;
+  padding-top: 24px;
   display: flex;
   justify-content: flex-end;
   gap: 16px;
@@ -574,7 +574,9 @@ body {
   background: var(--brand-accent-hover);
   box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2);
 }
-
+.mr-5 {
+    padding: 5px 0px 0px 0px;
+}
 /* ==========================================================================
    9. COMPREHENSIVE RESPONSIVE BREAKPOINTS (MEDIA QUERIES)
    ========================================================================= */
@@ -653,6 +655,9 @@ body {
   .navbar {
     padding: 0 16px;
   }
+  .form-footer {
+    padding: 24px 24px 0px 24px;
+}
 }
 
 /* --- MOBILE SMART TERMINALS (Down to 480px) --- */
