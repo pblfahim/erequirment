@@ -1,0 +1,741 @@
+/* ==========================================================================
+   1. DESIGN SYSTEM & ROOT DESIGN SYSTEM TOKENS
+   ========================================================================= */
+:root {
+  /* Brand Theme Colors (Modern Deep Emerald Architecture) */
+  --brand-primary: #0f4c3a;
+  /* Core Banking Deep Emerald */
+  --brand-primary-hover: #0c3e2f;
+  /* Darkened Emerald State */
+  --brand-accent: #10b981;
+  /* Modern Vibrant Green Accent */
+  --brand-accent-hover: #059669;
+  /* Deep Vibrant Green */
+  --brand-light-bg: #ecfdf5;
+  /* Context element/active surface fill */
+  --tab-border-active: #df6948;
+  /* Dynamic active step tab path highlight */
+
+  /* Neutral Typography & Surface Canvases */
+  --bg-main: #f8fafc;
+  /* Slate 50 Soft Gray Canvas */
+  --bg-card: #ffffff;
+  --text-main: #0f172a;
+  /* Slate 900 High contrast anchor text */
+  --text-dark: #2a3547;
+  /* Structural header text */
+  --text-muted: #64748b;
+  /* Slate 500 Sub-context text labels */
+  --muted-text: #8898a9;
+  /* Secondary disabled contextual notes */
+
+  /* Component Structural Variables */
+  --border-light: #e2e8f0;
+  /* Slate 200 clean bounding lines */
+  --border-light-gray: #e4e6ef;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+  --sidebar-width: 260px;
+  --transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Modern Depth Elevations */
+  --card-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+  --card-shadow-lg: 0 20px 25px -5px rgb(0 0 0 / 0.05), 0 8px 10px -6px rgb(0 0 0 / 0.05);
+}
+
+/* ==========================================================================
+   2. GLOBAL BASE RULES & ELEMENT RESET
+   ========================================================================= */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--bg-main);
+  font-family: "Inter", "Plus Jakarta Sans", sans-serif;
+  color: var(--text-main);
+  font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  letter-spacing: -0.01em;
+  line-height: 1.5;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   3. MASTER CANVAS & DASHBOARD SYSTEM GRID
+   ========================================================================= */
+.dash-wrapper {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Desktop Navigation Panel Architecture */
+.sidebar {
+  background: var(--bg-card);
+  width: var(--sidebar-width);
+  min-width: var(--sidebar-width);
+  flex-shrink: 0;
+  border-right: 1px solid var(--border-light);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: var(--transition);
+}
+
+/* Primary Workspace Canvas */
+.main-content {
+  flex-grow: 1;
+  margin-left: var(--sidebar-width);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  min-width: 0;
+  /* Prevents nested flex containers from breaking parent boundaries */
+  transition: var(--transition);
+}
+
+/* Global Upper Navigation Header Utility */
+.navbar {
+  height: 80px;
+  background: var(--bg-card);
+  border-bottom: 1px solid var(--border-light);
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* ==========================================================================
+   4. SIDEBAR INTERNAL NAVIGATION COMPONENTS
+   ========================================================================= */
+.logo-wrapper {
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.logo-wrapper img {
+  max-width: 180px;
+  width: 100%;
+  height: auto;
+}
+
+.profile-card {
+  padding: 16px;
+  background: linear-gradient(135deg, #f0fdf4 0%, #e6f4ea 100%);
+  margin: 20px;
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(16, 185, 129, 0.1);
+  align-items: center;
+  gap: 12px;
+}
+
+.profile-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #ffffff;
+  box-shadow: var(--card-shadow);
+  flex-shrink: 0;
+}
+
+/* Navigation Links Controls */
+.nav-link-custom {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 24px;
+  margin: 2px 20px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.9rem;
+  border-radius: var(--radius-sm);
+  transition: var(--transition);
+}
+
+.nav-link-custom i {
+  font-size: 1.1rem;
+}
+
+.nav-link-custom:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+}
+
+.nav-link-custom.active {
+  background: var(--brand-primary);
+  color: #ffffff;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(15, 76, 58, 0.15);
+}
+
+.nav-link-logout {
+  background-color: #f8f9fa;
+  color: #dc3545;
+  border: 1px solid var(--border-light);
+  margin-top: auto;
+  margin-bottom: 24px;
+}
+
+.nav-link-logout:hover {
+  background: #fff5f5;
+  color: #bb2d3b;
+}
+
+/* ==========================================================================
+   5. NAVBAR GLOBAL SEARCH & CONTEXT CONTROLS
+   ========================================================================= */
+.search-container {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+}
+
+.search-container i {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--text-muted);
+}
+
+.search-input {
+  width: 100%;
+  background: #f1f5f9;
+  border: 1px solid transparent;
+  padding: 0 16px 0 44px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  height: 40px;
+  transition: var(--transition);
+}
+
+.search-input:focus {
+  background: #ffffff;
+  border-color: var(--brand-accent);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.1);
+  outline: none;
+}
+
+.nav-icon-btn {
+  height: 42px;
+  width: 42px;
+  color: var(--text-muted);
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+  border: none;
+  background: transparent;
+}
+
+.nav-icon-btn:hover {
+  background: #f1f5f9;
+  color: var(--text-main);
+}
+
+/* ==========================================================================
+   6. INNER APP FORM ARCHITECTURE & STEP RUNTIMES
+   ========================================================================= */
+.bg-light-gray-canvas {
+  background-color: var(--bg-main) !important;
+  min-height: calc(100vh - 80px);
+  padding: 24px;
+}
+
+.form-container {
+  /* max-width: 960px; */
+  margin: 0 auto;
+  width: 100%;
+}
+
+.form-card {
+  background: #ffffff;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--card-shadow-lg);
+  border: 1px solid var(--border-light);
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+
+/* Step Bar Navigation Element Layout */
+.step-tabs-container {
+  background-color: #ffffff;
+  border-bottom: 1px solid var(--border-light);
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.step-tabs-container::-webkit-scrollbar {
+  display: none;
+}
+
+.step-tabs {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  min-width: max-content;
+}
+
+.step-item {
+  padding: 22px 28px;
+  color: var(--text-muted);
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  /* Crucial change: pushes the content to the left and tick to the right */
+  justify-content: space-between;
+  gap: 20px;
+  /* Space between the text area and the right side tick */
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: var(--transition);
+  text-decoration: none;
+  font-size: 13.5px;
+}
+
+/* Keeps the left icon and the text close together */
+.step-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-item:hover {
+  color: var(--text-main);
+  background-color: #fafafa;
+}
+
+.step-item.active {
+  color: var(--brand-accent-hover);
+  border-bottom: 3px solid var(--brand-accent);
+  font-weight: 600;
+  background-color: var(--brand-light-bg);
+}
+
+.step-item.completed {
+  color: var(--text-main);
+}
+
+/* Styling specifically for the right-side tick icon */
+.step-item .tick-icon {
+  font-size: 14px;
+  margin-left: auto;
+  /* Ensures it stays pinned to the right side */
+}
+
+/* Inner Structural Segment Elements */
+.section-card {
+  margin: 30px;
+  border-radius: 10px;
+  border: 1px dashed #cecece;
+  background: #ffffff;
+  /* padding: 20px; */
+}
+
+.section-card-pad {
+    padding: 0px 20px 30px 20px;
+}
+
+.section-title {
+  font-size: 16px;
+  color: var(--brand-accent);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  letter-spacing: -0.02em;
+  background-color: aliceblue;
+  padding: 10px 20px;
+  border-radius: 10px;
+}
+
+.section-title i {
+  color: var(--brand-accent);
+  height: 18px;
+  width: 20px;
+}
+
+.subsection-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-main);
+  margin-bottom: 20px;
+}
+
+
+/* Multi-step layout mechanics */
+.form-step-content {
+  display: none;
+}
+
+.form-step-content.active-step {
+  display: block;
+}
+
+/* Ensure navigation item anchors can handle click rules uniformly */
+.step-tabs li a {
+  cursor: pointer;
+}
+
+/* ==========================================================================
+   7. INPUT SYSTEMS & CONTROL ELEMENTS
+   ========================================================================= */
+.form-label {
+  display: block;
+  font-weight: 500;
+  font-size: 13px;
+  color: #475569;
+  margin-bottom: 8px;
+}
+
+.required::after {
+  content: " *";
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.form-control,
+.form-select {
+  width: 100%;
+  font-size: 13.5px;
+  border-radius: 10px;
+  border: 1px solid #cbd5e1;
+  padding: 11px 16px;
+  color: var(--text-main);
+  background-color: #ffffff;
+  transition: var(--transition);
+}
+
+.form-control::placeholder {
+  color: #94a3b8;
+}
+
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--brand-accent);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+  outline: none;
+}
+
+.form-control:focus,
+.form-select:active {
+  border-color: var(--brand-accent);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+  outline: none;
+}
+
+/* Form Readonly & Disabled States */
+.form-control:disabled,
+.form-control[readonly],
+.form-select:disabled {
+  background-color: #f8fafc !important;
+  border-color: #e2e8f0 !important;
+  color: #94a3b8;
+  cursor: not-allowed;
+}
+
+.input-filled-success {
+  border-color: var(--brand-accent) !important;
+  background-color: var(--brand-light-bg) !important;
+}
+
+/* Modern Phone Input styling */
+.phone-input-group {
+  display: flex;
+  border: 1px solid #cbd5e1;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #ffffff;
+  transition: var(--transition);
+}
+
+.phone-input-group:focus-within {
+  border-color: var(--brand-accent);
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+}
+
+.phone-prefix {
+  background: #f8fafc;
+  border-right: 1px solid var(--border-light);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  gap: 8px;
+  font-size: 13px;
+  color: #475569;
+  font-weight: 500;
+  user-select: none;
+}
+
+.phone-prefix img {
+  width: 18px;
+  height: auto;
+}
+
+.phone-input-group .form-control {
+  border: none !important;
+  border-radius: 0;
+  box-shadow: none !important;
+}
+
+/* Checkbox Alignment */
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-left: 0;
+}
+
+.form-check-input {
+  width: 18px;
+  height: 18px;
+  margin-top: 0;
+  cursor: pointer;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1;
+  transition: var(--transition);
+}
+
+.form-check-input:checked {
+  background-color: var(--brand-accent);
+  border-color: var(--brand-accent);
+}
+
+.form-check-input:focus {
+  box-shadow: 0 0 0 4px rgba(16, 185, 129, 0.12);
+}
+
+.form-check-label {
+  font-size: 13px;
+  color: var(--text-muted);
+  cursor: pointer;
+  user-select: none;
+  font-weight: 500;
+}
+
+/* ==========================================================================
+   8. FOOTER PANELS & ACTION CONTROL ACTIONS
+   ========================================================================= */
+.form-footer {
+  border-top: 1px solid var(--border-light);
+  padding-top: 24px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+  background-color: #ffffff;
+}
+
+.btn-cancel {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 32px;
+  border-radius: 10px;
+  transition: var(--transition);
+  cursor: pointer;
+}
+
+.btn-cancel:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: var(--text-main);
+}
+
+.btn-save-next {
+  background: var(--brand-accent);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 11px 32px;
+  border: none;
+  border-radius: 10px;
+  transition: var(--transition);
+  box-shadow: 0 4px 6px -1px rgba(16, 185, 129, 0.15);
+  cursor: pointer;
+}
+
+.btn-save-next:hover {
+  background: var(--brand-accent-hover);
+  box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2);
+}
+
+.mr-5 {
+  padding: 5px 0px 0px 0px;
+}
+
+/* ==========================================================================
+   9. COMPREHENSIVE RESPONSIVE BREAKPOINTS (MEDIA QUERIES)
+   ========================================================================= */
+
+/* --- DESKTOP SCALE-DOWN & LARGE TABLETS (Up to 1200px) --- */
+@media (max-width: 1200px) {
+  :root {
+    --sidebar-width: 240px;
+  }
+
+  .profile-card {
+    margin: 16px;
+    padding: 12px;
+  }
+
+  .nav-link-custom {
+    margin: 2px 12px;
+    padding: 10px 16px;
+  }
+
+  .nav-link-logout {
+    margin-left: 12px;
+    margin-right: 12px;
+  }
+}
+
+/* --- PORTRAIT TABLETS & MID-RANGE BREAKPOINTS (Up to 991.98px) --- */
+@media (max-width: 991.98px) {
+  .sidebar {
+    transform: translateX(-100%);
+    /* Hides sidebar off-screen by default */
+    width: 260px;
+  }
+
+  /* Reveal sidebar class helper to toggle via JS later if needed */
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .main-content {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .navbar {
+    height: 70px;
+    padding: 0 20px;
+  }
+
+  .bg-light-gray-canvas {
+    min-height: calc(100vh - 70px);
+    padding: 20px;
+  }
+
+  .form-container {
+    max-width: 100%;
+  }
+}
+
+/* --- PHABLETS & SMALL HANDHELD DEVICES (Up to 768px) --- */
+@media (max-width: 768px) {
+  .step-item {
+    padding: 16px 20px;
+    font-size: 13px;
+  }
+
+  .section-card {
+    padding: 20px 16px;
+  }
+
+  .section-title {
+    font-size: 15px;
+    margin-bottom: 18px;
+  }
+
+  .navbar {
+    padding: 0 16px;
+  }
+
+  .form-footer {
+    padding: 24px 24px 0px 24px;
+  }
+}
+
+/* --- MOBILE SMART TERMINALS (Down to 480px) --- */
+@media (max-width: 480px) {
+  .search-container {
+    max-width: 160px;
+  }
+
+  .search-input {
+    font-size: 0.8rem;
+    padding-left: 36px;
+    height: 36px;
+  }
+
+  .search-container i {
+    left: 12px;
+  }
+
+  .nav-icon-btn {
+    height: 36px;
+    width: 36px;
+  }
+
+  .step-item {
+    padding: 14px 16px;
+  }
+
+  /* Form layouts stack cleanly, form footer stacks controls vertically */
+  .form-footer {
+    padding: 16px;
+    gap: 12px;
+    flex-direction: column-reverse;
+    /* Places main action button (Save/Next) on top */
+  }
+
+  .btn-cancel,
+  .btn-save-next {
+    width: 100%;
+    text-align: center;
+    padding: 12px 20px;
+  }
+}
+
+/* Real-time Validation Color Enhancements */
+.is-valid {
+  border-color: #198754 !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8'%3e%3cpath fill='%23198754' d='M2.3 6.73L.6 4.53c-.4-1.04.46-1.4 1.1-.8l1.1 1.4 3.4-3.8c.6-.63 1.6-.27 1.2.7l-4 4.6c-.43.5-.8.4-1.1.1z'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.is-invalid {
+  border-color: #dc3545 !important;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right calc(0.375em + 0.1875rem) center;
+  background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+}
+
+.valid-feedback {
+  color: #198754;
+  font-size: 12px;
+  margin-top: 4px;
+}
+
+.invalid-feedback {
+  color: #dc3545;
+  font-size: 12px;
+  margin-top: 4px;
+}

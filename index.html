@@ -23,7 +23,7 @@
         z-index: 1010;
       }
 
-      /* 2. Configure the form card layout to have a permanently visible vertical scroll bar track */
+      /* 2. Configure the form card layout to have a Presently visible vertical scroll bar track */
       .form-card {
         max-height: calc(100vh - 170px); /* Restricts card growth beyond remaining desktop height */
         overflow-y: scroll; /* Changed to scroll to always force UI rendering visibility */
@@ -306,11 +306,11 @@
                         <i class="fa-solid fa-map-location-dot"></i> Address Details
                       </div>
                       <div class="row g-5">
-                        <!-- Permanent Address Side -->
+                        <!-- Present Address Side -->
                         <div class="col-12 col-lg-6 border-end-lg">
                           <div
                             class="subsection-title text-success fw-semibold border-bottom pb-2 mr-5">
-                            <i class="fa-solid fa-house-chimney me-2"></i>Permanent Address
+                            <i class="fa-solid fa-house-chimney me-2"></i>Present Address
                           </div>
                           <div class="row g-3">
                             <div class="col-12">
@@ -347,25 +347,25 @@
                                 id="permPostal" maxlength="4">
                             </div>
                             <div class="col-6">
-                              <label class="form-label fw-medium">Post Office Name</label>
+                              <label class="form-label fw-medium">Post Office</label>
                               <input type="text" class="form-control perm-field"
                                 id="permPostOffice">
                             </div>
                           </div>
                         </div>
-                        <!-- Present Address Side -->
+                        <!-- Permanent Address Side -->
                         <div class="col-12 col-lg-6">
                           <div
                             class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
                             <div class="subsection-title text-success mb-0 fw-semibold ">
-                              <i class="fa-solid fa-location-crosshairs me-2"></i>Present
+                              <i class="fa-solid fa-location-crosshairs me-2"></i>Permanent
                               Address
                             </div>
                             <div class="form-check">
                               <input class="form-check-input" type="checkbox"
-                                id="sameAsPermanent">
+                                id="sameAsPresent">
                               <label class="form-check-label small fw-medium"
-                                for="sameAsPermanent">Same as Permanent</label>
+                                for="sameAsPresent">Same as Present</label>
                             </div>
                           </div>
                           <div class="row g-3">
@@ -403,7 +403,7 @@
                                 id="presPostal" maxlength="4">
                             </div>
                             <div class="col-6">
-                              <label class="form-label fw-medium">Post Office Name</label>
+                              <label class="form-label fw-medium">Post Office</label>
                               <input type="text" class="form-control pres-field"
                                 id="presPostOffice">
                             </div>
@@ -446,7 +446,7 @@
           const form = document.getElementById('profileForm');
           const maritalStatusSelect = document.getElementById('maritalStatus');
           const spouseNameInput = document.getElementById('spouseName');
-          const sameAsPermanentCheckbox = document.getElementById('sameAsPermanent');
+          const sameAsPresentCheckbox = document.getElementById('sameAsPresent');
           const nidInput = document.getElementById('nidNumber');
           const emergencyContactInput = document.getElementById('emergencyContact');
       
@@ -463,8 +463,8 @@
           });
       
           // 2. Address Replication Pipeline
-          function syncPresentAddressValues() {
-              if (sameAsPermanentCheckbox && sameAsPermanentCheckbox.checked) {
+          function syncPermanentAddressValues() {
+              if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) {
                   const permDistrict = document.getElementById('permDistrict');
                   const permThana = document.getElementById('permThana');
                   const permHouse = document.getElementById('permHouse');
@@ -494,16 +494,16 @@
               }
           }
       
-          if (sameAsPermanentCheckbox) {
-              sameAsPermanentCheckbox.addEventListener('change', syncPresentAddressValues);
+          if (sameAsPresentCheckbox) {
+              sameAsPresentCheckbox.addEventListener('change', syncPermanentAddressValues);
           }
       
           document.querySelectorAll('.perm-field').forEach(element => {
               element.addEventListener('input', () => {
-                  if (sameAsPermanentCheckbox && sameAsPermanentCheckbox.checked) syncPresentAddressValues();
+                  if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) syncPermanentAddressValues();
               });
               element.addEventListener('change', () => {
-                  if (sameAsPermanentCheckbox && sameAsPermanentCheckbox.checked) syncPresentAddressValues();
+                  if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) syncPermanentAddressValues();
               });
           });
       
@@ -539,7 +539,7 @@
                   emergencyContactInput.classList.remove('is-invalid');
               }
       
-              if (sameAsPermanentCheckbox && sameAsPermanentCheckbox.checked) {
+              if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) {
                   document.querySelectorAll('.pres-field').forEach(field => field.disabled = false);
               }
       
@@ -551,11 +551,11 @@
       
               if (isFormValid) {
                   console.log("Validation Successful. Dispatching cleanly serialized payload structure upstream.");
-                  if (sameAsPermanentCheckbox && sameAsPermanentCheckbox.checked) {
+                  if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) {
                       document.querySelectorAll('.pres-field').forEach(field => field.disabled = true);
                   }
               } else {
-                  if (sameAsPermanentCheckbox && sameAsPermanentCheckbox.checked) {
+                  if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) {
                       document.querySelectorAll('.pres-field').forEach(field => field.disabled = true);
                   }
                   event.stopPropagation();
