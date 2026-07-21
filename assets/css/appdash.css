@@ -109,8 +109,6 @@ body {
 .navbar {
   height: 80px;
   background: var(--bg-card);
-  border-bottom: 1px solid var(--border-light);
-  padding: 0 24px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -266,7 +264,6 @@ body {
   width: 100%;
   position: -webkit-sticky;
   position: sticky;
-  top: 57px;
   z-index: 1010;
   margin: 0 auto;
 }
@@ -276,13 +273,12 @@ body {
   /* Restricts card growth beyond remaining desktop height */
   overflow-y: scroll !important;
   /* Changed to scroll to always force UI rendering visibility */
-  box-shadow: 1px 0px 3px 0px rgba(58, 59, 69, 0.15);
   background: #ffffff;
   border-radius: var(--radius-xl);
   box-shadow: var(--card-shadow-lg);
   border: 1px solid var(--border-light);
   overflow: hidden;
-  /* margin-bottom: 24px; */
+  /* margin-bottom: 20px; */
 }
 
 /* Step Bar Navigation Element Layout */
@@ -324,7 +320,7 @@ body {
   border-bottom: 3px solid transparent;
   transition: var(--transition);
   text-decoration: none;
-  font-size: 13.5px;
+  font-size: 14px;
 }
 
 /* Keeps the left icon and the text close together */
