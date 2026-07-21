@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Basic Information | Pubali Bank PLC</title>
+    <!-- Standard PNG Icon -->
+    <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css" integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/appdash.css" />
+    
+    <style>
+      /* 1. Make the form container frame sticky below the main top navbar */
+      .form-container {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 57px; 
+        z-index: 1010;
+      }
+
+      /* 2. Configure the form card layout to have a Presently visible vertical scroll bar track */
+      .form-card {
+        max-height: calc(100vh - 170px); /* Restricts card growth beyond remaining desktop height */
+        overflow-y: scroll; /* Changed to scroll to always force UI rendering visibility */
+        background: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+      }
+
+      /* 3. Keep step tracking header locked inside the card window frame while scrolling down input items */
+      .step-tabs-container {
+        position: -webkit-sticky;
+        position: sticky;
+        top: 0;
+        z-index: 1020;
+        background-color: #ffffff;
+        border-bottom: 1px solid #e3e6f0;
+        box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Main Flex wrapper ensures clean column rendering instead of standard bootstrap row behavior -->
+    <div class="dash-wrapper">
+      <!-- Left Sidebar Viewport Container -->
+      <div class="sidebar d-none d-lg-flex flex-column justify-content-between">
+        <div>
+          <div class="logo-wrapper">
+            <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
+          </div>
+          <div class="profile-card text-center">
+            <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
+            <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">Md. Fahim</h6>
+            <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">ID : 1284647</span>
+          </div>
+          <div class="d-flex flex-column">
+            <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+            <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+            <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+            <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+            <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job Alerts</a>
+            <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+          </div>
+        </div>
+        <!-- Desktop Logout Row Link Anchor Block -->
+        <div>
+          <a class="nav-link-custom nav-link-logout" href="#">
+            <i class="bi bi-box-arrow-left"></i> Logout
+          </a>
+        </div>
+      </div>
+      <!-- Mobile Sidebar Menu Component -->
+      <div class="offcanvas offcanvas-start w-100" id="mobileSidebar" tabindex="-1" style="max-width: var(--sidebar-width);">
+        <div class="d-flex flex-column justify-content-between h-100">
+          <div>
+            <div class="offcanvas-header border-bottom">
+              <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <div class="offcanvas-body p-0">
+              <div class="profile-card text-center my-3 mx-3">
+                <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
+                <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">Md. Fahim</h6>
+                <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">ID : 1284647</span>
+              </div>
+              <div class="d-flex flex-column">
+                <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+                <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+                <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+                <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job Alerts</a>
+                <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+              </div>
+            </div>
+          </div>
+          <!-- Mobile Drawer Panel Logout Button Container -->
+          <div class="px-0">
+            <a class="nav-link-custom nav-link-logout" href="#">
+              <i class="bi bi-box-arrow-left"></i> Logout
+            </a>
+          </div>
+        </div>
+      </div>
+      <!-- Right Side Main Content Viewport -->
+      <div class="main-content d-flex flex-column">
+        <!-- Nav Bar Header Component -->
+        <nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
+          <div class="d-flex align-items-center w-100 justify-content-between">
+            <div class="d-flex align-items-center gap-2">
+              <button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                <i class="bi bi-list fs-4"></i>
+              </button>
+              <div class="search-container d-none d-sm-block position-relative">
+                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+                <input class="form-control search-input ps-5" type="search" placeholder="Search parameters..." id="dashboardSearch" style="border-radius: 20px; min-width: 260px" />
+              </div>
+            </div>
+            <div class="d-flex align-items-center gap-3">
+              <div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
+                <i class="bi bi-bell fs-5"></i>
+                <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+              </div>
+              <div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
+              <div class="d-flex align-items-center gap-2">
+                <img src="assets/images/fahimsm.png" width="36" height="36" class="rounded-circle border profile-pic-sync" alt="Profile Layout" />
+                <span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md. Fahim</span>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- Middle Inner Form/Content Canvas Placeholder Area -->
+        <div class="overflow-hidden">
+          <div class="container form-container">
+            <div class="form-card">
+              <!-- Step Tabs Navigation -->
+              <div class="step-tabs-container">
+                <ul class="step-tabs">
+                  <li>
+                    <a href="#" class="step-item completed">
+                      <span class="step-content"><i class="fa-solid fa-file-lines"></i> CV & Documents</span>
+                      <i class="fa-solid fa-circle-check text-success tick-icon"></i>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="step-item active">
+                      <span class="step-content"><i class="fa-solid fa-circle-user"></i> Basic Information</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="step-item">
+                      <span class="step-content"><i class="fa-solid fa-graduation-cap"></i> Education</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="step-item">
+                      <span class="step-content"><i class="fa-solid fa-briefcase"></i> Work Experience</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="step-item">
+                      <span class="step-content"><i class="fa-solid fa-award"></i> Certification</span>
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#" class="step-item">
+                      <span class="step-content"><i class="fa-solid fa-users"></i> References</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- Main Form Body Content -->
+              <div class="p-4 form-scroll">
+                <form id="profileForm" novalidate>
+                  <!-- STEP 2: Basic Information (Active Form) -->
+                  <div class="form-step-content active-step" id="step-basic">
+                    <div class="section-card mb-1">
+                      <div class="section-title mb-3 fw-bold border-bottom pb-2">
+                        <i class="fa-solid fa-user-gear"></i> Personal Information
+                      </div>
+                      <div class="row g-4">
+                        <div class="col-12 col-md-6">
+                          <label class="form-label required fw-medium">Applicant Name</label>
+                          <input type="text" class="form-control bg-light fw-semibold" value="Md. Fahim" readonly disabled>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label required fw-medium">Mobile Number</label>
+                          <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0">
+                              <img src="https://flagcdn.com/bd.svg" alt="BD Flag" width="20" class="me-2">
+                              <span class="small text-secondary bg-light fw-semibold">+880</span>
+                            </span>
+                            <input type="tel" class="form-control bg-light border-start-0 fw-semibold" value="17145817845" readonly disabled>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                              <label class="form-label required fw-medium">Date of Birth</label>
+                              <input type="text" class="form-control bg-light fw-semibold" value="10 / 12 / 1971" readonly disabled>
+                              <div class="input-note small mt-1 text-muted">
+                                <i class="fa-solid fa-circle-info text-primary"></i> Age as on: 54 years, 2 months, 3 days
+                              </div>
+                            </div>
+                            <div class="col-12 col-md-6">
+                              <label class="form-label required fw-medium">Gender</label>
+                              <select class="form-select" id="gender" required>
+                                <option value="" selected disabled>Select Gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                              </select>
+                              <div class="invalid-feedback">Gender selection is required.</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <div class="row g-3">
+                            <div class="col-12 col-md-6">
+                              <label class="form-label required fw-medium">Nationality</label>
+                              <select class="form-select" id="nationality" required>
+                                <option value="Bangladeshi" selected>Bangladeshi</option>
+                                <option value="Other">Other</option>
+                              </select>
+                            </div>
+                            <div class="col-12 col-md-6">
+                              <label class="form-label required fw-medium">NID Number</label>
+                              <input type="text" id="nidNumber" class="form-control" placeholder="Enter NID" required maxlength="17">
+                              <div class="invalid-feedback">Please enter a valid NID (10, 13, or 17 digits).</div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label required fw-medium">Email Address</label>
+                          <input type="email" id="emailAddress" class="form-control" placeholder="Email Address" required>
+                          <div class="invalid-feedback">Please enter a valid email address.</div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label required fw-medium">Emergency Contact Number</label>
+                          <div class="input-group has-validation">
+                            <span class="input-group-text bg-light border-end-0">
+                              <img src="https://flagcdn.com/bd.svg" alt="BD Flag" width="20" class="me-2">
+                              <span class="small text-secondary fw-semibold">+880</span>
+                            </span>
+                            <input type="tel" id="emergencyContact" class="form-control border-start-0" placeholder="e.g. 01712345678" required maxlength="11">
+                            <div class="invalid-feedback">Enter a valid 11-digit Bangladeshi mobile number.</div>
+                          </div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label required fw-medium">Marital Status</label>
+                          <select class="form-select" id="maritalStatus">
+                            <option value="" selected disabled>Select Status</option>
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="Window">Window</option>
+                            <option value="Divorced">Divorced</option>
+                          </select>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label fw-medium">Spouse Name</label>
+                          <input type="text" id="spouseName" class="form-control" placeholder="Spouse's full name" required>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label required fw-medium">Father's Name</label>
+                          <input type="text" id="fatherName" class="form-control" placeholder="Father's full name" required>
+                          <div class="invalid-feedback">Father's name is required.</div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label required fw-medium">Mother's Name</label>
+                          <input type="text" id="motherName" class="form-control" placeholder="Mother's full name" required>
+                          <div class="invalid-feedback">Mother's name is required.</div>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label required fw-medium">Religion</label>
+                          <select class="form-select" id="religion">
+                            <option value="" selected disabled>Select Religion</option>
+                            <option value="Islam">Islam</option>
+                            <option value="Hinduism">Hinduism</option>
+                            <option value="Buddhism">Buddhism</option>
+                            <option value="Christianity">Christianity</option>
+                          </select>
+                        </div>
+                        <div class="col-12 col-md-6">
+                          <label class="form-label required fw-medium">Blood Group</label>
+                          <select class="form-select" id="bloodGroup">
+                            <option value="" selected disabled>Select Blood Group</option>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- ADDRESS INFORMATION SECTION -->
+                                         <div class="section-card mb-4">
+                      <div class="section-title mb-3 fw-bold border-bottom pb-2">
+                        <i class="fa-solid fa-map-location-dot"></i> Address Details
+                      </div>
+                      <div class="row g-5">
+                        <!-- Present Address Side -->
+                        <div class="col-12 col-lg-6 border-end-lg">
+                          <div
+                            class="subsection-title text-success fw-semibold border-bottom pb-2 mr-5">
+                            <i class="fa-solid fa-house-chimney me-2"></i>Present Address
+                          </div>
+                          <div class="row g-3">
+                            <div class="col-12">
+                              <label
+                                class="form-label required fw-medium">Area/Village/House/Road</label>
+                              <input type="text" class="form-control perm-field"
+                                id="permHouse" required>
+                              <div class="invalid-feedback">Required.</div>
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label required fw-medium">District</label>
+                              <select class="form-select perm-field" id="permDistrict"
+                                required>
+                                <option value="" selected disabled>Select District</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Sylhet">Sylhet</option>
+                              </select>
+                              <div class="invalid-feedback">Required.</div>
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label required fw-medium">Thana</label>
+                              <select class="form-select perm-field" id="permThana" required>
+                                <option value="" selected disabled>Select Thana</option>
+                                <option value="Gulshan">Gulshan</option>
+                                <option value="Banani">Banani</option>
+                                <option value="Dhanmondi">Dhanmondi</option>
+                              </select>
+                              <div class="invalid-feedback">Required.</div>
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label fw-medium">Postal Code</label>
+                              <input type="text" class="form-control perm-field"
+                                id="permPostal" maxlength="4">
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label fw-medium">Post Office</label>
+                              <input type="text" class="form-control perm-field"
+                                id="permPostOffice">
+                            </div>
+                          </div>
+                        </div>
+                        <!-- Permanent Address Side -->
+                        <div class="col-12 col-lg-6">
+                          <div
+                            class="d-flex justify-content-between align-items-center mb-3 border-bottom pb-2">
+                            <div class="subsection-title text-success mb-0 fw-semibold ">
+                              <i class="fa-solid fa-location-crosshairs me-2"></i>Permanent
+                              Address
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox"
+                                id="sameAsPresent">
+                              <label class="form-check-label small fw-medium"
+                                for="sameAsPresent">Same as Present</label>
+                            </div>
+                          </div>
+                          <div class="row g-3">
+                            <div class="col-12">
+                              <label
+                                class="form-label required fw-medium">Area/Village/House/Road</label>
+                              <input type="text" class="form-control pres-field"
+                                id="presHouse" required>
+                              <div class="invalid-feedback">Required.</div>
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label required fw-medium">District</label>
+                              <select class="form-select pres-field" id="presDistrict"
+                                required>
+                                <option value="" selected disabled>Select District</option>
+                                <option value="Dhaka">Dhaka</option>
+                                <option value="Chittagong">Chittagong</option>
+                                <option value="Sylhet">Sylhet</option>
+                              </select>
+                              <div class="invalid-feedback">Required.</div>
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label required fw-medium">Thana</label>
+                              <select class="form-select pres-field" id="presThana" required>
+                                <option value="" selected disabled>Select Thana</option>
+                                <option value="Gulshan">Gulshan</option>
+                                <option value="Banani">Banani</option>
+                                <option value="Dhanmondi">Dhanmondi</option>
+                              </select>
+                              <div class="invalid-feedback">Required.</div>
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label fw-medium">Postal Code</label>
+                              <input type="text" class="form-control pres-field"
+                                id="presPostal" maxlength="4">
+                            </div>
+                            <div class="col-6">
+                              <label class="form-label fw-medium">Post Office</label>
+                              <input type="text" class="form-control pres-field"
+                                id="presPostOffice">
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- FOOTER ACTIONS -->
+                  <div class="form-footer d-flex justify-content-between align-items-center mt-4">
+                    <button type="button" class="btn btn-cancel" id="prevBtn" disabled>Back</button>
+                    <button type="submit" class="btn btn-save-next" id="nextBtn">
+                      Save & Next <i class="fa-solid fa-arrow-right ms-1"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Baseline Dashboard Footer -->
+        <footer class="dash-footer bg-white border-top p-3 mt-auto">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+            <div>
+              <span class="small text-secondary">© 2026 <strong>Pubali Bank PLC.</strong> All rights reserved.</span>
+            </div>
+            <div class="d-flex gap-3">
+              <a href="#" class="text-decoration-none text-secondary small">Privacy Policy</a>
+              <a href="#" class="text-decoration-none text-secondary small">Terms of Service</a>
+              <a href="#" class="text-decoration-none text-secondary small">Support</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom Functional Validation Engine scripts -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+          const form = document.getElementById('profileForm');
+          const maritalStatusSelect = document.getElementById('maritalStatus');
+          const spouseNameInput = document.getElementById('spouseName');
+          const sameAsPresentCheckbox = document.getElementById('sameAsPresent');
+          const nidInput = document.getElementById('nidNumber');
+          const emergencyContactInput = document.getElementById('emergencyContact');
+      
+          // 1. Marital Status Control Logic
+          maritalStatusSelect.addEventListener('change', function () {
+              if (this.value === 'Married') {
+                  spouseNameInput.disabled = false;
+                  spouseNameInput.required = true;
+              } else {
+                  spouseNameInput.disabled = true;
+                  spouseNameInput.required = false;
+                  spouseNameInput.value = '';
+              }
+          });
+      
+          // 2. Address Replication Pipeline
+          function syncPermanentAddressValues() {
+              if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) {
+                  const permDistrict = document.getElementById('permDistrict');
+                  const permThana = document.getElementById('permThana');
+                  const permHouse = document.getElementById('permHouse');
+                  const permPostal = document.getElementById('permPostal');
+                  const permPostOffice = document.getElementById('permPostOffice');
+              
+                  const presDistrict = document.getElementById('presDistrict');
+                  const presThana = document.getElementById('presThana');
+                  const presHouse = document.getElementById('presHouse');
+                  const presPostal = document.getElementById('presPostal');
+                  const presPostOffice = document.getElementById('presPostOffice');
+
+                  if(permDistrict && presDistrict) presDistrict.value = permDistrict.value;
+                  if(permThana && presThana) presThana.value = permThana.value;
+                  if(permHouse && presHouse) presHouse.value = permHouse.value;
+                  if(permPostal && presPostal) presPostal.value = permPostal.value;
+                  if(permPostOffice && presPostOffice) presPostOffice.value = permPostOffice.value;
+      
+                  document.querySelectorAll('.pres-field').forEach(field => {
+                      field.disabled = true;
+                      field.classList.remove('is-invalid');
+                  });
+              } else {
+                  document.querySelectorAll('.pres-field').forEach(field => {
+                      field.disabled = false;
+                  });
+              }
+          }
+      
+          if (sameAsPresentCheckbox) {
+              sameAsPresentCheckbox.addEventListener('change', syncPermanentAddressValues);
+          }
+      
+          document.querySelectorAll('.perm-field').forEach(element => {
+              element.addEventListener('input', () => {
+                  if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) syncPermanentAddressValues();
+              });
+              element.addEventListener('change', () => {
+                  if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) syncPermanentAddressValues();
+              });
+          });
+      
+          // 3. Client Side Input Sanitizers (Digits Only)
+          const permPostal = document.getElementById('permPostal');
+          const presPostal = document.getElementById('presPostal');
+          [nidInput, emergencyContactInput, permPostal, presPostal].forEach(inputElement => {
+              if (inputElement) {
+                  inputElement.addEventListener('input', function () {
+                      this.value = this.value.replace(/\D/g, '');
+                  });
+              }
+          });
+      
+          // 4. Submit Validation Architecture 
+          form.addEventListener('submit', function (event) {
+              event.preventDefault();
+              let isFormValid = true;
+      
+              const nidLen = nidInput.value.length;
+              if (nidLen !== 10 && nidLen !== 13 && nidLen !== 17) {
+                  nidInput.classList.add('is-invalid');
+                  isFormValid = false;
+              } else {
+                  nidInput.classList.remove('is-invalid');
+              }
+      
+              const bdPhonePattern = /^(01)[3-9]\d{8}$/;
+              if (!bdPhonePattern.test(emergencyContactInput.value)) {
+                  emergencyContactInput.classList.add('is-invalid');
+                  isFormValid = false;
+              } else {
+                  emergencyContactInput.classList.remove('is-invalid');
+              }
+      
+              if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) {
+                  document.querySelectorAll('.pres-field').forEach(field => field.disabled = false);
+              }
+      
+              if (!form.checkValidity()) {
+                  isFormValid = false;
+              }
+      
+              form.classList.add('was-validated');
+      
+              if (isFormValid) {
+                  console.log("Validation Successful. Dispatching cleanly serialized payload structure upstream.");
+                  if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) {
+                      document.querySelectorAll('.pres-field').forEach(field => field.disabled = true);
+                  }
+              } else {
+                  if (sameAsPresentCheckbox && sameAsPresentCheckbox.checked) {
+                      document.querySelectorAll('.pres-field').forEach(field => field.disabled = true);
+                  }
+                  event.stopPropagation();
+              }
+          }, false);
+      });
+    </script>
+  </body>
+</html>

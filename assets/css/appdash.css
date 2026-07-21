@@ -90,9 +90,6 @@ body {
   bottom: 0;
   left: 0;
   z-index: 100;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   transition: var(--transition);
 }
 
@@ -263,24 +260,39 @@ body {
   padding: 24px;
 }
 
+/* 1. Make the form container frame sticky below the main top navbar */
 .form-container {
   /* max-width: 960px; */
-  margin: 0 auto;
   width: 100%;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 57px;
+  z-index: 1010;
+  margin: 0 auto;
 }
 
 .form-card {
+  max-height: calc(100vh - 155px);
+  /* Restricts card growth beyond remaining desktop height */
+  overflow-y: scroll !important;
+  /* Changed to scroll to always force UI rendering visibility */
+  box-shadow: 1px 0px 3px 0px rgba(58, 59, 69, 0.15);
   background: #ffffff;
   border-radius: var(--radius-xl);
   box-shadow: var(--card-shadow-lg);
   border: 1px solid var(--border-light);
   overflow: hidden;
-  margin-bottom: 24px;
+  /* margin-bottom: 24px; */
 }
 
 /* Step Bar Navigation Element Layout */
 .step-tabs-container {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1020;
   background-color: #ffffff;
+  box-shadow: 0 1.5px 2px 0 rgba(58, 59, 69, 0.15);
   border-bottom: 1px solid var(--border-light);
   overflow-x: auto;
   scrollbar-width: none;
@@ -347,8 +359,15 @@ body {
 
 /* Inner Structural Segment Elements */
 .section-card {
+  margin: 30px;
+  border-radius: 10px;
+  border: 1px dashed #cecece;
   background: #ffffff;
-  padding: 20px 40px;
+  /* padding: 20px; */
+}
+
+.section-card-pad {
+  padding: 0px 20px 30px 20px;
 }
 
 .section-title {
@@ -359,7 +378,7 @@ body {
   gap: 12px;
   letter-spacing: -0.02em;
   background-color: aliceblue;
-  padding: 8px 12px;
+  padding: 10px 20px;
   border-radius: 10px;
 }
 
@@ -532,7 +551,7 @@ body {
    ========================================================================= */
 .form-footer {
   border-top: 1px solid var(--border-light);
-  padding-top: 24px;
+  padding: 24px;
   display: flex;
   justify-content: flex-end;
   gap: 16px;
@@ -574,9 +593,15 @@ body {
   background: var(--brand-accent-hover);
   box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2);
 }
+
 .mr-5 {
-    padding: 5px 0px 0px 0px;
+  padding: 5px 0px 0px 0px;
 }
+
+.dash-footer {
+  padding: 9px 40px 9px 40px;
+}
+
 /* ==========================================================================
    9. COMPREHENSIVE RESPONSIVE BREAKPOINTS (MEDIA QUERIES)
    ========================================================================= */
@@ -644,7 +669,7 @@ body {
   }
 
   .section-card {
-    padding: 20px 16px;
+    /* padding: 20px 16px; */
   }
 
   .section-title {
@@ -655,9 +680,10 @@ body {
   .navbar {
     padding: 0 16px;
   }
+
   .form-footer {
     padding: 24px 24px 0px 24px;
-}
+  }
 }
 
 /* --- MOBILE SMART TERMINALS (Down to 480px) --- */

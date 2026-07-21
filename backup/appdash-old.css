@@ -347,15 +347,8 @@ body {
 
 /* Inner Structural Segment Elements */
 .section-card {
-  margin: 30px;
-  border-radius: 10px;
-  border: 1px dashed #cecece;
   background: #ffffff;
-  /* padding: 20px; */
-}
-
-.section-card-pad {
-    padding: 0px 20px 30px 20px;
+  padding: 20px 40px;
 }
 
 .section-title {
@@ -366,7 +359,7 @@ body {
   gap: 12px;
   letter-spacing: -0.02em;
   background-color: aliceblue;
-  padding: 10px 20px;
+  padding: 8px 12px;
   border-radius: 10px;
 }
 
@@ -581,11 +574,9 @@ body {
   background: var(--brand-accent-hover);
   box-shadow: 0 10px 15px -3px rgba(16, 185, 129, 0.2);
 }
-
 .mr-5 {
-  padding: 5px 0px 0px 0px;
+    padding: 5px 0px 0px 0px;
 }
-
 /* ==========================================================================
    9. COMPREHENSIVE RESPONSIVE BREAKPOINTS (MEDIA QUERIES)
    ========================================================================= */
@@ -664,10 +655,9 @@ body {
   .navbar {
     padding: 0 16px;
   }
-
   .form-footer {
     padding: 24px 24px 0px 24px;
-  }
+}
 }
 
 /* --- MOBILE SMART TERMINALS (Down to 480px) --- */
