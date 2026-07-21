@@ -1,323 +1,562 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Basic Information | Pubali Bank PLC</title>
+    <!-- =========================================================================
+      FAVICON & ICONOGRAPHY ASSETS
+      ========================================================================= -->
+    <!-- Standard PNG Application Favicon -->
+    <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32" />
+    <!-- =========================================================================
+      WEB FONTS & EXTERNAL STYLESHEETS
+      ========================================================================= -->
+    <!-- Google Fonts Preconnect and Import (Plus Jakarta Sans) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet" />
+    <!-- Vendor CSS Libraries -->
+    <!-- Bootstrap 5.3.3 Core Framework CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Bootstrap Icons Pack -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <!-- FontAwesome 7 Core Vector Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+      integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Application Custom Dashboard Stylesheet -->
+    <link rel="stylesheet" href="assets/css/appdash.css" />
+    <style>
+      /* Injected page-specific override styles can be configured here */
+      :root {
+  --pb-primary: #0a8a45;
+  --pb-primary-light: #f0fdf4;
+  --pb-border: #e2e8f0;
+  --pb-text-main: #1e293b;
+  --pb-text-muted: #64748b;
+  --pb-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+}
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Basic Information | Pubali Bank PLC</title>
+/* --- Modern Table Wrapper --- */
+.education-wrapper {
+  background: #ffffff;
+  border: 1px solid var(--pb-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--pb-shadow);
+  transition: all 0.3s ease;
+}
 
-  <!-- =========================================================================
-       FAVICON & ICONOGRAPHY ASSETS
-       ========================================================================= -->
-  <!-- Standard PNG Application Favicon -->
-  <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32" />
+/* Custom Horizontal Scrollbar for desktop/tablet */
+.education-wrapper .table-responsive::-webkit-scrollbar {
+  height: 6px;
+}
 
-  <!-- =========================================================================
-       WEB FONTS & EXTERNAL STYLESHEETS
-       ========================================================================= -->
-  <!-- Google Fonts Preconnect and Import (Plus Jakarta Sans) -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-    rel="stylesheet" />
+.education-wrapper .table-responsive::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
 
-  <!-- Vendor CSS Libraries -->
-  <!-- Bootstrap 5.3.3 Core Framework CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-  <!-- Bootstrap Icons Pack -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-  <!-- FontAwesome 7 Core Vector Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
-    integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+.education-wrapper .table-responsive::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
 
-  <!-- Application Custom Dashboard Stylesheet -->
-  <link rel="stylesheet" href="assets/css/appdash.css" />
+.education-wrapper .table-responsive::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
 
-  <style>
-    /* Injected page-specific override styles can be configured here */
-  </style>
-</head>
+/* --- Modern Table Base --- */
+.education-table {
+  margin: 0;
+  min-width: 1400px;
+  border-collapse: separate;
+  border-spacing: 0;
+  width: 100%;
+}
 
-<body>
-  <!-- =========================================================================
-       MAIN DASHBOARD ROOT WRAPPER
-       Flexible container managing full-height sidebar and main content layout
-       ========================================================================= -->
-  <div class="dash-wrapper">
+/* Header Styling */
+.education-table thead th {
+  background: var(--pb-primary-light);
+  color: var(--pb-primary);
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 16px 12px;
+  border-bottom: 2px solid #bbf7d0;
+  border-right: 1px solid rgba(226, 232, 240, 0.8);
+  line-height: 1.4;
+}
 
-    <!-- =======================================================================
-         PRIMARY SIDEBAR NAVIGATION (Desktop Viewport: >= lg)
-         Persistent left navigation column
-         ======================================================================= -->
-    <div class="sidebar d-none d-lg-flex flex-column justify-content-between">
-      <div>
-        <!-- Brand / Institution Logo Header -->
-        <div class="logo-wrapper">
-          <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
-        </div>
+.education-table thead th:last-child {
+  border-right: none;
+}
 
-        <!-- Authenticated User Profile Summary Card -->
-        <div class="profile-card text-center">
-          <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
-          <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">Md. Fahim</h6>
-          <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">
-            ID : 1284647
-          </span>
-        </div>
+/* Body Styling */
+.education-table tbody td {
+  padding: 12px 10px;
+  border-bottom: 1px solid var(--pb-border);
+  border-right: 1px solid var(--pb-border);
+  vertical-align: middle;
+  background-color: #ffffff;
+  transition: background-color 0.2s ease;
+}
 
-        <!-- Desktop Navigation Menu Items -->
-        <div class="d-flex flex-column">
-          <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
-          <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
-          <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
-          <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
-          <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job Alerts</a>
-          <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
-        </div>
-      </div>
+.education-table tbody td:last-child {
+  border-right: none;
+}
 
-      <!-- Desktop Sidebar Footer / Session Logout Anchor -->
-      <div>
-        <a class="nav-link-custom nav-link-logout" href="#">
-          <i class="bi bi-box-arrow-left"></i> Logout
-        </a>
-      </div>
-    </div>
-    <!-- END: PRIMARY SIDEBAR (DESKTOP) -->
+.education-table tbody tr:last-child td {
+  border-bottom: none;
+}
 
-    <!-- =======================================================================
-         MOBILE NAVIGATION DRAWER (Offcanvas Viewport: < lg)
-         Slide-in drawer menu for handheld and tablet screens
-         ======================================================================= -->
-    <div class="offcanvas offcanvas-start w-100" id="mobileSidebar" tabindex="-1"
-      style="max-width: var(--sidebar-width);">
-      <div class="d-flex flex-column justify-content-between h-100">
+/* Row Hover State */
+.education-table tbody tr {
+  transition: all 0.2s ease;
+}
+
+.education-table tbody tr:hover td {
+  background-color: #f8fafc;
+}
+
+/* Left Level Column Label */
+.level {
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  color: var(--pb-text-main);
+  padding-left: 16px !important;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.level::before {
+  content: "";
+  display: inline-block;
+  width: 4px;
+  height: 16px;
+  background-color: var(--pb-primary);
+  border-radius: 4px;
+}
+
+/* --- Form Controls inside Table --- */
+.education-table .form-control,
+.education-table .form-select {
+  height: 40px;
+  border-radius: 8px;
+  border: 1px solid var(--pb-border);
+  font-size: 13.5px;
+  color: var(--pb-text-main);
+  background-color: #ffffff;
+  padding: 6px 12px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.02);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.education-table .form-control:hover,
+.education-table .form-select:hover {
+  border-color: #cbd5e1;
+}
+
+.education-table .form-control:focus,
+.education-table .form-select:focus {
+  border-color: var(--pb-primary);
+  box-shadow: 0 0 0 3px rgba(10, 138, 69, 0.15);
+  outline: none;
+}
+
+.education-table .form-control::placeholder {
+  color: var(--pb-text-muted);
+  font-size: 13px;
+}
+
+.education-table .form-control:disabled {
+  background-color: #f1f5f9;
+  border-color: #e2e8f0;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+/* Column Specific Adjustments */
+.education-table td .year-input {
+  text-align: center;
+  font-weight: 500;
+}
+    </style>
+  </head>
+  <body>
+    <!-- =========================================================================
+      MAIN DASHBOARD ROOT WRAPPER
+      Flexible container managing full-height sidebar and main content layout
+      ========================================================================= -->
+    <div class="dash-wrapper">
+      <!-- =======================================================================
+        PRIMARY SIDEBAR NAVIGATION (Desktop Viewport: >= lg)
+        Persistent left navigation column
+        ======================================================================= -->
+      <div class="sidebar d-none d-lg-flex flex-column justify-content-between">
         <div>
-          <!-- Mobile Drawer Header with Close Action -->
-          <div class="offcanvas-header border-bottom">
+          <!-- Brand / Institution Logo Header -->
+          <div class="logo-wrapper">
             <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
           </div>
-
-          <!-- Mobile Drawer Content & Profile Overview -->
-          <div class="offcanvas-body p-0">
-            <div class="profile-card text-center my-3 mx-3">
-              <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
-              <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">Md. Fahim</h6>
-              <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">
-                ID : 1284647
-              </span>
-            </div>
-
-            <!-- Mobile Drawer Navigation Links -->
-            <div class="d-flex flex-column">
-              <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
-              <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
-              <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
-              <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
-              <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job Alerts</a>
-              <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
-            </div>
+          <!-- Authenticated User Profile Summary Card -->
+          <div class="profile-card text-center">
+            <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
+            <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">Md. Fahim</h6>
+            <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">
+            ID : 1284647
+            </span>
+          </div>
+          <!-- Desktop Navigation Menu Items -->
+          <div class="d-flex flex-column">
+            <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+            <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+            <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+            <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+            <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job Alerts</a>
+            <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
           </div>
         </div>
-
-        <!-- Mobile Drawer Session Logout Action -->
-        <div class="px-0">
+        <!-- Desktop Sidebar Footer / Session Logout Anchor -->
+        <div>
           <a class="nav-link-custom nav-link-logout" href="#">
-            <i class="bi bi-box-arrow-left"></i> Logout
+          <i class="bi bi-box-arrow-left"></i> Logout
           </a>
         </div>
       </div>
-    </div>
-    <!-- END: MOBILE NAVIGATION DRAWER -->
-
-    <!-- =======================================================================
-         MAIN CONTENT AREA CONTAINER
-         Right-hand region containing sticky header, dynamic wizard, and footer
-         ======================================================================= -->
-    <div class="main-content d-flex flex-column">
-
-      <!-- -------------------------------------------------------------------
-           TOP NAVBAR / UTILITY HEADER
-           Sticky header with mobile sidebar toggle, search bar, and alerts
-           ------------------------------------------------------------------- -->
-      <nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
-        <div class="d-flex align-items-center w-100 justify-content-between">
-
-          <!-- Left Utilities: Mobile Drawer Trigger & Global Search Input -->
-          <div class="d-flex align-items-center gap-2">
-            <!-- Mobile Navigation Toggle Button -->
-            <button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button"
-              data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
-              <i class="bi bi-list fs-4"></i>
-            </button>
-
-            <!-- Global Search Bar Field -->
-            <div class="search-container d-none d-sm-block position-relative">
-              <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
-              <input class="form-control search-input ps-5" type="search" placeholder="Search parameters..."
-                id="dashboardSearch" style="border-radius: 20px; min-width: 260px" />
+      <!-- END: PRIMARY SIDEBAR (DESKTOP) -->
+      <!-- =======================================================================
+        MOBILE NAVIGATION DRAWER (Offcanvas Viewport: < lg)
+        Slide-in drawer menu for handheld and tablet screens
+        ======================================================================= -->
+      <div class="offcanvas offcanvas-start w-100" id="mobileSidebar" tabindex="-1"
+        style="max-width: var(--sidebar-width);">
+        <div class="d-flex flex-column justify-content-between h-100">
+          <div>
+            <!-- Mobile Drawer Header with Close Action -->
+            <div class="offcanvas-header border-bottom">
+              <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
+              <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+            </div>
+            <!-- Mobile Drawer Content & Profile Overview -->
+            <div class="offcanvas-body p-0">
+              <div class="profile-card text-center my-3 mx-3">
+                <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
+                <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">Md. Fahim</h6>
+                <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">
+                ID : 1284647
+                </span>
+              </div>
+              <!-- Mobile Drawer Navigation Links -->
+              <div class="d-flex flex-column">
+                <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+                <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+                <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+                <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job Alerts</a>
+                <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+              </div>
             </div>
           </div>
-
-          <!-- Right Utilities: Notifications Badge & Compact Profile Avatar -->
-          <div class="d-flex align-items-center gap-3">
-            <!-- Notification Trigger Icon with Unread Status Indicator -->
-            <div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
-              <i class="bi bi-bell fs-5"></i>
-              <span
-                class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-            </div>
-
-            <!-- Vertical Separator Divider -->
-            <div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
-
-            <!-- Compact User Identity Badge -->
-            <div class="d-flex align-items-center gap-2">
-              <img src="assets/images/fahimsm.png" width="36" height="36" class="rounded-circle border profile-pic-sync"
-                alt="Profile Layout" />
-              <span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md. Fahim</span>
-            </div>
-          </div>
-
-        </div>
-      </nav>
-      <!-- END: TOP NAVBAR -->
-
-      <!-- -------------------------------------------------------------------
-           APPLICATION WIZARD FORM CANVAS
-           Main scrollable container housing the Multi-Step Profile Setup Form
-           ------------------------------------------------------------------- -->
-      <div class="overflow-hidden pt-3">
-        <div class="container form-container">
-          <div class="form-card">
-
-            <!-- STEP TAB NAVIGATION (Progress Tracker) -->
-            <div class="step-tabs-container">
-              <ul class="step-tabs">
-                <!-- Step 1: Complete state -->
-                <li>
-                  <a href="#" class="step-item completed">
-                    <span class="step-content"><i class="fa-solid fa-file-lines"></i> CV & Documents</span>
-                    <i class="fa-solid fa-circle-check text-success tick-icon"></i>
-                  </a>
-                </li>
-                <!-- Step 2: Active state (Current Page) -->
-                <li>
-                  <a href="#" class="step-item active">
-                    <span class="step-content"><i class="fa-solid fa-circle-user"></i> Basic Information</span>
-                  </a>
-                </li>
-                <!-- Step 3: Pending state -->
-                <li>
-                  <a href="#" class="step-item">
-                    <span class="step-content"><i class="fa-solid fa-graduation-cap"></i> Education</span>
-                  </a>
-                </li>
-                <!-- Step 4: Pending state -->
-                <li>
-                  <a href="#" class="step-item">
-                    <span class="step-content"><i class="fa-solid fa-briefcase"></i> Work Experience</span>
-                  </a>
-                </li>
-                <!-- Step 5: Pending state -->
-                <li>
-                  <a href="#" class="step-item">
-                    <span class="step-content"><i class="fa-solid fa-award"></i> Certification</span>
-                  </a>
-                </li>
-                <!-- Step 6: Pending state -->
-                <li>
-                  <a href="#" class="step-item">
-                    <span class="step-content"><i class="fa-solid fa-users"></i> References</span>
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- END: STEP TAB NAVIGATION -->
-
-            <!-- DYNAMIC FORM SCROLLABLE BODY -->
-            <div class="form-scroll">
-              <form id="profileForm" novalidate>
-
-                <!-- =========================================================
-                     STEP 2 CONTAINER: BASIC INFORMATION
-                     ========================================================= -->
-                <div class="form-step-content active-step" id="step-basic">
-
-                  <!-- -------------------------------------------------------
-                       SECTION 1: Head Line
-                       System pre-filled static data combined with edit fields
-                       ------------------------------------------------------- -->
-                  <div class="section-card mb-4">
-                    <div class="section-title mb-3 fw-bold border-bottom pb-2">
-                      <i class="fa-solid fa-user-gear"></i> Head Line
-                    </div>
-                    <div class="row g-3 section-card-pad">
-
-
-
-                    </div>
-                  </div>
-                </div>
-                <!-- END: STEP 2 CONTAINER -->
-
-                <!-- -------------------------------------------------------
-                     FORM ACTION FOOTER
-                     Primary navigation controls for multi-step workflow
-                     ------------------------------------------------------- -->
-                <div class="form-footer d-flex justify-content-between align-items-center mt-4">
-                  <!-- Previous Step Trigger (Disabled on initial editable step) -->
-                  <button type="button" class="btn btn-cancel" id="prevBtn" disabled>Back</button>
-
-                  <!-- Submit & Proceed Trigger -->
-                  <button type="submit" class="btn btn-save-next" id="nextBtn">
-                    Save & Next <i class="fa-solid fa-arrow-right ms-1"></i>
-                  </button>
-                </div>
-
-              </form>
-            </div>
-            <!-- END: FORM SCROLL BODY -->
-
+          <!-- Mobile Drawer Session Logout Action -->
+          <div class="px-0">
+            <a class="nav-link-custom nav-link-logout" href="#">
+            <i class="bi bi-box-arrow-left"></i> Logout
+            </a>
           </div>
         </div>
       </div>
-      <!-- END: APPLICATION WIZARD CANVAS -->
-
-      <!-- -------------------------------------------------------------------
-           BASELINE DASHBOARD FOOTER
-           Institutional copyright and mandatory site link references
-           ------------------------------------------------------------------- -->
-      <footer class="dash-footer bg-white border-top mt-auto">
-        <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
-          <!-- Copyright Info -->
-          <div>
-            <span class="small text-secondary">© 2026 <strong>Pubali Bank PLC.</strong> All rights reserved.</span>
+      <!-- END: MOBILE NAVIGATION DRAWER -->
+      <!-- =======================================================================
+        MAIN CONTENT AREA CONTAINER
+        Right-hand region containing sticky header, dynamic wizard, and footer
+        ======================================================================= -->
+      <div class="main-content d-flex flex-column">
+        <!-- -------------------------------------------------------------------
+          TOP NAVBAR / UTILITY HEADER
+          Sticky header with mobile sidebar toggle, search bar, and alerts
+          ------------------------------------------------------------------- -->
+        <nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
+          <div class="d-flex align-items-center w-100 justify-content-between">
+            <!-- Left Utilities: Mobile Drawer Trigger & Global Search Input -->
+            <div class="d-flex align-items-center gap-2">
+              <!-- Mobile Navigation Toggle Button -->
+              <button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button"
+                data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+              <i class="bi bi-list fs-4"></i>
+              </button>
+              <!-- Global Search Bar Field -->
+              <div class="search-container d-none d-sm-block position-relative">
+                <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+                <input class="form-control search-input ps-5" type="search" placeholder="Search parameters..."
+                  id="dashboardSearch" style="border-radius: 20px; min-width: 260px" />
+              </div>
+            </div>
+            <!-- Right Utilities: Notifications Badge & Compact Profile Avatar -->
+            <div class="d-flex align-items-center gap-3">
+              <!-- Notification Trigger Icon with Unread Status Indicator -->
+              <div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
+                <i class="bi bi-bell fs-5"></i>
+                <span
+                  class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+              </div>
+              <!-- Vertical Separator Divider -->
+              <div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
+              <!-- Compact User Identity Badge -->
+              <div class="d-flex align-items-center gap-2">
+                <img src="assets/images/fahimsm.png" width="36" height="36" class="rounded-circle border profile-pic-sync"
+                  alt="Profile Layout" />
+                <span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md. Fahim</span>
+              </div>
+            </div>
           </div>
-          <!-- Institutional Legal Links -->
-          <div class="d-flex gap-3">
-            <a href="#" class="text-decoration-none text-secondary small">Privacy Policy</a>
-            <a href="#" class="text-decoration-none text-secondary small">Terms of Service</a>
-            <a href="#" class="text-decoration-none text-secondary small">Support</a>
+        </nav>
+        <!-- END: TOP NAVBAR -->
+        <!-- -------------------------------------------------------------------
+          APPLICATION WIZARD FORM CANVAS
+          Main scrollable container housing the Multi-Step Profile Setup Form
+          ------------------------------------------------------------------- -->
+        <div class="overflow-hidden pt-3">
+          <div class="container form-container">
+            <div class="form-card">
+              <!-- STEP TAB NAVIGATION (Progress Tracker) -->
+              <div class="step-tabs-container">
+                <ul class="step-tabs">
+                  <!-- Step 1: Complete state -->
+                  <li>
+                    <a href="#" class="step-item completed">
+                    <span class="step-content"><i class="fa-solid fa-file-lines"></i> CV & Documents</span>
+                    <i class="fa-solid fa-circle-check text-success tick-icon"></i>
+                    </a>
+                  </li>
+                  <!-- Step 2: Active state (Current Page) -->
+                  <li>
+                    <a href="#" class="step-item active">
+                    <span class="step-content"><i class="fa-solid fa-circle-user"></i> Basic Information</span>
+                    </a>
+                  </li>
+                  <!-- Step 3: Pending state -->
+                  <li>
+                    <a href="#" class="step-item">
+                    <span class="step-content"><i class="fa-solid fa-graduation-cap"></i> Education</span>
+                    </a>
+                  </li>
+                  <!-- Step 4: Pending state -->
+                  <li>
+                    <a href="#" class="step-item">
+                    <span class="step-content"><i class="fa-solid fa-briefcase"></i> Work Experience</span>
+                    </a>
+                  </li>
+                  <!-- Step 5: Pending state -->
+                  <li>
+                    <a href="#" class="step-item">
+                    <span class="step-content"><i class="fa-solid fa-award"></i> Certification</span>
+                    </a>
+                  </li>
+                  <!-- Step 6: Pending state -->
+                  <li>
+                    <a href="#" class="step-item">
+                    <span class="step-content"><i class="fa-solid fa-users"></i> References</span>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              <!-- END: STEP TAB NAVIGATION -->
+              <!-- DYNAMIC FORM SCROLLABLE BODY -->
+              <div class="form-scroll">
+                <form id="profileForm" novalidate>
+                  <!-- =========================================================
+                    STEP 2 CONTAINER: BASIC INFORMATION
+                    ========================================================= -->
+                  <div class="form-step-content active-step" id="step-basic">
+                    <!-- -------------------------------------------------------
+                      SECTION 1: Head Line
+                      System pre-filled static data combined with edit fields
+                      ------------------------------------------------------- -->
+<div class="section-card mb-4">
+  <div class="section-title mb-3 fw-bold border-bottom pb-2 d-flex align-items-center gap-2" style="color: var(--pb-primary, #0a8a45);">
+    <i class="fa-solid fa-graduation-cap"></i> Educational Information
+  </div>
+  
+  <div class="section-card-pad">
+    <div class="education-wrapper">
+      <div class="table-responsive">
+        <table class="table education-table align-middle">
+          <thead>
+            <tr>
+              <th style="width: 12%;">Level</th>
+              <th style="width: 13%;">Name of<br>Examination</th>
+              <th style="width: 14%;">Group / Subject</th>
+              <th style="width: 12%;">Division/<br>Class/Grade</th>
+              <th style="width: 10%;">GPA/CGPA</th>
+              <th style="width: 15%;">Board / University<br>/ Institute</th>
+              <th style="width: 8%;">Passing<br>Year</th>
+              <th style="width: 10%;">Roll Number</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- SSC / Equivalent -->
+            <tr>
+              <td class="level">SSC/Equivalent</td>
+              <td>
+                <select class="form-select">
+                  <option selected disabled>-- Select --</option>
+                  <option>SSC</option>
+                  <option>Dakhil</option>
+                  <option>O Level</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" class="form-control" disabled placeholder="N/A">
+              </td>
+              <td>
+                <select class="form-select">
+                  <option selected disabled>-- Select --</option>
+                  <option>Science</option>
+                  <option>Commerce</option>
+                  <option>Humanities</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select">
+                  <option selected disabled>-- Select --</option>
+                  <option>GPA (Out of 5)</option>
+                  <option>1st Division</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" class="form-control" placeholder="e.g. 5.00">
+              </td>
+              <td>
+                <select class="form-select">
+                  <option selected disabled>-- Select --</option>
+                  <option>Dhaka</option>
+                  <option>Chittagong</option>
+                  <option>Rajshahi</option>
+                  <option>Technical</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" class="form-control year-input" placeholder="YYYY">
+              </td>
+              <td>
+                <input type="text" class="form-control year-input" placeholder="DD/MM/YYYY">
+              </td>
+            </tr>
+            
+            <!-- Graduation -->
+            <tr>
+              <td class="level">Graduation</td>
+              <td>
+                <select class="form-select">
+                  <option selected disabled>-- Select --</option>
+                  <option>B.Sc</option>
+                  <option>BBA</option>
+                  <option>B.A</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select">
+                  <option selected disabled>-- Select --</option>
+                  <option>1st Year</option>
+                  <option>2nd Year</option>
+                  <option>3rd Year</option>
+                  <option>4th Year</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select">
+                  <option selected disabled>-- Select --</option>
+                  <option>Computer Science</option>
+                  <option>Finance</option>
+                  <option>Economics</option>
+                </select>
+              </td>
+              <td>
+                <select class="form-select">
+                  <option selected disabled>-- Select --</option>
+                  <option>CGPA (Out of 4)</option>
+                  <option>1st Class</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" class="form-control" placeholder="e.g. 3.75">
+              </td>
+              <td>
+                <select class="form-select">
+                  <option selected disabled>-- Select --</option>
+                  <option>University of Dhaka</option>
+                  <option>BUET</option>
+                  <option>NSU</option>
+                </select>
+              </td>
+              <td>
+                <input type="text" class="form-control year-input" placeholder="YYYY">
+              </td>
+              <td>
+                <input type="text" class="form-control year-input" placeholder="DD/MM/YYYY">
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+                  </div>
+                  <!-- END: STEP 2 CONTAINER -->
+                  <!-- -------------------------------------------------------
+                    FORM ACTION FOOTER
+                    Primary navigation controls for multi-step workflow
+                    ------------------------------------------------------- -->
+                  <div class="form-footer d-flex justify-content-between align-items-center mt-4">
+                    <!-- Previous Step Trigger (Disabled on initial editable step) -->
+                    <button type="button" class="btn btn-cancel" id="prevBtn" disabled>Back</button>
+                    <!-- Submit & Proceed Trigger -->
+                    <button type="submit" class="btn btn-save-next" id="nextBtn">
+                    Save & Next <i class="fa-solid fa-arrow-right ms-1"></i>
+                    </button>
+                  </div>
+                </form>
+              </div>
+              <!-- END: FORM SCROLL BODY -->
+            </div>
           </div>
         </div>
-      </footer>
-      <!-- END: DASHBOARD FOOTER -->
-
+        <!-- END: APPLICATION WIZARD CANVAS -->
+        <!-- -------------------------------------------------------------------
+          BASELINE DASHBOARD FOOTER
+          Institutional copyright and mandatory site link references
+          ------------------------------------------------------------------- -->
+        <footer class="dash-footer bg-white border-top mt-auto">
+          <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+            <!-- Copyright Info -->
+            <div>
+              <span class="small text-secondary">© 2026 <strong>Pubali Bank PLC.</strong> All rights reserved.</span>
+            </div>
+            <!-- Institutional Legal Links -->
+            <div class="d-flex gap-3">
+              <a href="#" class="text-decoration-none text-secondary small">Privacy Policy</a>
+              <a href="#" class="text-decoration-none text-secondary small">Terms of Service</a>
+              <a href="#" class="text-decoration-none text-secondary small">Support</a>
+            </div>
+          </div>
+        </footer>
+        <!-- END: DASHBOARD FOOTER -->
+      </div>
+      <!-- END: MAIN CONTENT AREA CONTAINER -->
     </div>
-    <!-- END: MAIN CONTENT AREA CONTAINER -->
-
-  </div>
-  <!-- END: MAIN DASHBOARD ROOT WRAPPER -->
-
-  <!-- =========================================================================
-       CORE SCRIPT LIBRARIES & CUSTOM FUNCTIONAL ENGINE
-       ========================================================================= -->
-  <!-- Bootstrap 5.3.3 Compiled Bundle JS (Includes Popper.js) -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
-
+    <!-- END: MAIN DASHBOARD ROOT WRAPPER -->
+    <!-- =========================================================================
+      CORE SCRIPT LIBRARIES & CUSTOM FUNCTIONAL ENGINE
+      ========================================================================= -->
+    <!-- Bootstrap 5.3.3 Compiled Bundle JS (Includes Popper.js) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>
