@@ -28,6 +28,117 @@
 			crossorigin="anonymous" referrerpolicy="no-referrer" />
 		<!-- Application Custom Dashboard Stylesheet -->
 		<link rel="stylesheet" href="assets/css/appdash.css"/>
+		<!-- ==========================================
+         PAGE-SPECIFIC COMPONENT STYLES
+         ========================================== -->
+    <style>
+        :root {
+            --brand-green: #0a8a58;
+            --border-teal: #6ed1cf;
+            --border-disabled: #e2e8f0;
+            --bg-light-header: #f4f8f7;
+            --text-dark: #2d3748;
+            --text-placeholder: #a0aec0;
+        }
+
+        body {
+            font-family: 'Public Sans', sans-serif;
+            background-color: #f8fafc;
+            padding: 20px;
+        }
+
+        /* Container Card Surface */
+        .experience-table-container {
+            background-color: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        }
+
+        /* Table Architecture Overrides */
+        .experience-table {
+            margin-bottom: 0;
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        /* Header Layout Matrix */
+        .experience-table thead tr {
+            background-color: var(--bg-light-header);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .experience-table th {
+            color: var(--brand-green);
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: center;
+            padding: 14px 10px;
+            vertical-align: middle;
+        }
+
+        .experience-table th .date-subtext {
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: block;
+            margin-top: 2px;
+        }
+
+        /* Row Layout Matrix */
+        .experience-table tbody tr {
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .experience-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .experience-table td {
+            padding: 12px 10px;
+            vertical-align: middle;
+        }
+
+        /* Form Control Custom Component Token Overrides */
+        .experience-table .form-control,
+        .experience-table .form-select {
+            border: 1.5px solid var(--border-teal);
+            border-radius: 6px;
+            color: var(--text-dark);
+            font-size: 0.9rem;
+            font-weight: 500;
+            height: 42px;
+            box-shadow: none !important;
+            transition: border-color 0.2s ease-in-out;
+            background-color: #ffffff;
+        }
+
+        .experience-table .form-control:focus,
+        .experience-table .form-select:focus {
+            border-color: #0a8a58;
+        }
+
+        /* Center Text Alignment for Specific Columns */
+        .experience-table .text-center-input {
+            text-align: center;
+        }
+
+        /* Disabled / Blank Placeholder Row State Engine */
+        .experience-table tr.row-disabled .form-control,
+        .experience-table tr.row-disabled .form-select {
+            border-color: var(--border-disabled);
+            color: var(--text-placeholder);
+            background-color: #ffffff;
+        }
+
+        .experience-table tr.row-disabled .form-control::placeholder {
+            color: var(--text-placeholder);
+        }
+
+        .experience-table tr.row-disabled .form-select {
+            color: var(--text-placeholder);
+        }
+    </style>
 	</head>
 	<body>
 		<!-- =========================================================================
@@ -236,376 +347,137 @@
 											</div>
 											<!-- DATA CONTAINER: Responsive Grid & Table Surface -->
 											<div class="table-card-pad">
-												<div class="education-wrapper">
-													<div class="table-responsive">
-														<!-- DATA TABLE: Academic History Data Matrix -->
-														<table class="education-table align-middle" id="educationTable">
-															<thead>
-																<tr>
-																	<th style="width:8%">Level</th>
-																	<th style="width:13%">Name of<br>Examination</th>
-																	<th style="width:15%">Group / Subject</th>
-																	<th style="width:13%">Division/<br>Class/Grade</th>
-																	<th style="width:7%">GPA/CGPA</th>
-																	<th style="width:7%">Out of</th>
-																	<th style="width:10%">Roll Number</th>
-																	<th style="width:16%">Board / University</th>
-																	<th style="width:8%">Passing Year</th>
-																</tr>
-															</thead>
-															<tbody>
-																<!-- =========================================================================
-																	ROW LEVEL 1: SECONDARY SCHOOL CERTIFICATE (Mandatory Entry Node)
-																	Attributes:
-																	  - data-level="ssc": Used by JS engine to isolate level-specific logic
-																	  - data-mandatory="true": Enforces form submit engine validation locks
-																	========================================================================= -->
-																<tr data-level="ssc" data-mandatory="true">
-																	<td class="level">SSC/<br>Equivalent</td>
-																	<td>
-																		<!-- Exam Name Select -->
-																		<select class="form-select field-exam" required>
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="SSC">SSC</option>
-																			<option value="Dakhil">Dakhil</option>
-																			<option value="O Level">O Level</option>
-																			<option value="SSC Vocational">SSC Vocational
-																			</option>
-																		</select>
-																	</td>
-																	<td>
-																		<!-- Group/Discipline Select -->
-																		<select class="form-select field-group" required>
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="Science">Science</option>
-																			<option value="Commerce">Commerce</option>
-																			<option value="Humanities">Humanities</option>
-																			<option value="Business Studies">Business
-																				Studies
-																			</option>
-																			<option value="General">General</option>
-																		</select>
-																	</td>
-																	<td>
-																		<!-- Result Class/Division System Select -->
-																		<select class="form-select field-division" required>
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="First">First Division</option>
-																			<option value="Second">Second Division</option>
-																			<option value="Third">Third Division</option>
-																			<option value="Grade">GPA (Grade System)
-																			</option>
-																		</select>
-																	</td>
-																	<!-- Score Input Fields: Restricted via inputmode="decimal" and length caps -->
-																	<td><input type="text" class="form-control field-gpa"
-																		placeholder="" inputmode="decimal" maxlength="4">
-																	</td>
-																	<td><input type="text" class="form-control field-scale"
-																		placeholder="" inputmode="decimal" maxlength="4">
-																	</td>
-																	<td><input type="text" class="form-control field-roll"
-																		placeholder="Roll No"></td>
-																	<td>
-																		<!-- Education Board Entity Select -->
-																		<select class="form-select field-board" required>
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="Dhaka">Dhaka</option>
-																			<option value="Chattogram">Chattogram</option>
-																			<option value="Rajshahi">Rajshahi</option>
-																			<option value="Khulna">Khulna</option>
-																			<option value="Barishal">Barishal</option>
-																			<option value="Sylhet">Sylhet</option>
-																			<option value="Comilla">Comilla</option>
-																			<option value="Dinajpur">Dinajpur</option>
-																			<option value="Mymensingh">Mymensingh</option>
-																			<option value="Madrasah">Madrasah</option>
-																			<option value="Technical">Technical (BTEB)
-																			</option>
-																			<option value="Edexcel/Cambridge">
-																				Edexcel/Cambridge
-																			</option>
-																		</select>
-																	</td>
-																	<!-- Passing Year Input: Strictly formatted for 4-digit YYYY inputs -->
-																	<td><input type="text"
-																		class="form-control field-year year-input"
-																		placeholder="YYYY" maxlength="4" required></td>
-																</tr>
-																<!-- =========================================================================
-																	ROW LEVEL 2: HIGHER SECONDARY CERTIFICATE (Mandatory Entry Node)
-																	Attributes:
-																	  - data-level="hsc": Higher secondary identification token
-																	  - data-mandatory="true": Enforces form submit engine validation locks
-																	========================================================================= -->
-																<tr data-level="hsc" data-mandatory="true">
-																	<td class="level">HSC/<br>Equivalent</td>
-																	<td>
-																		<!-- Exam Name Select -->
-																		<select class="form-select field-exam" required>
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="HSC">HSC</option>
-																			<option value="Alim">Alim</option>
-																			<option value="A Level">A Level</option>
-																			<option value="Diploma in Engineering">Diploma
-																				in Engineering
-																			</option>
-																		</select>
-																	</td>
-																	<td>
-																		<!-- Group/Discipline Select -->
-																		<select class="form-select field-group" required>
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="Science">Science</option>
-																			<option value="Commerce">Commerce</option>
-																			<option value="Humanities">Humanities</option>
-																			<option value="Business Studies">Business
-																				Studies
-																			</option>
-																		</select>
-																	</td>
-																	<td>
-																		<!-- Result Class/Division System Select -->
-																		<select class="form-select field-division" required>
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="First">First Division</option>
-																			<option value="Second">Second Division</option>
-																			<option value="Third">Third Division</option>
-																			<option value="Grade">GPA (Grade System)
-																			</option>
-																		</select>
-																	</td>
-																	<!-- Score Input Fields -->
-																	<td><input type="text" class="form-control field-gpa"
-																		placeholder="" inputmode="decimal" maxlength="4">
-																	</td>
-																	<td><input type="text" class="form-control field-scale"
-																		placeholder="" inputmode="decimal" maxlength="4">
-																	</td>
-																	<td><input type="text" class="form-control field-roll"
-																		placeholder="Roll No"></td>
-																	<td>
-																		<!-- Education Board Entity Select -->
-																		<select class="form-select field-board" required>
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="Dhaka">Dhaka</option>
-																			<option value="Chattogram">Chattogram</option>
-																			<option value="Rajshahi">Rajshahi</option>
-																			<option value="Khulna">Khulna</option>
-																			<option value="Barishal">Barishal</option>
-																			<option value="Sylhet">Sylhet</option>
-																			<option value="Comilla">Comilla</option>
-																			<option value="Dinajpur">Dinajpur</option>
-																			<option value="Mymensingh">Mymensingh</option>
-																			<option value="Madrasah">Madrasah</option>
-																			<option value="Technical">Technical (BTEB)
-																			</option>
-																			<option value="Edexcel/Cambridge">
-																				Edexcel/Cambridge
-																			</option>
-																		</select>
-																	</td>
-																	<!-- Passing Year Input -->
-																	<td><input type="text"
-																		class="form-control field-year year-input"
-																		placeholder="YYYY" maxlength="4" required></td>
-																</tr>
-																<!-- =========================================================================
-																	ROW LEVEL 3: UNDERGRADUATE / BACHELOR (Optional Entry Node)
-																	Attributes:
-																	  - data-level="bachelor": Undergraduate level identifier
-																	  - data-mandatory="false": Dynamic JS binds validation only if exam option is chosen
-																	========================================================================= -->
-																<tr data-level="bachelor" data-mandatory="false">
-																	<td class="level">Bachelor/<br>Honours</td>
-																	<td>
-																		<!-- Degree Program Select -->
-																		<select class="form-select field-exam">
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="B.Sc">B.Sc</option>
-																			<option value="B.Sc Engg">B.Sc Engg</option>
-																			<option value="BBA">BBA</option>
-																			<option value="BA">BA</option>
-																			<option value="BSS">BSS</option>
-																			<option value="MBBS/BDS">MBBS/BDS</option>
-																			<option value="LLB">LLB</option>
-																		</select>
-																	</td>
-																	<td>
-																		<!-- Major Subject / Department Select -->
-																		<select class="form-select field-group">
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="Computer Science & Engg">Computer
-																				Science & Engg
-																			</option>
-																			<option value="Electrical Engg">Electrical Engg
-																			</option>
-																			<option value="Business Administration">Business
-																				Administration
-																			</option>
-																			<option value="Economics">Economics</option>
-																			<option value="Accounting">Accounting</option>
-																			<option value="Finance">Finance</option>
-																			<option value="English">English</option>
-																		</select>
-																	</td>
-																	<td>
-																		<!-- Academic Standing / Class Division System Select -->
-																		<select class="form-select field-division">
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="First">First Class</option>
-																			<option value="Second">Second Class</option>
-																			<option value="Third">Third Class</option>
-																			<option value="Grade">CGPA</option>
-																		</select>
-																	</td>
-																	<!-- Score Input Fields -->
-																	<td>
-																		<input type="text" class="form-control field-gpa"
-																			placeholder="" inputmode="decimal"
-																			maxlength="4">
-																	</td>
-																	<td>
-																		<input type="text" class="form-control field-scale"
-																			placeholder="" inputmode="decimal"
-																			maxlength="4">
-																	</td>
-																	<td><input type="text" class="form-control field-roll"
-																		placeholder="Roll No"></td>
-																	<td>
-																		<!-- Awarding University Entity Select -->
-																		<select class="form-select field-board">
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="University of Dhaka">University
-																				of Dhaka
-																			</option>
-																			<option value="BUET">BUET</option>
-																			<option value="Jahangirnagar University">
-																				Jahangirnagar University
-																			</option>
-																			<option value="National University">National
-																				University
-																			</option>
-																			<option value="North South University">North
-																				South University
-																			</option>
-																			<option value="BRAC University">BRAC University
-																			</option>
-																			<option value="Other Public University">Other
-																				Public University
-																			</option>
-																			<option value="Other Private University">Other
-																				Private University
-																			</option>
-																			<option value="Foreign University">Foreign
-																				University
-																			</option>
-																		</select>
-																	</td>
-																	<!-- Graduation Year Input -->
-																	<td><input type="text"
-																		class="form-control field-year year-input"
-																		placeholder="YYYY" maxlength="4"></td>
-																</tr>
-																<!-- =========================================================================
-																	ROW LEVEL 4: POST-GRADUATION / MASTERS (Optional Entry Node)
-																	Attributes:
-																	  - data-level="masters": Postgraduate level identifier
-																	  - data-mandatory="false": Dynamic JS binds validation only if exam option is chosen
-																	========================================================================= -->
-																<tr data-level="masters" data-mandatory="false">
-																	<td class="level">Post/<br>Graduation</td>
-																	<td>
-																		<!-- Postgraduate Degree Program Select -->
-																		<select class="form-select field-exam">
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="M.Sc">M.Sc</option>
-																			<option value="MBA">MBA</option>
-																			<option value="MA">MA</option>
-																			<option value="MSS">MSS</option>
-																			<option value="LLM">LLM</option>
-																		</select>
-																	</td>
-																	<td>
-																		<!-- Specialized Concentration / Major Select -->
-																		<select class="form-select field-group">
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="Computer Science & Engg">Computer
-																				Science & Engg
-																			</option>
-																			<option value="Business Administration">Business
-																				Administration
-																			</option>
-																			<option value="Economics">Economics</option>
-																			<option value="Bank Management">Bank Management
-																			</option>
-																		</select>
-																	</td>
-																	<td>
-																		<!-- Academic Standing / Class Division System Select -->
-																		<select class="form-select field-division">
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="First">First Class</option>
-																			<option value="Second">Second Class</option>
-																			<option value="Third">Third Class</option>
-																			<option value="Grade">CGPA</option>
-																		</select>
-																	</td>
-																	<!-- Score Input Fields -->
-																	<td><input type="text" class="form-control field-gpa"
-																		placeholder="" inputmode="decimal" maxlength="4">
-																	</td>
-																	<td><input type="text" class="form-control field-scale"
-																		placeholder="" inputmode="decimal" maxlength="4">
-																	</td>
-																	<td><input type="text" class="form-control field-roll"
-																		placeholder="Roll No"></td>
-																	<td>
-																		<!-- Awarding University Entity Select -->
-																		<select class="form-select field-board">
-																			<option value="" selected disabled>-- Select --
-																			</option>
-																			<option value="University of Dhaka">University
-																				of Dhaka
-																			</option>
-																			<option value="BUET">BUET</option>
-																			<option value="National University">National
-																				University
-																			</option>
-																			<option value="North South University">North
-																				South University
-																			</option>
-																			<option value="Other Public University">Other
-																				Public University
-																			</option>
-																			<option value="Other Private University">Other
-																				Private University
-																			</option>
-																		</select>
-																	</td>
-																	<!-- Graduation Year Input -->
-																	<td><input type="text"
-																		class="form-control field-year year-input"
-																		placeholder="YYYY" maxlength="4"></td>
-																</tr>
-															</tbody>
-														</table>
-													</div>
+												<div class="education-wrapper experience-table-container">
+
+            <div class="table-responsive">
+                <table class="experience-table align-middle">
+                    <thead>
+                        <tr>
+                            <th style="width: 15%;">Designation</th>
+                            <th style="width: 23%;">Name of Organization</th>
+                            <th style="width: 12%;">Job Type</th>
+                            <th style="width: 26%;">Responsibilities</th>
+                            <th style="width: 12%;">
+                                Joining Date
+                                <span class="date-subtext">[dd/mm/yyyy]</span>
+                            </th>
+                            <th style="width: 12%;">
+                                End Date
+                                <span class="date-subtext">[dd/mm/yyyy]</span>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        
+                        <!-- ROW 1: ACTIVE FILLED ENTRY -->
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" value="Software Engineer">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" value="Well Dev LTD">
+                            </td>
+                            <td>
+                                <select class="form-select">
+                                    <option value="Full Time" selected>Full Time</option>
+                                    <option value="Part Time">Part Time</option>
+                                    <option value="Contractual">Contractual</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" value="Well Dev LTD">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control text-center-input" value="19/08/2024">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control text-center-input" value="30/06/2026">
+                            </td>
+                        </tr>
+
+                        <!-- ROW 2: ACTIVE FILLED ENTRY -->
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" value="Web Developer">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" value="joomshaper LTD">
+                            </td>
+                            <td>
+                                <select class="form-select">
+                                    <option value="Full Time" selected>Full Time</option>
+                                    <option value="Part Time">Part Time</option>
+                                    <option value="Contractual">Contractual</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" value="Well Dev LTD">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control text-center-input" value="01/12/2021">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control text-center-input" value="18/08/2024">
+                            </td>
+                        </tr>
+
+                        <!-- ROW 3: ACTIVE FILLED ENTRY -->
+                        <tr>
+                            <td>
+                                <input type="text" class="form-control" value="Creative Developer">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" value="Codesmith Tech LTD">
+                            </td>
+                            <td>
+                                <select class="form-select">
+                                    <option value="Full Time" selected>Full Time</option>
+                                    <option value="Part Time">Part Time</option>
+                                    <option value="Contractual">Contractual</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" value="Well Dev LTD">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control text-center-input" value="12/06/2018">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control text-center-input" value="30/11/2021">
+                            </td>
+                        </tr>
+
+                        <!-- ROW 4: INACTIVE / PLACEHOLDER ENTRY -->
+                        <tr class="row-disabled">
+                            <td>
+                                <input type="text" class="form-control" placeholder="Creative Developer">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Codesmith Tech LTD">
+                            </td>
+                            <td>
+                                <select class="form-select">
+                                    <option value="" selected>- - Select - -</option>
+                                    <option value="Full Time">Full Time</option>
+                                    <option value="Part Time">Part Time</option>
+                                    <option value="Contractual">Contractual</option>
+                                </select>
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" placeholder="Well Dev LTD">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control text-center-input" placeholder="dd / mm / yyyy">
+                            </td>
+                            <td>
+                                <input type="text" class="form-control text-center-input" placeholder="dd / mm / yyyy">
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+
 												</div>
 											</div>
 											<div class="table-button d-flex justify-content-end align-items-center">
