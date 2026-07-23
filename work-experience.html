@@ -47,9 +47,8 @@
             user-select: none;
         }
 
-        /* Delete Icon Visibility Control */
-        .btn-delete-row.d-none {
-            display: none !important;
+        .cursor-pointer {
+            cursor: pointer;
         }
     </style>
 </head>
@@ -212,8 +211,8 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody id="tableBody">
-                                                            <!-- INITIAL ROW (INCLUDES "To continue" CHECKBOX) -->
-                                                            <tr data-level="work1">
+                                                            <!-- PERMANENT FIRST ROW (NO DELETE ICON) -->
+                                                            <tr data-level="work1" class="first-row">
                                                                 <td>
                                                                     <input type="text" class="form-control field-designation" placeholder="Designation" name="designation">
                                                                 </td>
@@ -244,9 +243,8 @@
                                                                         </div>
                                                                     </div>
                                                                 </td>
-                                                                <td class="text-center">
-                                                                    <i class="fa-solid fa-trash-can text-danger cursor-pointer btn-delete-row"></i>
-                                                                </td>
+                                                                <!-- Empty column preserves table grid structure without showing an icon -->
+                                                                <td class="text-center"></td>
                                                             </tr>
                                                         </tbody>
                                                     </table>
@@ -298,30 +296,16 @@
             const tableBody = document.getElementById("tableBody");
             const addBtn = document.getElementById("addEducationBtn");
 
-            // Function to manage trash icon visibility based on row count
-            function updateDeleteIconsVisibility() {
-                const rows = tableBody.querySelectorAll("tr");
-                const trashIcons = tableBody.querySelectorAll(".btn-delete-row");
-
-                if (rows.length === 1) {
-                    trashIcons.forEach(icon => icon.classList.add("d-none"));
-                } else {
-                    trashIcons.forEach(icon => icon.classList.remove("d-none"));
-                }
-            }
-
-            // Function to validate field state (Colors only: Green / Red)
+            // Function to validate field state
             function validateField(field) {
                 const value = field.value.trim();
                 let isValid = true;
                 const row = field.closest("tr");
 
-                // Check for empty selection or input
                 if (value === "" || value === null) {
                     isValid = false;
                 }
 
-                // If this is an End Date field and "To continue" is checked, consider it valid
                 if (field.classList.contains("field-end-date")) {
                     const continueChk = row.querySelector(".chk-continue");
                     if (continueChk && continueChk.checked) {
@@ -330,7 +314,6 @@
                         return true;
                     }
 
-                    // Sequential Validation: End Date must be on or after Joining Date
                     if (value !== "") {
                         const joiningField = row.querySelector(".field-joining-date");
                         const joiningDateValue = joiningField ? joiningField.value : "";
@@ -346,7 +329,6 @@
                     }
                 }
 
-                // Apply color classes (Green = is-valid, Red = is-invalid)
                 if (isValid) {
                     field.classList.remove("is-invalid");
                     field.classList.add("is-valid");
@@ -358,10 +340,7 @@
                 return isValid;
             }
 
-            // Initial check for trash icon visibility on page load
-            updateDeleteIconsVisibility();
-
-            // Dynamically Add New Work Experience Row (WITHOUT "To continue" CHECKBOX)
+            // Dynamically Add New Work Experience Row (Contains delete icon for added rows)
             addBtn.addEventListener("click", function () {
                 const rowCount = tableBody.querySelectorAll("tr").length + 1;
                 const newRow = document.createElement("tr");
@@ -396,16 +375,15 @@
                 `;
 
                 tableBody.appendChild(newRow);
-                updateDeleteIconsVisibility();
             });
 
-            // Delete row event handler
+            // Delete row event handler (Prevents deletion of the first row)
             form.addEventListener("click", function (e) {
                 if (e.target && e.target.classList.contains("btn-delete-row")) {
                     const row = e.target.closest("tr");
-                    if (tableBody.querySelectorAll("tr").length > 1) {
+                    // Extra safeguard: Ensure we do not delete if it's marked as first row
+                    if (!row.classList.contains("first-row")) {
                         row.remove();
-                        updateDeleteIconsVisibility();
                     }
                 }
             });
@@ -430,7 +408,6 @@
                 if (event.target.classList.contains("form-control") || event.target.classList.contains("form-select")) {
                     validateField(event.target);
 
-                    // Re-check end date color if joining date changes
                     if (event.target.classList.contains("field-joining-date")) {
                         const row = event.target.closest("tr");
                         const endDateField = row.querySelector(".field-end-date");
