@@ -609,7 +609,14 @@ body {
  /* Adds a subtle horizontal separator line under each tbody row */
  border-bottom: 1px solid #e2e8f0;
 }
-
+/* 5. Cell Padding & Row Separators */
+.work-table tbody td {
+ padding: 1rem 0.5rem;
+ vertical-align: baseline;
+ font-size: 0.85rem;
+ /* Adds a subtle horizontal separator line under each tbody row */
+ border-bottom: 1px solid #e2e8f0;
+}
 /* Remove border line from the last row for a cleaner finish */
 .education-table tbody tr:last-child td {
  border-bottom: none;

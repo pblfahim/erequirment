@@ -183,14 +183,14 @@
 										<i class="fa-solid fa-circle-check text-success tick-icon"></i>
 										</a>
 									</li>
-									<!-- Step 1: Complete state -->
+									<!-- Step 2: Complete state -->
 									<li>
 										<a href="index.html" class="step-item completed">
 										<span class="step-content"><i class="fa-solid fa-circle-user"></i> Basic Information</span>
                     <i class="fa-solid fa-circle-check text-success tick-icon"></i>
 										</a>
 									</li>
-									<!-- Step 2: Active state (Current Page) -->
+									<!-- Step 3: Active state (Current Page) -->
 									<li>
 										<a href="education.html" class="step-item active">
 										<span class="step-content"><i class="fa-solid fa-graduation-cap"></i> Education</span>
@@ -610,7 +610,7 @@
 											</div>
 											<div class="table-button d-flex justify-content-end align-items-center">
 												<button type="button" class="btn btn-outline-success rounded-pill px-4 py-2"
-													id="addEducationBtn">
+													id="addEducationBtn">  
 												<i class="fa-solid fa-plus me-2"></i>Add Another Education
 												</button>
 											</div>
@@ -665,6 +665,64 @@
 			========================================================================= -->
 		<!-- Bootstrap 5.3.3 Compiled Bundle JS (Includes Popper.js) -->
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script>document.addEventListener('DOMContentLoaded', function () {
+    const addBtn = document.getElementById('addEducationBtn');
+    const tableBody = document.querySelector('#educationTable tbody');
+
+    if (addBtn && tableBody) {
+        addBtn.addEventListener('click', function () {
+            // Create a new table row
+            const newRow = document.createElement('tr');
+            newRow.setAttribute('data-level', 'other');
+            newRow.setAttribute('data-mandatory', 'false');
+
+            // Populate the inner HTML for the dynamic row
+            newRow.innerHTML = `
+                <td class="level">Other/<br>Higher</td>
+                <td>
+                    <select class="form-select field-exam">
+                        <option value="" selected disabled>-- Select --</option>
+                        <option value="M.Phil">M.Phil</option>
+                        <option value="Ph.D">Ph.D</option>
+                        <option value="Diploma">Diploma</option>
+                        <option value="Post Graduate Diploma">Post Graduate Diploma</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control field-group" placeholder="Subject / Major">
+                </td>
+                <td>
+                    <select class="form-select field-division">
+                        <option value="" selected disabled>-- Select --</option>
+                        <option value="First">First Class</option>
+                        <option value="Second">Second Class</option>
+                        <option value="Third">Third Class</option>
+                        <option value="Grade">CGPA / GPA</option>
+                    </select>
+                </td>
+                <td>
+                    <input type="text" class="form-control field-gpa" placeholder="" inputmode="decimal" maxlength="4">
+                </td>
+                <td>
+                    <input type="text" class="form-control field-scale" placeholder="" inputmode="decimal" maxlength="4">
+                </td>
+                <td>
+                    <input type="text" class="form-control field-roll" placeholder="Roll / Reg">
+                </td>
+                <td>
+                    <input type="text" class="form-control field-board" placeholder="University / Institute">
+                </td>
+                <td>
+                    <input type="text" class="form-control field-year year-input" placeholder="YYYY" maxlength="4">
+                </td>
+            `;
+
+            // Append the new row to the table body
+            tableBody.appendChild(newRow);
+        });
+    }
+});</script>
 		<script>
 			document.addEventListener("DOMContentLoaded", function () {
 			    const table = document.getElementById("educationTable");

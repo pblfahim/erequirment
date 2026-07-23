@@ -1,750 +1,470 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Basic Information | Pubali Bank PLC</title>
-		<!-- =========================================================================
-			FAVICON & ICONOGRAPHY ASSETS
-			========================================================================= -->
-		<!-- Standard PNG Application Favicon -->
-		<link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32" />
-		<!-- =========================================================================
-			WEB FONTS & EXTERNAL STYLESHEETS
-			========================================================================= -->
-		<!-- Google Fonts Preconnect and Import (Plus Jakarta Sans) -->
-		<link rel="preconnect" href="https://fonts.googleapis.com" />
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-		<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
-			rel="stylesheet" />
-		<!-- Vendor CSS Libraries -->
-		<!-- Bootstrap 5.3.3 Core Framework CSS -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-		<!-- Bootstrap Icons Pack -->
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
-		<!-- FontAwesome 7 Core Vector Icons -->
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
-			integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
-			crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<!-- Application Custom Dashboard Stylesheet -->
-		<link rel="stylesheet" href="assets/css/appdash.css"/>
-		<!-- ==========================================
-         PAGE-SPECIFIC COMPONENT STYLES
-         ========================================== -->
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Basic Information | Pubali Bank PLC</title>
+    <!-- FAVICON & ICONOGRAPHY ASSETS -->
+    <link rel="icon" type="image/png" href="/assets/images/icon.png" sizes="32x32" />
+    <!-- WEB FONTS & EXTERNAL STYLESHEETS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <!-- Vendor CSS Libraries -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.0/css/all.min.css"
+        integrity="sha512-ApSLB1Pd3/bZN8fWB/RG9YhN/7bd9Hkf3AGaE2mPfebjrxagjuBtx2GcgdqIlJkUzwylBo61r9Xa9NmgBI0swA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="assets/css/appdash.css" />
+
     <style>
-        :root {
-            --brand-green: #0a8a58;
-            --border-teal: #6ed1cf;
-            --border-disabled: #e2e8f0;
-            --bg-light-header: #f4f8f7;
-            --text-dark: #2d3748;
-            --text-placeholder: #a0aec0;
+        /* CSS for validation border coloring */
+        .is-valid {
+            border-color: #198754 !important;
+            box-shadow: 0 0 0 0.25rem rgba(25, 135, 84, 0.25) !important;
         }
 
-        /* Container Card Surface */
-        .experience-table-container {
-            background-color: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            overflow: hidden;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+        .is-invalid {
+            border-color: #dc3545 !important;
+            box-shadow: 0 0 0 0.25rem rgba(220, 53, 69, 0.25) !important;
         }
 
-        /* Table Architecture Overrides */
-        .experience-table {
-            margin-bottom: 0;
-            width: 100%;
-            border-collapse: collapse;
+        /* Adjust native datepicker calendar icon positioning */
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            cursor: pointer;
+            filter: opacity(0.6);
+        }
+        input[type="date"]::-webkit-calendar-picker-indicator:hover {
+            filter: opacity(1);
         }
 
-        /* Header Layout Matrix */
-        .experience-table thead tr {
-            background-color: var(--bg-light-header);
-            border-bottom: 1px solid #e2e8f0;
+        /* Continue Checkbox Label Styling */
+        .form-check-label-sm {
+            font-size: 0.75rem;
+            color: #6c757d;
+            user-select: none;
         }
 
-        .experience-table th {
-            color: var(--brand-green);
-            font-weight: 600;
-            font-size: 0.95rem;
-            text-align: center;
-            padding: 14px 10px;
-            vertical-align: middle;
-        }
-
-        .experience-table th .date-subtext {
-            font-size: 0.8rem;
-            font-weight: 500;
-            display: block;
-            margin-top: 2px;
-        }
-
-        /* Row Layout Matrix */
-        .experience-table tbody tr {
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        .experience-table tbody tr:last-child {
-            border-bottom: none;
-        }
-
-        .experience-table td {
-            padding: 12px 10px;
-            vertical-align: middle;
-        }
-
-        /* Form Control Custom Component Token Overrides */
-        .experience-table .form-control,
-        .experience-table .form-select {
-            border: 1.5px solid var(--border-teal);
-            border-radius: 6px;
-            color: var(--text-dark);
-            font-size: 0.9rem;
-            font-weight: 500;
-            height: 42px;
-            box-shadow: none !important;
-            transition: border-color 0.2s ease-in-out;
-            background-color: #ffffff;
-        }
-
-        .experience-table .form-control:focus,
-        .experience-table .form-select:focus {
-            border-color: #0a8a58;
-        }
-
-        /* Center Text Alignment for Specific Columns */
-        .experience-table .text-center-input {
-            text-align: center;
-        }
-
-        /* Disabled / Blank Placeholder Row State Engine */
-        .experience-table tr.row-disabled .form-control,
-        .experience-table tr.row-disabled .form-select {
-            border-color: var(--border-disabled);
-            color: var(--text-placeholder);
-            background-color: #ffffff;
-        }
-
-        .experience-table tr.row-disabled .form-control::placeholder {
-            color: var(--text-placeholder);
-        }
-
-        .experience-table tr.row-disabled .form-select {
-            color: var(--text-placeholder);
+        /* Delete Icon Visibility Control */
+        .btn-delete-row.d-none {
+            display: none !important;
         }
     </style>
-	</head>
-	<body>
-		<!-- =========================================================================
-			MAIN DASHBOARD ROOT WRAPPER
-			Flexible container managing full-height sidebar and main content layout
-			========================================================================= -->
-		<div class="dash-wrapper">
-			<!-- =======================================================================
-				PRIMARY SIDEBAR NAVIGATION (Desktop Viewport: >= lg)
-				Persistent left navigation column
-				======================================================================= -->
-			<div class="sidebar d-none d-lg-flex flex-column justify-content-between">
-				<div>
-					<!-- Brand / Institution Logo Header -->
-					<div class="logo-wrapper">
-						<img src="assets/images/pbplc.svg" alt="Pubali Logo"
-							style="max-width: 180px; width: 100%; height: auto" />
-					</div>
-					<!-- Authenticated User Profile Summary Card -->
-					<div class="profile-card text-center">
-						<img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
-						<h6 class="fw-bold mb-1" style="color: var(--brand-primary)">Md. Fahim</h6>
-						<span class="badge bg-white text-success border px-2 py-1"
-							style="font-size: 0.75rem; font-weight: 600">
-						ID : 1284647
-						</span>
-					</div>
-					<!-- Desktop Navigation Menu Items -->
-					<div class="d-flex flex-column">
-						<a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
-						<a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
-						<a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
-						<a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
-						<a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job Alerts</a>
-						<a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
-					</div>
-				</div>
-				<!-- Desktop Sidebar Footer / Session Logout Anchor -->
-				<div>
-					<a class="nav-link-custom nav-link-logout" href="#">
-					<i class="bi bi-box-arrow-left"></i> Logout
-					</a>
-				</div>
-			</div>
-			<!-- END: PRIMARY SIDEBAR (DESKTOP) -->
-			<!-- =======================================================================
-				MOBILE NAVIGATION DRAWER (Offcanvas Viewport: < lg)
-				Slide-in drawer menu for handheld and tablet screens
-				======================================================================= -->
-			<div class="offcanvas offcanvas-start w-100" id="mobileSidebar" tabindex="-1"
-				style="max-width: var(--sidebar-width);">
-				<div class="d-flex flex-column justify-content-between h-100">
-					<div>
-						<!-- Mobile Drawer Header with Close Action -->
-						<div class="offcanvas-header border-bottom">
-							<img src="assets/images/pbplc.svg" alt="Pubali Logo"
-								style="max-width: 180px; width: 100%; height: auto" />
-							<button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-						</div>
-						<!-- Mobile Drawer Content & Profile Overview -->
-						<div class="offcanvas-body p-0">
-							<div class="profile-card text-center my-3 mx-3">
-								<img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2"
-									alt="User profile" />
-								<h6 class="fw-bold mb-1" style="color: var(--brand-primary)">Md. Fahim</h6>
-								<span class="badge bg-white text-success border px-2 py-1"
-									style="font-size: 0.75rem; font-weight: 600">
-								ID : 1284647
-								</span>
-							</div>
-							<!-- Mobile Drawer Navigation Links -->
-							<div class="d-flex flex-column">
-								<a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
-								<a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
-								<a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
-								<a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
-								<a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job Alerts</a>
-								<a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
-							</div>
-						</div>
-					</div>
-					<!-- Mobile Drawer Session Logout Action -->
-					<div class="px-0">
-						<a class="nav-link-custom nav-link-logout" href="#">
-						<i class="bi bi-box-arrow-left"></i> Logout
-						</a>
-					</div>
-				</div>
-			</div>
-			<!-- END: MOBILE NAVIGATION DRAWER -->
-			<!-- =======================================================================
-				MAIN CONTENT AREA CONTAINER
-				Right-hand region containing sticky header, dynamic wizard, and footer
-				======================================================================= -->
-			<div class="main-content d-flex flex-column">
-				<!-- -------------------------------------------------------------------
-					TOP NAVBAR / UTILITY HEADER
-					Sticky header with mobile sidebar toggle, search bar, and alerts
-					------------------------------------------------------------------- -->
-				<nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
-					<div class="d-flex align-items-center w-100 justify-content-between">
-						<!-- Left Utilities: Mobile Drawer Trigger & Global Search Input -->
-						<div class="d-flex align-items-center gap-2">
-							<!-- Mobile Navigation Toggle Button -->
-							<button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button"
-								data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
-							<i class="bi bi-list fs-4"></i>
-							</button>
-							<!-- Global Search Bar Field -->
-							<div class="search-container d-none d-sm-block position-relative">
-								<i
-									class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
-								<input class="form-control search-input ps-5" type="search"
-									placeholder="Search parameters..." id="dashboardSearch"
-									style="border-radius: 20px; min-width: 260px" />
-							</div>
-						</div>
-						<!-- Right Utilities: Notifications Badge & Compact Profile Avatar -->
-						<div class="d-flex align-items-center gap-3">
-							<!-- Notification Trigger Icon with Unread Status Indicator -->
-							<div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
-								<i class="bi bi-bell fs-5"></i>
-								<span
-									class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
-							</div>
-							<!-- Vertical Separator Divider -->
-							<div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
-							<!-- Compact User Identity Badge -->
-							<div class="d-flex align-items-center gap-2">
-								<img src="assets/images/fahimsm.png" width="36" height="36"
-									class="rounded-circle border profile-pic-sync" alt="Profile Layout" />
-								<span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md.
-								Fahim</span>
-							</div>
-						</div>
-					</div>
-				</nav>
-				<!-- END: TOP NAVBAR -->
-				<!-- -------------------------------------------------------------------
-					APPLICATION WIZARD FORM CANVAS
-					Main scrollable container housing the Multi-Step Profile Setup Form
-					------------------------------------------------------------------- -->
-				<div class="overflow-hidden pt-3">
-					<div class="container form-container">
-						<div class="form-card">
-							<!-- STEP TAB NAVIGATION (Progress Tracker) -->
-														<div class="step-tabs-container">
-								<ul class="step-tabs">
-									<!-- Step 1: Complete state -->
-									<li>
-										<a href="cv-documents.html" class="step-item completed">
-										<span class="step-content"><i class="fa-solid fa-file-lines"></i> CV & Documents</span>
-										<i class="fa-solid fa-circle-check text-success tick-icon"></i>
-										</a>
-									</li>
-									<!-- Step 1: Complete state -->
-									<li>
-										<a href="index.html" class="step-item completed">
-										<span class="step-content"><i class="fa-solid fa-circle-user"></i> Basic Information</span>
-                    <i class="fa-solid fa-circle-check text-success tick-icon"></i>
-										</a>
-									</li>
-									<!-- Step 2: Active state (Current Page) -->
-									<li>
-										<a href="education.html" class="step-item completed">
-										<span class="step-content"><i class="fa-solid fa-graduation-cap"></i> Education</span>
-										</a>
-									</li>
-									<!-- Step 4: Pending state -->
-									<li>
-										<a href="work-experience.html" class="step-item active">
-										<span class="step-content"><i class="fa-solid fa-briefcase"></i> Work Experience</span>
-										</a>
-									</li>
-									<!-- Step 5: Pending state -->
-									<li>
-										<a href="certification.html" class="step-item">
-										<span class="step-content"><i class="fa-solid fa-award"></i> Certification</span>
-										</a>
-									</li>
-									<!-- Step 6: Pending state -->
-									<li>
-										<a href="references.html" class="step-item">
-										<span class="step-content"><i class="fa-solid fa-users"></i> References</span>
-										</a>
-									</li>
-								</ul>
-							</div>
-							<!-- END: STEP TAB NAVIGATION -->
-							<!-- DYNAMIC FORM SCROLLABLE BODY -->
-							<div class="form-scroll">
-								<form id="profileForm" novalidate>
-									<!-- =========================================================
-										STEP 2 CONTAINER: BASIC INFORMATION
-										========================================================= -->
-									<div class="form-step-content active-step" id="step-basic">
-										<!-- -------------------------------------------------------
-											SECTION 1: Head Line
-											System pre-filled static data combined with edit fields
-											------------------------------------------------------- -->
-										<div class="section-card mb-4">
-											<!-- SECTION HEADER: Category Identification Badge -->
-											<div
-												class="section-title fw-bold border-bottom pb-2 d-flex align-items-center gap-2">
-												<i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Educational Information
-											</div>
-											<!-- DATA CONTAINER: Responsive Grid & Table Surface -->
-											<div class="table-card-pad">
-												<div class="education-wrapper experience-table-container">
+</head>
 
-            <div class="table-responsive">
-                <table class="experience-table align-middle">
-                    <thead>
-                        <tr>
-                            <th style="width: 15%;">Designation</th>
-                            <th style="width: 23%;">Name of Organization</th>
-                            <th style="width: 12%;">Job Type</th>
-                            <th style="width: 26%;">Responsibilities</th>
-                            <th style="width: 12%;">
-                                Joining Date
-                                <span class="date-subtext">[dd/mm/yyyy]</span>
-                            </th>
-                            <th style="width: 12%;">
-                                End Date
-                                <span class="date-subtext">[dd/mm/yyyy]</span>
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                        <!-- ROW 1: ACTIVE FILLED ENTRY -->
-                        <tr>
-                            <td>
-                                <input type="text" class="form-control" value="Software Engineer">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" value="Well Dev LTD">
-                            </td>
-                            <td>
-                                <select class="form-select">
-                                    <option value="Full Time" selected>Full Time</option>
-                                    <option value="Part Time">Part Time</option>
-                                    <option value="Contractual">Contractual</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" value="Well Dev LTD">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control text-center-input" value="19/08/2024">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control text-center-input" value="30/06/2026">
-                            </td>
-                        </tr>
+<body>
+    <div class="dash-wrapper">
+        <!-- PRIMARY SIDEBAR NAVIGATION (Desktop) -->
+        <div class="sidebar d-none d-lg-flex flex-column justify-content-between">
+            <div>
+                <div class="logo-wrapper">
+                    <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
+                </div>
+                <div class="profile-card text-center">
+                    <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
+                    <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">Md. Fahim</h6>
+                    <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">
+                        ID : 1284647
+                    </span>
+                </div>
+                <div class="d-flex flex-column">
+                    <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                    <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job Alerts</a>
+                    <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+                </div>
+            </div>
+            <div>
+                <a class="nav-link-custom nav-link-logout" href="#">
+                    <i class="bi bi-box-arrow-left"></i> Logout
+                </a>
+            </div>
+        </div>
 
-                        <!-- ROW 2: ACTIVE FILLED ENTRY -->
-                        <tr>
-                            <td>
-                                <input type="text" class="form-control" value="Web Developer">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" value="joomshaper LTD">
-                            </td>
-                            <td>
-                                <select class="form-select">
-                                    <option value="Full Time" selected>Full Time</option>
-                                    <option value="Part Time">Part Time</option>
-                                    <option value="Contractual">Contractual</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" value="Well Dev LTD">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control text-center-input" value="01/12/2021">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control text-center-input" value="18/08/2024">
-                            </td>
-                        </tr>
+        <!-- MOBILE NAVIGATION DRAWER -->
+        <div class="offcanvas offcanvas-start w-100" id="mobileSidebar" tabindex="-1" style="max-width: var(--sidebar-width);">
+            <div class="d-flex flex-column justify-content-between h-100">
+                <div>
+                    <div class="offcanvas-header border-bottom">
+                        <img src="assets/images/pbplc.svg" alt="Pubali Logo" style="max-width: 180px; width: 100%; height: auto" />
+                        <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+                    </div>
+                    <div class="offcanvas-body p-0">
+                        <div class="profile-card text-center my-3 mx-3">
+                            <img src="assets/images/fahim.png" class="rounded-circle profile-img mb-2" alt="User profile" />
+                            <h6 class="fw-bold mb-1" style="color: var(--brand-primary)">Md. Fahim</h6>
+                            <span class="badge bg-white text-success border px-2 py-1" style="font-size: 0.75rem; font-weight: 600">
+                                ID : 1284647
+                            </span>
+                        </div>
+                        <div class="d-flex flex-column">
+                            <a class="nav-link-custom" href="#"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+                            <a class="nav-link-custom active" href="#"><i class="bi bi-person-vcard"></i> Profile</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-briefcase"></i> Applied Jobs</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-bookmark-heart"></i> Favourite Jobs</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-bell"></i> Job Alerts</a>
+                            <a class="nav-link-custom" href="#"><i class="bi bi-shield-lock"></i> Settings</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="px-0">
+                    <a class="nav-link-custom nav-link-logout" href="#">
+                        <i class="bi bi-box-arrow-left"></i> Logout
+                    </a>
+                </div>
+            </div>
+        </div>
 
-                        <!-- ROW 3: ACTIVE FILLED ENTRY -->
-                        <tr>
-                            <td>
-                                <input type="text" class="form-control" value="Creative Developer">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" value="Codesmith Tech LTD">
-                            </td>
-                            <td>
-                                <select class="form-select">
-                                    <option value="Full Time" selected>Full Time</option>
-                                    <option value="Part Time">Part Time</option>
-                                    <option value="Contractual">Contractual</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" value="Well Dev LTD">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control text-center-input" value="12/06/2018">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control text-center-input" value="30/11/2021">
-                            </td>
-                        </tr>
+        <!-- MAIN CONTENT AREA -->
+        <div class="main-content d-flex flex-column">
+            <nav class="navbar sticky-top bg-white border-bottom px-4 py-2">
+                <div class="d-flex align-items-center w-100 justify-content-between">
+                    <div class="d-flex align-items-center gap-2">
+                        <button class="btn btn-light d-lg-none input-group-text nav-icon-btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#mobileSidebar">
+                            <i class="bi bi-list fs-4"></i>
+                        </button>
+                        <div class="search-container d-none d-sm-block position-relative">
+                            <i class="bi bi-search position-absolute top-50 start-0 translate-middle-y ms-3 text-secondary"></i>
+                            <input class="form-control search-input ps-5" type="search" placeholder="Search parameters..." id="dashboardSearch" style="border-radius: 20px; min-width: 260px" />
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center gap-3">
+                        <div class="position-relative nav-icon-btn cursor-pointer" id="notificationBell">
+                            <i class="bi bi-bell fs-5"></i>
+                            <span class="position-absolute top-0 start-100 translate-middle p-1 bg-danger border border-light rounded-circle"></span>
+                        </div>
+                        <div class="vr my-2 text-secondary opacity-25" style="height: 24px"></div>
+                        <div class="d-flex align-items-center gap-2">
+                            <img src="assets/images/fahimsm.png" width="36" height="36" class="rounded-circle border profile-pic-sync" alt="Profile Layout" />
+                            <span class="fw-semibold d-none d-md-inline user-name-sync" style="font-size: 0.85rem">Md. Fahim</span>
+                        </div>
+                    </div>
+                </div>
+            </nav>
 
-                        <!-- ROW 4: INACTIVE / PLACEHOLDER ENTRY -->
-                        <tr class="row-disabled">
-                            <td>
-                                <input type="text" class="form-control" placeholder="Creative Developer">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Codesmith Tech LTD">
-                            </td>
-                            <td>
-                                <select class="form-select">
-                                    <option value="" selected>- - Select - -</option>
-                                    <option value="Full Time">Full Time</option>
-                                    <option value="Part Time">Part Time</option>
-                                    <option value="Contractual">Contractual</option>
-                                </select>
-                            </td>
-                            <td>
-                                <input type="text" class="form-control" placeholder="Well Dev LTD">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control text-center-input" placeholder="dd / mm / yyyy">
-                            </td>
-                            <td>
-                                <input type="text" class="form-control text-center-input" placeholder="dd / mm / yyyy">
-                            </td>
-                        </tr>
+            <div class="overflow-hidden pt-3">
+                <div class="container form-container">
+                    <div class="form-card">
+                        <!-- STEP TAB NAVIGATION -->
+                        <div class="step-tabs-container">
+                            <ul class="step-tabs">
+                                <li>
+                                    <a href="cv-documents.html" class="step-item completed">
+                                        <span class="step-content"><i class="fa-solid fa-file-lines"></i> CV & Documents</span>
+                                        <i class="fa-solid fa-circle-check text-success tick-icon"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.html" class="step-item completed">
+                                        <span class="step-content"><i class="fa-solid fa-circle-user"></i> Basic Information</span>
+                                        <i class="fa-solid fa-circle-check text-success tick-icon"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="education.html" class="step-item completed">
+                                        <span class="step-content"><i class="fa-solid fa-graduation-cap"></i> Education</span>
+                                        <i class="fa-solid fa-circle-check text-success tick-icon"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="work-experience.html" class="step-item active">
+                                        <span class="step-content"><i class="fa-solid fa-briefcase"></i> Work Experience</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="certification.html" class="step-item">
+                                        <span class="step-content"><i class="fa-solid fa-award"></i> Certification</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="references.html" class="step-item">
+                                        <span class="step-content"><i class="fa-solid fa-users"></i> References</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
 
-                    </tbody>
-                </table>
+                        <!-- DYNAMIC FORM SCROLLABLE BODY -->
+                        <div class="form-scroll">
+                            <form id="profileForm" novalidate>
+                                <div class="form-step-content active-step" id="step-basic">
+                                    <div class="section-card mb-4">
+                                        <div class="section-title fw-bold border-bottom pb-2 d-flex align-items-center gap-2">
+                                            <i class="fa-solid fa-briefcase" aria-hidden="true"></i> Work Experience
+                                        </div>
+                                        <div class="table-card-pad">
+                                            <div class="education-wrapper">
+                                                <div class="table-responsive">
+                                                    <table class="education-table work-table align-middle" id="educationTable">
+                                                        <thead>
+                                                            <tr>
+                                                                <th style="width: 15%;">Designation</th>
+                                                                <th style="width: 25%;">Name of Organization</th>
+                                                                <th style="width: 12%;">Job Type</th>
+                                                                <th style="width: 28%;">Responsibilities</th>
+                                                                <th style="width: 9%;">Joining Date</th>
+                                                                <th style="width: 11%;">End Date</th>
+                                                                <th style="width: 2%;"></th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody id="tableBody">
+                                                            <!-- INITIAL ROW (INCLUDES "To continue" CHECKBOX) -->
+                                                            <tr data-level="work1">
+                                                                <td>
+                                                                    <input type="text" class="form-control field-designation" placeholder="Designation" name="designation">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control field-organization" placeholder="Organization Name" name="organization">
+                                                                </td>
+                                                                <td>
+                                                                    <select class="form-select field-jobtype" name="jobtype">
+                                                                        <option value="" selected disabled>-- Select --</option>
+                                                                        <option value="FullTime">Full Time</option>
+                                                                        <option value="PartTime">Part Time</option>
+                                                                    </select>
+                                                                </td>
+                                                                <td>
+                                                                    <input type="text" class="form-control field-responsibilities" placeholder="Key Responsibilities" name="responsibilities">
+                                                                </td>
+                                                                <td>
+                                                                    <input type="date" class="form-control field-joining-date" name="joiningDate">
+                                                                </td>
+                                                                <td>
+                                                                    <div class="d-flex flex-column align-items-start">
+                                                                        <input type="date" class="form-control field-end-date" name="endDate">
+                                                                        <div class="form-check mt-1 d-flex justify-content-start align-items-center gap-1 w-100">
+                                                                            <input class="form-check-input chk-continue ms-0" type="checkbox" id="toContinue_1">
+                                                                            <label class="form-check-label form-check-label-sm" for="toContinue_1">
+                                                                                To continue
+                                                                            </label>
+                                                                        </div>
+                                                                    </div>
+                                                                </td>
+                                                                <td class="text-center">
+                                                                    <i class="fa-solid fa-trash-can text-danger cursor-pointer btn-delete-row"></i>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="table-button d-flex justify-content-end align-items-center mt-3">
+                                            <button type="button" class="btn btn-outline-success rounded-pill px-4 py-2" id="addEducationBtn">
+                                                <i class="fa-solid fa-plus me-2"></i>Add New Work
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="form-footer d-flex justify-content-between align-items-center mt-4">
+                                    <button type="button" class="btn btn-cancel" id="prevBtn" disabled>Back</button>
+                                    <button type="submit" class="btn btn-save-next" id="nextBtn">
+                                        Save & Next <i class="fa-solid fa-arrow-right ms-1"></i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-												</div>
-											</div>
-											<div class="table-button d-flex justify-content-end align-items-center">
-												<button type="button" class="btn btn-outline-success rounded-pill px-4 py-2"
-													id="addEducationBtn">
-												<i class="fa-solid fa-plus me-2"></i>Add Another Education
-												</button>
-											</div>
-										</div>
-									</div>
-									<!-- END: STEP 2 CONTAINER -->
-									<!-- -------------------------------------------------------
-										FORM ACTION FOOTER
-										Primary navigation controls for multi-step workflow
-										------------------------------------------------------- -->
-									<div class="form-footer d-flex justify-content-between align-items-center mt-4">
-										<!-- Previous Step Trigger (Disabled on initial editable step) -->
-										<button type="button" class="btn btn-cancel" id="prevBtn" disabled>Back</button>
-										<!-- Submit & Proceed Trigger -->
-										<button type="submit" class="btn btn-save-next" id="nextBtn">
-										Save & Next <i class="fa-solid fa-arrow-right ms-1"></i>
-										</button>
-									</div>
-								</form>
-							</div>
-							<!-- END: FORM SCROLL BODY -->
-						</div>
-					</div>
-				</div>
-				<!-- END: APPLICATION WIZARD CANVAS -->
-				<!-- -------------------------------------------------------------------
-					BASELINE DASHBOARD FOOTER
-					Institutional copyright and mandatory site link references
-					------------------------------------------------------------------- -->
-				<footer class="dash-footer bg-white border-top mt-auto">
-					<div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
-						<!-- Copyright Info -->
-						<div>
-							<span class="small text-secondary">© 2026 <strong>Pubali Bank PLC.</strong> All rights
-							reserved.</span>
-						</div>
-						<!-- Institutional Legal Links -->
-						<div class="d-flex gap-3">
-							<a href="#" class="text-decoration-none text-secondary small">Privacy Policy</a>
-							<a href="#" class="text-decoration-none text-secondary small">Terms of Service</a>
-							<a href="#" class="text-decoration-none text-secondary small">Support</a>
-						</div>
-					</div>
-				</footer>
-				<!-- END: DASHBOARD FOOTER -->
-			</div>
-			<!-- END: MAIN CONTENT AREA CONTAINER -->
-		</div>
-		<!-- END: MAIN DASHBOARD ROOT WRAPPER -->
-		<!-- =========================================================================
-			CORE SCRIPT LIBRARIES & CUSTOM FUNCTIONAL ENGINE
-			========================================================================= -->
-		<!-- Bootstrap 5.3.3 Compiled Bundle JS (Includes Popper.js) -->
-		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-		<script>
-			document.addEventListener("DOMContentLoaded", function () {
-			    const table = document.getElementById("educationTable");
-			
-			    // Initial setup on page load
-			    setupNumericRestrictions();
-			    document.querySelectorAll("#educationTable tbody tr").forEach(toggleGpaState);
-			
-			    // Live validation listeners
-			    table.addEventListener("input", handleTableInput);
-			    table.addEventListener("change", handleTableInput);
-			
-			    // -------------------------------------------------------------
-			    // 1. Strict Numeric-Only Restrictions for CGPA & Out-Of Fields
-			    // -------------------------------------------------------------
-			    function setupNumericRestrictions() {
-			        table.addEventListener("keydown", function (e) {
-			            if (e.target.classList.contains("field-gpa") || e.target.classList.contains("field-scale")) {
-			                const allowedKeys = [
-			                    "Backspace", "Delete", "Tab", "Escape", "Enter",
-			                    "ArrowLeft", "ArrowRight", "Home", "End"
-			                ];
-			
-			                // Allow control keys & shortcut combos (Ctrl+A, Ctrl+C, Ctrl+V)
-			                if (allowedKeys.includes(e.key) || e.ctrlKey || e.metaKey) return;
-			
-			                // Allow numbers 0-9
-			                if (/^[0-9]$/.test(e.key)) return;
-			
-			                // Allow only ONE decimal point (.)
-			                if (e.key === "." && !e.target.value.includes(".")) return;
-			
-			                // Block all other keys (letters, symbols, + / - / e)
-			                e.preventDefault();
-			            }
-			        });
-			
-			        // Handle paste & touch input sanitation
-			        table.addEventListener("input", function (e) {
-			            if (e.target.classList.contains("field-gpa") || e.target.classList.contains("field-scale")) {
-			                let val = e.target.value;
-			
-			                // Remove non-numeric & non-decimal characters
-			                val = val.replace(/[^0-9.]/g, "");
-			
-			                // Keep only the first decimal point
-			                const parts = val.split(".");
-			                if (parts.length > 2) {
-			                    val = parts[0] + "." + parts.slice(1).join("");
-			                }
-			
-			                // Limit to 2 decimal places (e.g., 3.75)
-			                if (parts[1] && parts[1].length > 2) {
-			                    val = parts[0] + "." + parts[1].slice(0, 2);
-			                }
-			
-			                e.target.value = val;
-			            }
-			        });
-			    }
-			
-			    // -------------------------------------------------------------
-			    // 2. Event Handler & Control Flow
-			    // -------------------------------------------------------------
-			    function handleTableInput(e) {
-			        const row = e.target.closest("tr");
-			        if (!row) return;
-			
-			        if (e.target.classList.contains("field-division") || e.target.classList.contains("field-exam")) {
-			            toggleGpaState(row);
-			        }
-			
-			        validateRow(row);
-			        validateYearSequence();
-			    }
-			
-			    // Toggle enabling/disabling GPA and Out Of fields
-			    function toggleGpaState(row) {
-			        const divisionSelect = row.querySelector(".field-division");
-			        const gpaInput = row.querySelector(".field-gpa");
-			        const scaleInput = row.querySelector(".field-scale");
-			
-			        const isGradeSystem = divisionSelect.value === "Grade";
-			
-			        if (!isGradeSystem) {
-			            gpaInput.value = "";
-			            scaleInput.value = "";
-			            gpaInput.disabled = true;
-			            scaleInput.disabled = true;
-			            clearFieldState(gpaInput);
-			            clearFieldState(scaleInput);
-			        } else {
-			            gpaInput.disabled = false;
-			            scaleInput.disabled = false;
-			            // Auto-fill typical default scale based on Bangladesh Bank standards
-			            if (!scaleInput.value) {
-			                const level = row.dataset.level;
-			                scaleInput.value = (level === "ssc" || level === "hsc") ? "" : "";
-			            }
-			        }
-			    }
-			
-			    // -------------------------------------------------------------
-			    // 3. Bangladesh Bank Field & Row Validation Logic
-			    // -------------------------------------------------------------
-			    function validateRow(row) {
-			        const isMandatory = row.dataset.mandatory === "true";
-			        const examSelect = row.querySelector(".field-exam");
-			        const hasSelectedExam = examSelect.value !== "";
-			
-			        // Optional rows (Bachelor/Masters) only trigger validation if an exam is selected
-			        const isRowActive = isMandatory || hasSelectedExam;
-			
-			        const fields = {
-			            exam: row.querySelector(".field-exam"),
-			            group: row.querySelector(".field-group"),
-			            division: row.querySelector(".field-division"),
-			            gpa: row.querySelector(".field-gpa"),
-			            scale: row.querySelector(".field-scale"),
-			            roll: row.querySelector(".field-roll"),
-			            board: row.querySelector(".field-board"),
-			            year: row.querySelector(".field-year")
-			        };
-			
-			        if (!isRowActive) {
-			            Object.values(fields).forEach(clearFieldState);
-			            return;
-			        }
-			
-			        // Required drop-down validations
-			        markField(fields.exam, fields.exam.value !== "");
-			        markField(fields.group, fields.group.value !== "");
-			        markField(fields.division, fields.division.value !== "");
-			        markField(fields.board, fields.board.value !== "");
-			
-			        // Roll number validation
-			        markField(fields.roll, fields.roll.value.trim() !== "");
-			
-			        // Passing year validation (4-digit check between 1970 and current year)
-			        const currentYear = new Date().getFullYear();
-			        const yearVal = parseInt(fields.year.value, 10);
-			        const isYearValid = /^\d{4}$/.test(fields.year.value) && yearVal >= 1970 && yearVal <= currentYear;
-			        markField(fields.year, isYearValid);
-			
-			        // GPA and Scale numeric validation
-			        if (fields.division.value === "Grade") {
-			            const gpa = parseFloat(fields.gpa.value);
-			            const scale = parseFloat(fields.scale.value);
-			
-			            // Bangladesh scale rules: 4.00 or 5.00 max standard
-			            const isScaleValid = !isNaN(scale) && scale > 0 && scale <= 5.0;
-			            const isGpaValid = !isNaN(gpa) && gpa > 0 && gpa <= scale;
-			
-			            markField(fields.scale, isScaleValid);
-			            markField(fields.gpa, isGpaValid);
-			        } else {
-			            clearFieldState(fields.gpa);
-			            clearFieldState(fields.scale);
-			        }
-			    }
-			
-			    // -------------------------------------------------------------
-			    // 4. Bangladesh Bank Education Gap & Chronology Rules
-			    // -------------------------------------------------------------
-			    function validateYearSequence() {
-			        const getYear = (level) => {
-			            const input = document.querySelector(`tr[data-level="${level}"] .field-year`);
-			            return input && input.value.length === 4 ? parseInt(input.value, 10) : null;
-			        };
-			
-			        const sscYr = getYear("ssc");
-			        const hscYr = getYear("hsc");
-			        const bachYr = getYear("bachelor");
-			        const mastYr = getYear("masters");
-			
-			        const hscInput = document.querySelector('tr[data-level="hsc"] .field-year');
-			        const bachInput = document.querySelector('tr[data-level="bachelor"] .field-year');
-			        const mastInput = document.querySelector('tr[data-level="masters"] .field-year');
-			
-			        // Rule 1: HSC must be at least 2 years after SSC
-			        if (sscYr && hscYr) {
-			            if (hscYr < sscYr + 2) markField(hscInput, false);
-			        }
-			
-			        // Rule 2: Bachelor must be at least 3 years after HSC
-			        if (hscYr && bachYr) {
-			            if (bachYr < hscYr + 3) markField(bachInput, false);
-			        }
-			
-			        // Rule 3: Masters must be at least 1 year after Bachelor
-			        if (bachYr && mastYr) {
-			            if (mastYr < bachYr + 1) markField(mastInput, false);
-			        }
-			    }
-			
-			    // -------------------------------------------------------------
-			    // Helper Functions
-			    // -------------------------------------------------------------
-			    function markField(element, isValid) {
-			        if (!element) return;
-			        if (isValid) {
-			            element.classList.add("is-valid");
-			            element.classList.remove("is-invalid");
-			        } else {
-			            element.classList.add("is-invalid");
-			            element.classList.remove("is-valid");
-			        }
-			    }
-			
-			    function clearFieldState(element) {
-			        if (!element) return;
-			        element.classList.remove("is-valid", "is-invalid");
-			    }
-			});
-		</script>
-	</body>
+            <footer class="dash-footer bg-white border-top mt-auto">
+                <div class="d-flex flex-column flex-sm-row justify-content-between align-items-center gap-2">
+                    <div>
+                        <span class="small text-secondary">© 2026 <strong>Pubali Bank PLC.</strong> All rights reserved.</span>
+                    </div>
+                    <div class="d-flex gap-3">
+                        <a href="#" class="text-decoration-none text-secondary small">Privacy Policy</a>
+                        <a href="#" class="text-decoration-none text-secondary small">Terms of Service</a>
+                        <a href="#" class="text-decoration-none text-secondary small">Support</a>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5.3.3 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- DYNAMIC ROW CREATION & VALIDATION ENGINE -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const form = document.getElementById("profileForm");
+            const tableBody = document.getElementById("tableBody");
+            const addBtn = document.getElementById("addEducationBtn");
+
+            // Function to manage trash icon visibility based on row count
+            function updateDeleteIconsVisibility() {
+                const rows = tableBody.querySelectorAll("tr");
+                const trashIcons = tableBody.querySelectorAll(".btn-delete-row");
+
+                if (rows.length === 1) {
+                    trashIcons.forEach(icon => icon.classList.add("d-none"));
+                } else {
+                    trashIcons.forEach(icon => icon.classList.remove("d-none"));
+                }
+            }
+
+            // Function to validate field state (Colors only: Green / Red)
+            function validateField(field) {
+                const value = field.value.trim();
+                let isValid = true;
+                const row = field.closest("tr");
+
+                // Check for empty selection or input
+                if (value === "" || value === null) {
+                    isValid = false;
+                }
+
+                // If this is an End Date field and "To continue" is checked, consider it valid
+                if (field.classList.contains("field-end-date")) {
+                    const continueChk = row.querySelector(".chk-continue");
+                    if (continueChk && continueChk.checked) {
+                        field.classList.remove("is-invalid");
+                        field.classList.add("is-valid");
+                        return true;
+                    }
+
+                    // Sequential Validation: End Date must be on or after Joining Date
+                    if (value !== "") {
+                        const joiningField = row.querySelector(".field-joining-date");
+                        const joiningDateValue = joiningField ? joiningField.value : "";
+
+                        if (joiningDateValue !== "") {
+                            const joiningDate = new Date(joiningDateValue);
+                            const endDate = new Date(value);
+
+                            if (endDate < joiningDate) {
+                                isValid = false;
+                            }
+                        }
+                    }
+                }
+
+                // Apply color classes (Green = is-valid, Red = is-invalid)
+                if (isValid) {
+                    field.classList.remove("is-invalid");
+                    field.classList.add("is-valid");
+                } else {
+                    field.classList.remove("is-valid");
+                    field.classList.add("is-invalid");
+                }
+
+                return isValid;
+            }
+
+            // Initial check for trash icon visibility on page load
+            updateDeleteIconsVisibility();
+
+            // Dynamically Add New Work Experience Row (WITHOUT "To continue" CHECKBOX)
+            addBtn.addEventListener("click", function () {
+                const rowCount = tableBody.querySelectorAll("tr").length + 1;
+                const newRow = document.createElement("tr");
+                newRow.setAttribute("data-level", "work" + rowCount);
+
+                newRow.innerHTML = `
+                    <td>
+                        <input type="text" class="form-control field-designation" placeholder="Designation" name="designation">
+                    </td>
+                    <td>
+                        <input type="text" class="form-control field-organization" placeholder="Organization Name" name="organization">
+                    </td>
+                    <td>
+                        <select class="form-select field-jobtype" name="jobtype">
+                            <option value="" selected disabled>-- Select --</option>
+                            <option value="FullTime">Full Time</option>
+                            <option value="PartTime">Part Time</option>
+                        </select>
+                    </td>
+                    <td>
+                        <input type="text" class="form-control field-responsibilities" placeholder="Key Responsibilities" name="responsibilities">
+                    </td>
+                    <td>
+                        <input type="date" class="form-control field-joining-date" name="joiningDate">
+                    </td>
+                    <td>
+                        <input type="date" class="form-control field-end-date" name="endDate">
+                    </td>
+                    <td class="text-center">
+                        <i class="fa-solid fa-trash-can text-danger cursor-pointer btn-delete-row"></i>
+                    </td>
+                `;
+
+                tableBody.appendChild(newRow);
+                updateDeleteIconsVisibility();
+            });
+
+            // Delete row event handler
+            form.addEventListener("click", function (e) {
+                if (e.target && e.target.classList.contains("btn-delete-row")) {
+                    const row = e.target.closest("tr");
+                    if (tableBody.querySelectorAll("tr").length > 1) {
+                        row.remove();
+                        updateDeleteIconsVisibility();
+                    }
+                }
+            });
+
+            // Toggle "To continue" Checkbox handler
+            form.addEventListener("change", function (event) {
+                if (event.target.classList.contains("chk-continue")) {
+                    const row = event.target.closest("tr");
+                    const endDateInput = row.querySelector(".field-end-date");
+
+                    if (event.target.checked) {
+                        endDateInput.value = "";
+                        endDateInput.disabled = true;
+                        endDateInput.classList.remove("is-invalid");
+                        endDateInput.classList.add("is-valid");
+                    } else {
+                        endDateInput.disabled = false;
+                        validateField(endDateInput);
+                    }
+                }
+
+                if (event.target.classList.contains("form-control") || event.target.classList.contains("form-select")) {
+                    validateField(event.target);
+
+                    // Re-check end date color if joining date changes
+                    if (event.target.classList.contains("field-joining-date")) {
+                        const row = event.target.closest("tr");
+                        const endDateField = row.querySelector(".field-end-date");
+                        if (endDateField && endDateField.value !== "") {
+                            validateField(endDateField);
+                        }
+                    }
+                }
+            });
+
+            form.addEventListener("input", function (event) {
+                if (event.target.classList.contains("form-control")) {
+                    validateField(event.target);
+                }
+            });
+
+            // Form Submit Logic
+            form.addEventListener("submit", function (event) {
+                event.preventDefault();
+                let isFormValid = true;
+
+                const fields = form.querySelectorAll(".form-control, .form-select");
+                fields.forEach(function (field) {
+                    if (!validateField(field)) {
+                        isFormValid = false;
+                    }
+                });
+
+                if (isFormValid) {
+                    console.log("Form is valid and ready to proceed.");
+                }
+            });
+        });
+    </script>
+</body>
+
 </html>
